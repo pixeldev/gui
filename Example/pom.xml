@@ -16,7 +16,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.1</version>
+                <version>3.8.1</version>
                 <configuration>
                     <compilerArguments>
                         <parameters />
@@ -27,7 +27,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.2.3</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -64,6 +64,5 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
 
 </project>

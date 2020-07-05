@@ -6,6 +6,8 @@ import org.bukkit.inventory.ItemStack;
 
 import team.unnamed.gui.button.SimpleButton;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,13 +19,15 @@ public class MenuBuilder {
     private Set<SimpleButton> buttons;
 
     public MenuBuilder(String title) {
-        this.title = title;
-        this.rows = 6;
+        this(title, 6);
     }
 
     public MenuBuilder(String title, int rows) {
         this.title = title;
         this.rows = rows;
+
+        this.items = new HashMap<>();
+        this.buttons = new HashSet<>();
     }
 
     public MenuBuilder rows(int rows) {
@@ -58,6 +62,7 @@ public class MenuBuilder {
 
     public MenuBuilder register(MenuManager menuManager) {
         menuManager.registerMenu(this);
+
         return this;
     }
 
