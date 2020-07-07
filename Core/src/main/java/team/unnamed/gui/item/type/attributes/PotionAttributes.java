@@ -1,4 +1,4 @@
-package team.unnamed.gui.item.type;
+package team.unnamed.gui.item.type.attributes;
 
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;

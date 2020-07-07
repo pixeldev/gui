@@ -8,6 +8,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 
 import team.unnamed.gui.item.ItemBuilder;
 import team.unnamed.gui.item.LoreBuilder;
+import team.unnamed.gui.item.type.attributes.PotionAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
