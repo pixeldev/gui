@@ -4,6 +4,8 @@ import me.fixeddev.ebcm.parametric.CommandClass;
 import me.fixeddev.ebcm.parametric.annotation.ACommand;
 import me.fixeddev.ebcm.parametric.annotation.Injected;
 
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -17,9 +19,11 @@ import org.bukkit.potion.PotionEffectType;
 import team.unnamed.gui.button.SimpleButton;
 import team.unnamed.gui.item.ItemBuilder;
 import team.unnamed.gui.item.LoreBuilder;
+import team.unnamed.gui.item.type.FireworkBuilder;
 import team.unnamed.gui.item.type.LeatherArmorBuilder;
 import team.unnamed.gui.item.type.LeatherColor;
-import team.unnamed.gui.item.type.PotionAttributes;
+import team.unnamed.gui.item.type.attributes.FireworkAttributes;
+import team.unnamed.gui.item.type.attributes.PotionAttributes;
 import team.unnamed.gui.item.type.PotionBuilder;
 import team.unnamed.gui.menu.MenuBuilder;
 import team.unnamed.gui.menu.MenuManager;
@@ -130,6 +134,27 @@ public class ExampleCommand implements CommandClass {
                 ).register(menuManager);
 
         player.openInventory(menuBuilder.build());
+
+        return true;
+    }
+
+    @ACommand(names = "firework")
+    public boolean fireworkCommand(@Injected(true) CommandSender sender) {
+        Player player = (Player) sender;
+
+        ItemStack firework = new FireworkBuilder(Material.FIREWORK)
+                .addAttribute(
+                        new FireworkAttributes()
+                        .color(Color.BLUE)
+                        .flicker(true)
+                        .trail(true)
+                        .colorFade(Color.LIME)
+                        .type(FireworkEffect.Type.STAR)
+                )
+                .power(4)
+                .buildFirework();
+
+        player.getInventory().addItem(firework);
 
         return true;
     }
