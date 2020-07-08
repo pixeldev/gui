@@ -4,6 +4,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import team.unnamed.gui.button.SimpleButton;
+import team.unnamed.gui.event.CloseMenuEvent;
+import team.unnamed.gui.event.OpenMenuEvent;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,6 +18,9 @@ public class MenuBuilder {
     private int rows;
     private Map<Integer, ItemStack> items;
     private Set<SimpleButton> buttons;
+
+    private OpenMenuEvent openMenuEvent;
+    private CloseMenuEvent closeMenuEvent;
 
     public MenuBuilder(String title) {
         this(title, 6);
@@ -59,6 +64,18 @@ public class MenuBuilder {
         return this;
     }
 
+    public MenuBuilder openEvent(OpenMenuEvent openMenuEvent) {
+        this.openMenuEvent = openMenuEvent;
+
+        return this;
+    }
+
+    public MenuBuilder closeEvent(CloseMenuEvent closeMenuEvent) {
+        this.closeMenuEvent = closeMenuEvent;
+
+        return this;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -73,6 +90,14 @@ public class MenuBuilder {
 
     public Map<Integer, ItemStack> getItems() {
         return items;
+    }
+
+    public OpenMenuEvent getOpenMenuEvent() {
+        return openMenuEvent;
+    }
+
+    public CloseMenuEvent getCloseMenuEvent() {
+        return closeMenuEvent;
     }
 
     public Inventory build() {
