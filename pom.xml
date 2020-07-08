@@ -10,6 +10,13 @@
 
     <packaging>pom</packaging>
 
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
     <modules>
         <module>Core</module>
         <module>Example</module>
