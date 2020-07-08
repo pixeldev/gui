@@ -1,25 +1,14 @@
 package team.unnamed.gui.listeners;
 
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryEvent;
 import org.bukkit.inventory.Inventory;
 
-import team.unnamed.gui.menu.MenuBuilder;
-import team.unnamed.gui.menu.MenuManager;
-
-import java.util.concurrent.atomic.AtomicReference;
+import team.unnamed.gui.menu.MenuHolder;
 
 public class MenuListeners implements Listener {
-
-    private final MenuManager menuManager;
-
-    public MenuListeners(MenuManager menuManager) {
-        this.menuManager = menuManager;
-    }
 
     @EventHandler
     public void onClose(InventoryCloseEvent event) {
@@ -29,13 +18,11 @@ public class MenuListeners implements Listener {
             return;
         }
 
-        MenuBuilder menuBuilder = getMenu(event);
-
-        if(menuBuilder == null) {
+        if (!(inventory.getHolder() instanceof MenuHolder)) {
             return;
         }
 
-        menuManager.getMenuBuilders().remove(menuBuilder);
+        MenuHolder menuHolder = (MenuHolder) inventory.getHolder();
     }
 
     @EventHandler
@@ -46,29 +33,21 @@ public class MenuListeners implements Listener {
             return;
         }
 
-        MenuBuilder menuBuilder = getMenu(event);
-
-        if(menuBuilder == null) {
+        if (!(inventory.getHolder() instanceof MenuHolder)) {
             return;
         }
 
-        menuBuilder.getButtons().forEach(simpleButton -> {
+        MenuHolder menuHolder = (MenuHolder) inventory.getHolder();
+
+        if(menuHolder == null) {
+            return;
+        }
+
+        menuHolder.getMenuBuilder().getButtons().forEach(simpleButton -> {
             if(simpleButton.getSlot() == event.getSlot()) {
                 event.setCancelled(simpleButton.getButton().clickEvent(event));
             }
         });
-    }
-
-    private MenuBuilder getMenu(InventoryEvent event) {
-        AtomicReference<MenuBuilder> builder = new AtomicReference<>();
-
-        menuManager.getMenuBuilders().forEach(menuBuilder -> {
-            if (ChatColor.stripColor(menuBuilder.getTitle()).equals(ChatColor.stripColor(event.getView().getTitle()))) {
-                builder.set(menuBuilder);
-            }
-        });
-
-        return builder.get();
     }
 
 }

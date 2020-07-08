@@ -1,6 +1,5 @@
 package team.unnamed.gui.menu;
 
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -60,12 +59,6 @@ public class MenuBuilder {
         return this;
     }
 
-    public MenuBuilder register(MenuManager menuManager) {
-        menuManager.registerMenu(this);
-
-        return this;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -74,12 +67,16 @@ public class MenuBuilder {
         return buttons;
     }
 
+    public int getRows() {
+        return rows;
+    }
+
+    public Map<Integer, ItemStack> getItems() {
+        return items;
+    }
+
     public Inventory build() {
-        Inventory inventory = Bukkit.createInventory(null, rows * 9, title);
-
-        items.forEach(inventory::setItem);
-
-        return inventory;
+        return new MenuHolder(this).getInventory();
     }
 
 }
