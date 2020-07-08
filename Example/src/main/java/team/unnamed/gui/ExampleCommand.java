@@ -124,7 +124,17 @@ public class ExampleCommand implements CommandClass {
                                     return true;
                                 }
                         )
-                );
+                )
+                .openEvent(event -> {
+                    Player eventPlayer = (Player) event.getPlayer();
+                    eventPlayer.sendMessage("Opening...!");
+
+                    return false;
+                })
+                .closeEvent(event -> {
+                    Player eventPlayer = (Player) event.getPlayer();
+                    eventPlayer.sendMessage("Closing...!");
+                });
 
         player.openInventory(menuBuilder.build());
 
