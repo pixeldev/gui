@@ -12,6 +12,23 @@ and install it with Maven, then just add this to your pom.xml
     <version>0.0.1</version>
 </dependency>
 ```
+### JitPack Repository
+This is a temporal repository to allow the use of the library without cloning the project``
+```xml
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+```
+```xml
+	<dependency>
+	    <groupId>com.github.UnnamedWorks</groupId>
+	    <artifactId>UnnamedGUI</artifactId>
+	    <version>Tag</version>
+	</dependency>
+```
 
 ## How to use
 First we need register one listener for all menus.
