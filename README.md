@@ -2,7 +2,7 @@
 # UnnamedGUI - MenuManager
 A small, and very easy to use, library for creating menus at Spigot API!
 
-##Maven Dependency
+## Maven Dependency
 At the moment you will need to clone the repository on your PC,
 and install it with Maven, then just add this to your pom.xml
 ```xml
