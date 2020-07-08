@@ -26,7 +26,7 @@ This is a temporal repository to allow the use of the library without cloning th
 	<dependency>
 	    <groupId>com.github.UnnamedWorks</groupId>
 	    <artifactId>UnnamedGUI</artifactId>
-	    <version>Tag</version>
+	    <version>v1.0</version>
 	</dependency>
 ```
 
