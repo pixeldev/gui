@@ -26,16 +26,9 @@ import team.unnamed.gui.item.type.attributes.FireworkAttributes;
 import team.unnamed.gui.item.type.attributes.PotionAttributes;
 import team.unnamed.gui.item.type.PotionBuilder;
 import team.unnamed.gui.menu.MenuBuilder;
-import team.unnamed.gui.menu.MenuManager;
 
 @ACommand(names = "menu")
 public class ExampleCommand implements CommandClass {
-
-    private final MenuManager menuManager;
-
-    public ExampleCommand(MenuManager menuManager) {
-        this.menuManager = menuManager;
-    }
 
     @ACommand(names = "item")
     public boolean itemCommand(@Injected(true) CommandSender sender) {
@@ -131,7 +124,7 @@ public class ExampleCommand implements CommandClass {
                                     return true;
                                 }
                         )
-                ).register(menuManager);
+                );
 
         player.openInventory(menuBuilder.build());
 
@@ -145,11 +138,11 @@ public class ExampleCommand implements CommandClass {
         ItemStack firework = new FireworkBuilder(Material.FIREWORK)
                 .addAttribute(
                         new FireworkAttributes()
-                        .color(Color.BLUE)
-                        .flicker(true)
-                        .trail(true)
-                        .colorFade(Color.LIME)
-                        .type(FireworkEffect.Type.STAR)
+                                .color(Color.BLUE)
+                                .flicker(true)
+                                .trail(true)
+                                .colorFade(Color.LIME)
+                                .type(FireworkEffect.Type.STAR)
                 )
                 .power(4)
                 .buildFirework();
