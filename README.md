@@ -15,7 +15,7 @@ including various types of builders for different types of items,
 such as potions, leather armor, fireworks, and soon new types.
 So let's start by explaining each type.
 
-##### ItemBuilder:
+#### ItemBuilder:
 This is the basis of everything, here you'll have access to many
 methods that can be used to facilitate the creation of an item.
 Let's look at a simple but complete example:
@@ -32,7 +32,8 @@ ItemStack itemStack = new ItemBuilder(Material.DIAMOND_SWORD, 2)
 ```
 It's that easy to create an item, and you can do whatever you want with it.
 As you can see there's a LoreBuilder object.
-######LoreBuider:
+
+####LoreBuider:
 This class is simply to facilitate the creation of a lore,
 since it provides methods like `LoreBuilder#replace(replace, replacement);`
 So you don't have to iterate, there's even the `LoreBuilder#colorize();` 
@@ -45,7 +46,8 @@ List<String> loreBuilder = new LoreBuilder() //Here you can put any List<String>
     .build();
 ```
 Easy...
-#####LeatherArmorBuilder:
+
+####LeatherArmorBuilder:
 This type will simply make creating colored leather armor easier to create,
 there's an enum with some ready-made colors so you don't have to complicate using.
 An example of how to use this builder is the following:
@@ -76,7 +78,7 @@ Also as I mentioned before there is the LeatherColor enum.
 Although there's also a method like this `LeatherArmorBuilder#rgbColor(red, green, blue);`.
 These values can be obtained at: https://www.rapidtables.com/web/color/RGB_Color.html
 
-######LeatherColor:
+####LeatherColor:
 Types:
     
     - CYAN
@@ -95,7 +97,7 @@ Types:
     - DARK_GRAY
     - LIGHT_GRAY
     
-#####PotionBuilder:
+####PotionBuilder:
 There's also the Builder for potions, it's very easy to use, 
 but remember that the material must be some kind of potion.
 Example:
@@ -120,7 +122,7 @@ ItemStack potion = new PotionBuilder(Material.POTION)
 As you can see it's similar to the rest, but in this case
 the method to create the item will be `PotionBuilder#buildPotion();`
 
-#####FireworkBuilder:
+####FireworkBuilder:
 Finally, there's a Builder for fireworks, which is very easy to use,
 an example would be the following:
 ```java
@@ -138,3 +140,81 @@ ItemStack firework = new FireworkBuilder(Material.FIREWORK)
 ```
 As you can see it is similar to the rest, but in this case
 the method to create the item will be `FireworkBuilder#buildFirework();`
+
+####Menu Creation:
+Now that you know all the other functionalities of the library, 
+let's move on to see how it is to create a menu.
+
+It really is very easy to use since it has all the essentials you can have,
+and it's easy to use since you have the possibility of registering 
+the click event in the same menu creation, even being able to add the event
+when the inventory is opened , or when it's closed.
+
+An example of how to create a menu would be the following:
+
+```java
+MenuBuilder menuBuilder = new MenuBuilder("MenuTest", 5)
+    .addItem(
+            13,
+            new ItemBuilder(Material.GLOWSTONE_DUST)
+                    .name("&bSimple test!")
+                    .lore(
+                            new LoreBuilder()
+                                    .addLines("&7This is a simple test for item menu!", "", "&bEnjoy!")
+                                    .colorize()
+                    )
+                    .build()
+    )
+    .addButton(
+            new SimpleButton(
+                    13,
+                    event -> {
+                        Player eventPlayer = (Player) event.getWhoClicked();
+                        eventPlayer.playSound(eventPlayer.getLocation(), Sound.LEVEL_UP, 1, 1);
+
+                        return true;
+                    }
+            )
+    )
+    .openEvent(event -> {
+        Player eventPlayer = (Player) event.getPlayer();
+        eventPlayer.sendMessage("Opening...!");
+
+        return false;
+    })
+    .closeEvent(event -> {
+        Player eventPlayer = (Player) event.getPlayer();
+        eventPlayer.sendMessage("Closing...!");
+    });
+```
+
+The constructor requires 2 parameters, the name of the menu, 
+and the number of rows it'll have, it isn't necessary to
+place the complete number, simply, 1, 2, 3... and so depending 
+on the amount you want **Remember that the maximum is 6**
+
+As you can see, you can add items with the `MenuBuilder#addItem(slot, itemstack);`
+and the event of clicking with the `MenuBuilder#addButton(SimpleButton);` method.
+
+####SimpleButton:
+This is a class that is in charge of storing 2 things,
+the slot to which the event will be listened, and 
+the action that it will execute (Button).
+
+####Button:
+This is a FunctionalInterface, it simply has a method that is going to 
+be executed when the player clicks on the slot you have indicated, 
+it can be instantiated with lambdas, and the, return value will simply 
+serve to know if the event will be canceled or not, it returns true when
+you want it to be canceled, and when it doesn't, it returns false.
+
+####OpenMenuEvent:
+This is also a FunctionalInterface and it'll simply
+execute the action you want when instantiating the interface, 
+and it'll also return true when you want the event to be canceled.
+
+####OpenCloseEvent:
+And finally we have this other FunctionalInterface, 
+which can also be instantiated with lambdas and will 
+simply execute the action it has inside, in this case 
+it'll not have to return any value.
