@@ -37,6 +37,8 @@ public class MenuListeners implements Listener {
         menuHolder.getMenuBuilder().getButtons().forEach(simpleButton -> {
             if(simpleButton.getSlot() == event.getSlot()) {
                 event.setCancelled(simpleButton.getButton().clickEvent(event));
+            } else {
+                event.setCancelled(menuHolder.getMenuBuilder().isCancellFill());
             }
         });
     }

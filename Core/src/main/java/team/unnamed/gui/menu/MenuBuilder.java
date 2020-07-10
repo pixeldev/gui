@@ -14,6 +14,11 @@ import java.util.Set;
 
 public class MenuBuilder {
 
+    private ItemStack itemForFill;
+    private int fillFrom = -1;
+    private int fillTo = -1;
+    private boolean cancellFill = false;
+
     private final String title;
     private int rows;
     private Map<Integer, ItemStack> items;
@@ -36,6 +41,12 @@ public class MenuBuilder {
 
     public MenuBuilder rows(int rows) {
         this.rows = rows;
+
+        return this;
+    }
+
+    public MenuBuilder fillItem(ItemStack itemForFill) {
+        this.itemForFill = itemForFill;
 
         return this;
     }
@@ -76,6 +87,19 @@ public class MenuBuilder {
         return this;
     }
 
+    public MenuBuilder fillSlots(int from, int to) {
+        fillFrom = from;
+        fillTo = to;
+
+        return this;
+    }
+
+    public MenuBuilder cancellFill(boolean cancellFill) {
+        this.cancellFill = cancellFill;
+
+        return this;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -98,6 +122,22 @@ public class MenuBuilder {
 
     public CloseMenuEvent getCloseMenuEvent() {
         return closeMenuEvent;
+    }
+
+    public ItemStack getItemForFill() {
+        return itemForFill;
+    }
+
+    public int getFillFrom() {
+        return fillFrom;
+    }
+
+    public int getFillTo() {
+        return fillTo;
+    }
+
+    public boolean isCancellFill() {
+        return cancellFill;
     }
 
     public Inventory build() {
