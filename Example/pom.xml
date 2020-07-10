@@ -59,7 +59,7 @@
         </dependency>
         <dependency>
             <groupId>team.unnamed.gui</groupId>
-            <artifactId>Core</artifactId>
+            <artifactId>UnnamedGUI-Core</artifactId>
             <version>0.0.1</version>
             <scope>compile</scope>
         </dependency>
