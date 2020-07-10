@@ -13,7 +13,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-
 import org.bukkit.potion.PotionEffectType;
 
 import team.unnamed.gui.button.SimpleButton;
@@ -103,6 +102,17 @@ public class ExampleCommand implements CommandClass {
         Player player = (Player) sender;
 
         MenuBuilder menuBuilder = new MenuBuilder("MenuTest", 5)
+                .fillItem(
+                        new ItemBuilder(Material.STAINED_GLASS_PANE, 1, (short) 9)
+                                .name("")
+                                .lore(
+                                        new LoreBuilder()
+                                                .addLine("")
+                                )
+                                .build()
+                )
+                .fillSlots(0, 8)
+                .cancellFill(true)
                 .addItem(
                         13,
                         new ItemBuilder(Material.GLOWSTONE_DUST)
