@@ -59,13 +59,7 @@ public class MenuListeners implements Listener {
             return false;
         }
 
-        if (!(inventory.getHolder() instanceof MenuHolder)) {
-            return false;
-        }
-
-        MenuHolder menuHolder = (MenuHolder) inventory.getHolder();
-
-        return menuHolder != null;
+        return inventory.getHolder() instanceof MenuHolder;
     }
 
 }
