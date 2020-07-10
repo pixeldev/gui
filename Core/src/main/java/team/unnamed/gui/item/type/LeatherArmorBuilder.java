@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import team.unnamed.gui.item.ItemBuilder;
 import team.unnamed.gui.item.LoreBuilder;
+import team.unnamed.gui.item.type.attributes.LeatherColor;
 
 import java.util.List;
 import java.util.Map;
