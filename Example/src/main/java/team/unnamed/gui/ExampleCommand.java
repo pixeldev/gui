@@ -20,7 +20,7 @@ import team.unnamed.gui.item.ItemBuilder;
 import team.unnamed.gui.item.LoreBuilder;
 import team.unnamed.gui.item.type.FireworkBuilder;
 import team.unnamed.gui.item.type.LeatherArmorBuilder;
-import team.unnamed.gui.item.type.LeatherColor;
+import team.unnamed.gui.item.type.attributes.LeatherColor;
 import team.unnamed.gui.item.type.attributes.FireworkAttributes;
 import team.unnamed.gui.item.type.attributes.PotionAttributes;
 import team.unnamed.gui.item.type.PotionBuilder;
@@ -101,50 +101,50 @@ public class ExampleCommand implements CommandClass {
     public boolean menuCommand(@Injected(true) CommandSender sender) {
         Player player = (Player) sender;
 
-        MenuBuilder menuBuilder = new MenuBuilder("MenuTest", 5)
-                .fillItem(
-                        new ItemBuilder(Material.STAINED_GLASS_PANE, 1, (short) 9)
-                                .name("")
-                                .lore(
-                                        new LoreBuilder()
-                                                .addLine("")
-                                )
-                                .build()
-                )
-                .fillSlots(0, 8)
-                .cancellFill(true)
-                .addItem(
-                        13,
-                        new ItemBuilder(Material.GLOWSTONE_DUST)
-                                .name("&bSimple test!")
-                                .lore(
-                                        new LoreBuilder()
-                                                .addLines("&7This is a simple test for item menu!", "", "&bEnjoy!")
-                                                .colorize()
-                                )
-                                .build()
-                )
-                .addButton(
-                        new SimpleButton(
-                                13,
-                                event -> {
-                                    Player eventPlayer = (Player) event.getWhoClicked();
-                                    eventPlayer.playSound(eventPlayer.getLocation(), Sound.LEVEL_UP, 1, 1);
+    MenuBuilder menuBuilder = new MenuBuilder("MenuTest", 5)
+            .fillItem(
+                    new ItemBuilder(Material.STAINED_GLASS_PANE, 1, (short) 9)
+                            .name("")
+                            .lore(
+                                    new LoreBuilder()
+                                            .addLine("")
+                            )
+                            .build()
+            )
+            .fillSlots(0, 8)
+            .cancellFill(true)
+            .addItem(
+                    13,
+                    new ItemBuilder(Material.GLOWSTONE_DUST)
+                            .name("&bSimple test!")
+                            .lore(
+                                    new LoreBuilder()
+                                            .addLines("&7This is a simple test for item menu!", "", "&bEnjoy!")
+                                            .colorize()
+                            )
+                            .build()
+            )
+            .addButton(
+                    new SimpleButton(
+                            13,
+                            event -> {
+                                Player eventPlayer = (Player) event.getWhoClicked();
+                                eventPlayer.playSound(eventPlayer.getLocation(), Sound.LEVEL_UP, 1, 1);
 
-                                    return true;
-                                }
-                        )
-                )
-                .openEvent(event -> {
-                    Player eventPlayer = (Player) event.getPlayer();
-                    eventPlayer.sendMessage("Opening...!");
+                                return true;
+                            }
+                    )
+            )
+            .openEvent(event -> {
+                Player eventPlayer = (Player) event.getPlayer();
+                eventPlayer.sendMessage("Opening...!");
 
-                    return false;
-                })
-                .closeEvent(event -> {
-                    Player eventPlayer = (Player) event.getPlayer();
-                    eventPlayer.sendMessage("Closing...!");
-                });
+                return false;
+            })
+            .closeEvent(event -> {
+                Player eventPlayer = (Player) event.getPlayer();
+                eventPlayer.sendMessage("Closing...!");
+            });
 
         player.openInventory(menuBuilder.build());
 
