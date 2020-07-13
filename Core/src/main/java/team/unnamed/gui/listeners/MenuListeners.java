@@ -51,6 +51,10 @@ public class MenuListeners implements Listener {
 
         MenuHolder menuHolder = (MenuHolder) event.getInventory().getHolder();
 
+        if(menuHolder.getMenuBuilder().getCloseMenuEvent() == null) {
+            return;
+        }
+
         menuHolder.getMenuBuilder().getCloseMenuEvent().closeEvent(event);
     }
 
