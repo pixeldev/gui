@@ -112,7 +112,7 @@ public class ExampleCommand implements CommandClass {
                             .build()
             )
             .fillSlots(0, 8)
-            .cancellFill(true)
+            .cancelFill(true)
             .addItem(
                     13,
                     new ItemBuilder(Material.GLOWSTONE_DUST)
@@ -125,8 +125,8 @@ public class ExampleCommand implements CommandClass {
                             .build()
             )
             .addButton(
+                    13,
                     new SimpleButton(
-                            13,
                             event -> {
                                 Player eventPlayer = (Player) event.getWhoClicked();
                                 eventPlayer.playSound(eventPlayer.getLocation(), Sound.LEVEL_UP, 1, 1);

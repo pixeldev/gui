@@ -7,19 +7,23 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
+import team.unnamed.gui.button.Button;
+import team.unnamed.gui.button.SimpleButton;
 import team.unnamed.gui.menu.MenuHolder;
+
+import java.util.Map;
 
 public class MenuListeners implements Listener {
 
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {
-        if(!isInventory(event.getInventory())) {
+        if (isInventory(event.getInventory())) {
             return;
         }
 
         MenuHolder menuHolder = (MenuHolder) event.getInventory().getHolder();
 
-        if(menuHolder.getMenuBuilder().getOpenMenuEvent() == null) {
+        if (menuHolder.getMenuBuilder().getOpenMenuEvent() == null) {
             return;
         }
 
@@ -28,30 +32,32 @@ public class MenuListeners implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if(!isInventory(event.getInventory())) {
+        if (isInventory(event.getInventory())) {
             return;
         }
 
         MenuHolder menuHolder = (MenuHolder) event.getInventory().getHolder();
 
-        menuHolder.getMenuBuilder().getButtons().forEach(simpleButton -> {
-            if(simpleButton.getSlot() == event.getSlot()) {
-                event.setCancelled(simpleButton.getButton().clickEvent(event));
-            } else {
-                event.setCancelled(menuHolder.getMenuBuilder().isCancellFill());
+        for(Map.Entry<Integer, SimpleButton> buttons : menuHolder.getMenuBuilder().getButtons().entrySet()) {
+            if (event.getSlot() == buttons.getKey()) {
+                event.setCancelled(buttons.getValue().getButton().clickEvent(event));
+
+                break;
             }
-        });
+
+            event.setCancelled(menuHolder.getMenuBuilder().isCancelFill());
+        }
     }
 
     @EventHandler
     public void onClose(InventoryCloseEvent event) {
-        if(!isInventory(event.getInventory())) {
+        if (isInventory(event.getInventory())) {
             return;
         }
 
         MenuHolder menuHolder = (MenuHolder) event.getInventory().getHolder();
 
-        if(menuHolder.getMenuBuilder().getCloseMenuEvent() == null) {
+        if (menuHolder.getMenuBuilder().getCloseMenuEvent() == null) {
             return;
         }
 
@@ -60,10 +66,14 @@ public class MenuListeners implements Listener {
 
     private boolean isInventory(Inventory inventory) {
         if (inventory == null) {
-            return false;
+            return true;
         }
 
-        return inventory.getHolder() instanceof MenuHolder;
+        if (inventory.getHolder() == null) {
+            return true;
+        }
+
+        return !(inventory.getHolder() instanceof MenuHolder);
     }
 
 }

@@ -8,21 +8,19 @@ import team.unnamed.gui.event.CloseMenuEvent;
 import team.unnamed.gui.event.OpenMenuEvent;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class MenuBuilder {
 
     private ItemStack itemForFill;
     private int fillFrom = -1;
     private int fillTo = -1;
-    private boolean cancellFill = false;
+    private boolean cancelFill = false;
 
     private final String title;
     private int rows;
     private Map<Integer, ItemStack> items;
-    private Set<SimpleButton> buttons;
+    private Map<Integer, SimpleButton> buttons;
 
     private OpenMenuEvent openMenuEvent;
     private CloseMenuEvent closeMenuEvent;
@@ -36,7 +34,7 @@ public class MenuBuilder {
         this.rows = rows;
 
         this.items = new HashMap<>();
-        this.buttons = new HashSet<>();
+        this.buttons = new HashMap<>();
     }
 
     public MenuBuilder rows(int rows) {
@@ -63,14 +61,14 @@ public class MenuBuilder {
         return this;
     }
 
-    public MenuBuilder buttons(Set<SimpleButton> buttons) {
+    public MenuBuilder buttons(Map<Integer, SimpleButton> buttons) {
         this.buttons = buttons;
 
         return this;
     }
 
-    public MenuBuilder addButton(SimpleButton button) {
-        this.buttons.add(button);
+    public MenuBuilder addButton(int slot, SimpleButton button) {
+        this.buttons.put(slot, button);
 
         return this;
     }
@@ -94,8 +92,8 @@ public class MenuBuilder {
         return this;
     }
 
-    public MenuBuilder cancellFill(boolean cancellFill) {
-        this.cancellFill = cancellFill;
+    public MenuBuilder cancelFill(boolean cancelFill) {
+        this.cancelFill = cancelFill;
 
         return this;
     }
@@ -104,7 +102,7 @@ public class MenuBuilder {
         return title;
     }
 
-    public Set<SimpleButton> getButtons() {
+    public Map<Integer, SimpleButton> getButtons() {
         return buttons;
     }
 
@@ -136,8 +134,8 @@ public class MenuBuilder {
         return fillTo;
     }
 
-    public boolean isCancellFill() {
-        return cancellFill;
+    public boolean isCancelFill() {
+        return cancelFill;
     }
 
     public Inventory build() {
