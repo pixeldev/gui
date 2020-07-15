@@ -26,7 +26,7 @@ public class PotionBuilder extends ItemBuilder {
         super(material, amount);
     }
 
-    public PotionBuilder(Material material, int amount, short data) {
+    public PotionBuilder(Material material, int amount, byte data) {
         super(material, amount, data);
     }
 

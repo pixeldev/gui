@@ -25,7 +25,7 @@ public class SkullBuilder extends ItemBuilder {
         super(material, amount);
     }
 
-    public SkullBuilder(Material material, int amount, short data) {
+    public SkullBuilder(Material material, int amount, byte data) {
         super(material, amount, data);
     }
 
