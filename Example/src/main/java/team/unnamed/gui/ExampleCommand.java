@@ -103,7 +103,7 @@ public class ExampleCommand implements CommandClass {
 
     MenuBuilder menuBuilder = new MenuBuilder("MenuTest", 5)
             .fillItem(
-                    new ItemBuilder(Material.STAINED_GLASS_PANE, 1, (short) 9)
+                    new ItemBuilder(Material.STAINED_GLASS_PANE, 1, (byte) 9)
                             .name("")
                             .lore(
                                     new LoreBuilder()
