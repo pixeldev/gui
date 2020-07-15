@@ -16,7 +16,7 @@ public class ItemBuilder {
 
     protected String name = "Unnamed Item";
     protected final int amount;
-    protected final short data;
+    protected final byte data;
     protected Material material;
     protected List<String> lore;
     protected Map<Enchantment, Integer> enchants;
@@ -27,10 +27,10 @@ public class ItemBuilder {
     }
 
     public ItemBuilder(Material material, int amount) {
-        this(material, amount, (short) 0);
+        this(material, amount, (byte) 0);
     }
 
-    public ItemBuilder(Material material, int amount, short data) {
+    public ItemBuilder(Material material, int amount, byte data) {
         checkMaterial(material);
 
         this.material = material;
@@ -42,7 +42,7 @@ public class ItemBuilder {
         this.enchants = new HashMap<>();
     }
 
-    public ItemBuilder(Material material, int amount, short data, LoreBuilder builder) {
+    public ItemBuilder(Material material, int amount, byte data, LoreBuilder builder) {
         checkMaterial(material);
 
         this.material = material;
