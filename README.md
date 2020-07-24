@@ -3,8 +3,7 @@
 A small, and very easy to use, library for creating menus at Spigot API!
 
 ## Maven Dependency
-At the moment you will need to clone the repository on your PC,
-and install it with Maven, then just add this to your pom.xml
+You only need to copy and paste this at your pom.xml, and that will be done!
 ```xml
 <repository>
     <id>unnamed-repo</id>
