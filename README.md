@@ -6,28 +6,17 @@ A small, and very easy to use, library for creating menus at Spigot API!
 At the moment you will need to clone the repository on your PC,
 and install it with Maven, then just add this to your pom.xml
 ```xml
+<repository>
+    <id>unnamed-repo</id>
+    <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
+</repository>
+
 <dependency>
     <groupId>team.unnamed.gui</groupId>
     <artifactId>UnnamedGUI-Core</artifactId>
     <version>0.0.1</version>
+    <scope>compile</scope>
 </dependency>
-```
-### JitPack Repository
-This is a temporal repository to allow the use of the library without cloning the project``
-```xml
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-```
-```xml
-	<dependency>
-	    <groupId>com.github.UnnamedWorks</groupId>
-	    <artifactId>UnnamedGUI</artifactId>
-	    <version>v1.0</version>
-	</dependency>
 ```
 
 ## How to use
@@ -194,8 +183,8 @@ MenuBuilder menuBuilder = new MenuBuilder("MenuTest", 5)
                     .build()
     )
     .addButton(
+            13,
             new SimpleButton(
-                    13,
                     event -> {
                         Player eventPlayer = (Player) event.getWhoClicked();
                         eventPlayer.playSound(eventPlayer.getLocation(), Sound.LEVEL_UP, 1, 1);
