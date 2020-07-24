@@ -21,6 +21,13 @@
         </repository>
     </repositories>
 
+    <distributionManagement>
+        <repository>
+            <id>unnamed-repo</id>
+            <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
+        </repository>
+    </distributionManagement>
+
     <modules>
         <module>Core</module>
         <module>Example</module>
