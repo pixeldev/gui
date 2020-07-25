@@ -13,7 +13,7 @@ and install it with Maven, then just add this to your pom.xml
 
 <dependency>
     <groupId>team.unnamed.gui</groupId>
-    <artifactId>UnnamedGUI-Core</artifactId>
+    <artifactId>gui-core</artifactId>
     <version>0.0.1</version>
     <scope>compile</scope>
 </dependency>
