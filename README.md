@@ -10,13 +10,13 @@ You only need to copy and paste this at your pom.xml, and that will be done!
 ```xml
 <repository>
     <id>unnamed-repo</id>
-    <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
+    <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
 </repository>
 
 <dependency>
     <groupId>team.unnamed.gui</groupId>
     <artifactId>gui-core</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0-SNAPSHOT</version>
     <scope>compile</scope>
 </dependency>
 ```
