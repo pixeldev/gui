@@ -78,7 +78,7 @@ public class SkullBuilder extends ItemBuilder {
     }
 
     public ItemStack buildSkull() {
-        if(!material.name().contains("SKULL_ITEM") || !material.name().contains("PLAYER_HEAD")) {
+        if(!material.name().equals("SKULL_ITEM") || !material.name().equals("PLAYER_HEAD")) {
             throw new IllegalArgumentException("This material can not be a skull!");
         }
 
