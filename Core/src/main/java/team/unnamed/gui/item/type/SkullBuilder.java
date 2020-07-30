@@ -4,9 +4,9 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
-
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+
 import team.unnamed.gui.item.ItemBuilder;
 import team.unnamed.gui.item.LoreBuilder;
 
@@ -78,10 +78,6 @@ public class SkullBuilder extends ItemBuilder {
     }
 
     public ItemStack buildSkull() {
-        if(!material.name().equals("SKULL_ITEM") || !material.name().equals("PLAYER_HEAD")) {
-            throw new IllegalArgumentException("This material can not be a skull!");
-        }
-
         ItemStack skull = build();
 
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
