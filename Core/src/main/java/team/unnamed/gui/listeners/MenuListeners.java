@@ -7,7 +7,6 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
-import team.unnamed.gui.button.Button;
 import team.unnamed.gui.button.SimpleButton;
 import team.unnamed.gui.menu.MenuHolder;
 
@@ -66,10 +65,6 @@ public class MenuListeners implements Listener {
 
     private boolean isInventory(Inventory inventory) {
         if (inventory == null) {
-            return true;
-        }
-
-        if (inventory.getHolder() == null) {
             return true;
         }
 
