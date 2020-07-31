@@ -5,6 +5,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 @FunctionalInterface
 public interface Button {
 
-    boolean clickEvent(InventoryClickEvent event);
+    boolean executeClick(InventoryClickEvent event);
 
 }
