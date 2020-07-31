@@ -25,12 +25,23 @@ public class ExampleCommand implements CommandClass {
         Player player = (Player) sender;
 
         MenuBuilder menuBuilder = MenuBuilder.newBuilder("Simple test")
-                .addItem(new DefaultItemClickable(1,
-                        new ItemStack(Material.ENDER_PEARL),
-                        click -> {
-                            player.sendMessage("Just testing...");
-                            return true;
-                        }));
+                .addItem(
+                        new DefaultItemClickable(
+                                1,
+                                new ItemStack(Material.ENDER_PEARL),
+                                click -> {
+                                    player.sendMessage("Just testing...");
+                                    return true;
+                                }
+                        )
+                )
+                .openEvent(
+                        event -> {
+                            player.sendMessage("Opening...!");
+
+                            return false;
+                        }
+                );
 
         player.openInventory(menuBuilder.build());
 
