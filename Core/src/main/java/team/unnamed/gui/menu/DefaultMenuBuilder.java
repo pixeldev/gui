@@ -8,7 +8,6 @@ import team.unnamed.gui.menu.action.OpenMenuAction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class DefaultMenuBuilder implements MenuBuilder {
 
@@ -86,7 +85,7 @@ public class DefaultMenuBuilder implements MenuBuilder {
 
     @Override
     public Inventory build() {
-        GuiData guiData = new DefaultGuiData(title, rows, itemClickable, openMenuAction, closeMenuAction);
+        GuiData guiData = new DefaultGuiData(title, rows, itemClickable, openMenuAction, closeMenuAction, cancelClick);
         Inventory inventory = new InventoryGui(Bukkit.createInventory(null, rows * 9, title), guiData);
 
         guiData.getItemToFill().ifPresent(itemClickable -> {

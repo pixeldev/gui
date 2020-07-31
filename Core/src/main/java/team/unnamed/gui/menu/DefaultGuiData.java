@@ -21,14 +21,15 @@ public class DefaultGuiData implements GuiData {
     private final int from = -1;
     private final int to = -1;
 
-    private final boolean cancelClick = true;
+    private final boolean cancelClick;
 
-    DefaultGuiData(String title, int rows, ItemClickable itemClickable, OpenMenuAction openMenuAction, CloseMenuAction closeMenuAction) {
+    DefaultGuiData(String title, int rows, ItemClickable itemClickable, OpenMenuAction openMenuAction, CloseMenuAction closeMenuAction, boolean cancelClick) {
         this.title = title;
         this.rows = rows;
         this.itemClickable = itemClickable;
         this.openMenuAction = openMenuAction;
         this.closeMenuAction = closeMenuAction;
+        this.cancelClick = cancelClick;
     }
 
 
