@@ -1,5 +1,8 @@
 package team.unnamed.gui.item.type.attributes;
 
+/**
+ * A standard set of colors for the Leather Armors to make the colored armor creation easier
+ */
 public enum LeatherArmorColor {
 
     DARK_BLUE(0, 0, 255),

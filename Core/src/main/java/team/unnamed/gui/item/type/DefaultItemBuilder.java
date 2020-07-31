@@ -36,6 +36,9 @@ public class DefaultItemBuilder implements ItemBuilder {
         this.data = data;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ItemBuilder name(String name) {
         this.name = name;
@@ -43,6 +46,9 @@ public class DefaultItemBuilder implements ItemBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ItemBuilder lore(List<String> lore) {
         this.lore = lore;
@@ -50,6 +56,9 @@ public class DefaultItemBuilder implements ItemBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ItemBuilder enchants(Map<Enchantment, Integer> enchantments) {
         this.enchantments = enchantments;
@@ -57,6 +66,9 @@ public class DefaultItemBuilder implements ItemBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ItemBuilder addEnchant(Enchantment enchantment, Integer level) {
         enchantments.put(enchantment, level);
@@ -64,6 +76,9 @@ public class DefaultItemBuilder implements ItemBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ItemBuilder flags(List<ItemFlag> flags) {
         this.flags = flags;
@@ -71,6 +86,9 @@ public class DefaultItemBuilder implements ItemBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ItemBuilder addFlag(ItemFlag itemFlag) {
         flags.add(itemFlag);
@@ -78,6 +96,9 @@ public class DefaultItemBuilder implements ItemBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ItemStack build() {
         ItemStack item = new ItemStack(material, amount, data);
