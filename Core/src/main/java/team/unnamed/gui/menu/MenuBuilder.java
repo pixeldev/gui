@@ -25,28 +25,6 @@ public interface MenuBuilder {
 
     MenuBuilder cancelClick(boolean cancelClick);
 
-    String getTitle();
-
-    int getRows();
-
-    Map<Integer, ItemClickable> getItems();
-
-    Optional<OpenMenuAction> getOpenMenuAction();
-
-    Optional<CloseMenuAction> getCloseMenuAction();
-
-    Optional<ItemClickable> getItemToFill();
-
-    int getFrom();
-
-    int getTo();
-
-    boolean isCancelClick();
-
-    default Optional<ItemClickable> getItemClickable(int slot) {
-        return Optional.ofNullable(getItems().get(slot));
-    }
-
     default Inventory build() {
         return new DefaultMenuHolder(this).getInventory();
     }
