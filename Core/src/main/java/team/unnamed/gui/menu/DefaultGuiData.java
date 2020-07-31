@@ -4,29 +4,23 @@ import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.action.CloseMenuAction;
 import team.unnamed.gui.menu.action.OpenMenuAction;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class DefaultGuiData implements GuiData {
     private final String title;
     private final int rows;
 
-    private final Map<Integer, ItemClickable> items = new HashMap<>();
+    private final List<ItemClickable> items;
 
-    private final ItemClickable itemClickable;
     private final OpenMenuAction openMenuAction;
     private final CloseMenuAction closeMenuAction;
 
-    private final int from = -1;
-    private final int to = -1;
-
     private final boolean cancelClick;
 
-    DefaultGuiData(String title, int rows, ItemClickable itemClickable, OpenMenuAction openMenuAction, CloseMenuAction closeMenuAction, boolean cancelClick) {
+    DefaultGuiData(String title, int rows, List<ItemClickable> items, OpenMenuAction openMenuAction, CloseMenuAction closeMenuAction, boolean cancelClick) {
         this.title = title;
         this.rows = rows;
-        this.itemClickable = itemClickable;
+        this.items = items;
         this.openMenuAction = openMenuAction;
         this.closeMenuAction = closeMenuAction;
         this.cancelClick = cancelClick;
@@ -43,7 +37,7 @@ public class DefaultGuiData implements GuiData {
     }
 
     @Override
-    public Map<Integer, ItemClickable> getItems() {
+    public List<ItemClickable> getItems() {
         return items;
     }
 
@@ -55,21 +49,6 @@ public class DefaultGuiData implements GuiData {
     @Override
     public Optional<CloseMenuAction> getCloseMenuAction() {
         return Optional.ofNullable(closeMenuAction);
-    }
-
-    @Override
-    public Optional<ItemClickable> getItemToFill() {
-        return Optional.ofNullable(itemClickable);
-    }
-
-    @Override
-    public int getFrom() {
-        return from;
-    }
-
-    @Override
-    public int getTo() {
-        return to;
     }
 
     @Override

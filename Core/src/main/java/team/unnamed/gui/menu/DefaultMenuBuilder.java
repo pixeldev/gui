@@ -85,16 +85,16 @@ public class DefaultMenuBuilder implements MenuBuilder {
 
     @Override
     public Inventory build() {
-        GuiData guiData = new DefaultGuiData(title, rows, itemClickable, openMenuAction, closeMenuAction, cancelClick);
+        GuiData guiData = new DefaultGuiData(title, rows, items, openMenuAction, closeMenuAction, cancelClick);
         Inventory inventory = new InventoryGui(Bukkit.createInventory(null, rows * 9, title), guiData);
 
-        guiData.getItemToFill().ifPresent(itemClickable -> {
+        if (itemClickable != null) {
             if (from != -1 && to != -1) {
                 for (int fill = from; fill <= to; fill++) {
                     inventory.setItem(fill, itemClickable.getItem());
                 }
             }
-        });
+        }
 
         items.forEach((itemClickable) ->
                 inventory.setItem(

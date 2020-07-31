@@ -4,7 +4,7 @@ import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.action.CloseMenuAction;
 import team.unnamed.gui.menu.action.OpenMenuAction;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 public interface GuiData {
@@ -13,17 +13,11 @@ public interface GuiData {
 
     int getRows();
 
-    Map<Integer, ItemClickable> getItems();
+    List<ItemClickable> getItems();
 
     Optional<OpenMenuAction> getOpenMenuAction();
 
     Optional<CloseMenuAction> getCloseMenuAction();
-
-    Optional<ItemClickable> getItemToFill();
-
-    int getFrom();
-
-    int getTo();
 
     boolean isCancelClick();
 
