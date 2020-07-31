@@ -4,6 +4,10 @@ import org.bukkit.inventory.ItemStack;
 
 import team.unnamed.gui.button.Button;
 
+
+/**
+ * {@inheritDoc}
+ */
 public class DefaultItemClickable implements ItemClickable {
 
     private final int slot;
@@ -16,15 +20,26 @@ public class DefaultItemClickable implements ItemClickable {
         this.button = button;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getSlot() {
         return slot;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+
     @Override
     public ItemStack getItem() {
         return item;
     }
+
+    /**
+     * {@inheritDoc}
+     */
 
     @Override
     public Button getButton() {
