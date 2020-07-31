@@ -3,9 +3,7 @@ package team.unnamed.gui.item.type.attributes;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 
-/**
- * An utility class to make the creation of {@link FireworkEffect} instances easy
- */
+
 public class DefaultFireworkAttributesBuilder implements FireworkAttributesBuilder {
 
     private boolean flicker = false;
@@ -16,10 +14,7 @@ public class DefaultFireworkAttributesBuilder implements FireworkAttributesBuild
     private Color[] colorsFade;
 
     /**
-     * @see FireworkEffect#hasFlicker()
-     *
-     * @param flicker If the created {@link FireworkEffect} should have flicker
-     * @return The same instance of FireworkAttributesBuilder
+     * {@inheritDoc}
      */
     @Override
     public FireworkAttributesBuilder flicker(boolean flicker) {
@@ -29,10 +24,7 @@ public class DefaultFireworkAttributesBuilder implements FireworkAttributesBuild
     }
 
     /**
-     * @see FireworkEffect#hasTrail()
-     *
-     * @param trail If the created {@link FireworkEffect} should have trail
-     * @return The same instance of FireworkAttributesBuilder
+     * {@inheritDoc}
      */
     @Override
     public FireworkAttributesBuilder trail(boolean trail) {
@@ -42,10 +34,7 @@ public class DefaultFireworkAttributesBuilder implements FireworkAttributesBuild
     }
 
     /**
-     * @see FireworkEffect#getType()
-     *
-     * @param type The {@link FireworkEffect.Type} for the {@link FireworkEffect} being build
-     * @return The same instance of FireworkAttributesBuilder
+     * {@inheritDoc}
      */
     @Override
     public FireworkAttributesBuilder type(FireworkEffect.Type type) {
@@ -55,10 +44,7 @@ public class DefaultFireworkAttributesBuilder implements FireworkAttributesBuild
     }
 
     /**
-     * @see FireworkEffect#getColors()
-     *
-     * @param colors The primary {@link Color} list for the {@link FireworkEffect} being build
-     * @return The same instance of FireworkAttributesBuilder
+     * {@inheritDoc}
      */
     @Override
     public FireworkAttributesBuilder colors(Color... colors) {
@@ -68,10 +54,7 @@ public class DefaultFireworkAttributesBuilder implements FireworkAttributesBuild
     }
 
     /**
-     * @see FireworkEffect#getFadeColors()
-     *
-     * @param colors The fade {@link Color} list for the {@link FireworkEffect} being build
-     * @return The same instance of FireworkAttributesBuilder
+     * {@inheritDoc}
      */
     @Override
     public FireworkAttributesBuilder colorsFade(Color... colorsFade) {
