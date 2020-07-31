@@ -127,8 +127,31 @@ public interface ItemBuilder {
         return new LeatherArmorBuilder(material);
     }
 
-    static FireworkBuilder newFireworkBuilder(Material material) { return new FireworkBuilder(material); }
+    /**
+     * Creates a new instance of {@link FireworkBuilder} with the specified {@link Material}
+     * <p>
+     * The specified {@link Material} should be {@linkplain Material#FIREWORK}, the builder won't raise an error
+     * when the {@link Material} isn't valid until you call the {@link FireworkBuilder#build()} method
+     *
+     * @param material The material of the {@link ItemStack} to build
+     * @return A new instance of {@link FireworkBuilder}
+     */
+    static FireworkBuilder newFireworkBuilder(Material material) {
+        return new FireworkBuilder(material);
+    }
 
-    static FireworkBuilder newFireworkBuilder(Material material, int amount) { return new FireworkBuilder(material, amount); }
+    /**
+     * Creates a new instance of {@link FireworkBuilder} with the specified {@link Material} and the specified amount
+     * <p>
+     * The specified {@link Material} should be {@linkplain Material#FIREWORK}, the builder won't raise an error
+     * when the {@link Material} isn't valid until you call the {@link FireworkBuilder#build()} method
+     *
+     * @param material The material of the {@link ItemStack} to build
+     * @param amount   The amount of {@link ItemStack} to build
+     * @return A new instance of {@link FireworkBuilder}
+     */
+    static FireworkBuilder newFireworkBuilder(Material material, int amount) {
+        return new FireworkBuilder(material, amount);
+    }
 
 }

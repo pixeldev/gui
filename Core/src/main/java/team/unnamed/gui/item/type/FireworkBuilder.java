@@ -22,18 +22,38 @@ public class FireworkBuilder extends DefaultItemBuilder {
         super(material, amount);
     }
 
+    /**
+     * Adds a {@link FireworkEffect} into the list of effects for the Firework being build
+     *
+     * @param fireworkEffect The {@linkplain FireworkEffect} to add into the firework
+     * @return The same instance of FireworkBuilder
+     */
     public FireworkBuilder addAttribute(FireworkEffect fireworkEffect) {
         fireworkEffects.add(fireworkEffect);
 
         return this;
     }
 
+    /**
+     * Sets the power for the Firework being build
+     * @see FireworkMeta#setPower(int)
+     *
+     * @param power The power for the Firework from 0 to 128
+     * @return The same instance of FireworkBuilder
+     */
     public FireworkBuilder power(int power) {
         this.power = power;
 
         return this;
     }
 
+    /**
+     * Sets the {@link FireworkMeta} for the Firework item
+     *
+     * @throws IllegalArgumentException If the specified {@link Material} isn't a Firework
+     *                                  <p>
+     *                                  {@inheritDoc}
+     */
     @Override
     public ItemStack build() {
         if (!material.name().startsWith("FIREWORK")) {
