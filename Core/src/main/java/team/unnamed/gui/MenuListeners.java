@@ -14,6 +14,9 @@ import team.unnamed.gui.event.api.MenuClickEvent;
 import team.unnamed.gui.event.api.MenuCloseEvent;
 import team.unnamed.gui.event.api.MenuOpenEvent;
 import team.unnamed.gui.item.ItemClickable;
+import team.unnamed.gui.menu.GuiData;
+import team.unnamed.gui.menu.GuiDataHolder;
+import team.unnamed.gui.menu.InventoryGui;
 import team.unnamed.gui.menu.MenuBuilder;
 
 import java.util.Optional;
@@ -31,9 +34,10 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            Inventory defaultMenuInventoryHolderImpl = (Inventory) inventory.getHolder();
+            GuiDataHolder guiDataHolder = (GuiDataHolder) inventory;
+            GuiData guiData = guiDataHolder.getData();
 
-            defaultMenuInventoryHolderImpl.getMenuBuilder().getOpenMenuAction().ifPresent(openMenuAction -> event.setCancelled(openMenuAction.executeOpen(event)));
+            guiData.getOpenMenuAction().ifPresent(openMenuAction -> event.setCancelled(openMenuAction.executeOpen(event)));
 
             Bukkit.getPluginManager().callEvent(
                     new MenuOpenEvent(
@@ -55,9 +59,10 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            InventoryHolderImpl defaultMenuInventoryHolderImpl = (InventoryHolderImpl) inventory.getHolder();
+            GuiDataHolder guiDataHolder = (GuiDataHolder) inventory;
+            GuiData guiData = guiDataHolder.getData();
 
-            defaultMenuInventoryHolderImpl.getMenuBuilder().getCloseMenuAction().ifPresent(closeMenuAction -> closeMenuAction.executeClose(event));
+            guiData.getCloseMenuAction().ifPresent(closeMenuAction -> closeMenuAction.executeClose(event));
 
             Bukkit.getPluginManager().callEvent(
                     new MenuCloseEvent(
@@ -81,19 +86,18 @@ public class MenuListeners implements Listener {
         if (isInventory(inventory)) {
             int slot = event.getSlot();
 
-            InventoryHolderImpl defaultMenuInventoryHolderImpl = (InventoryHolderImpl) inventory.getHolder();
+            GuiDataHolder guiDataHolder = (GuiDataHolder) inventory;
+            GuiData guiData = guiDataHolder.getData();
 
-            MenuBuilder menuBuilder = defaultMenuInventoryHolderImpl.getMenuBuilder();
-
-            Optional<ItemClickable> itemClickableOptional = menuBuilder.getItemClickable(slot);
+            Optional<ItemClickable> itemClickableOptional = guiData.getItemClickable(slot);
 
             if (itemClickableOptional.isPresent()) {
                 event.setCancelled(itemClickableOptional.get().getButton().executeClick(event));
             } else {
-                if (menuBuilder.getItemToFill().isPresent() && isClickable(menuBuilder, slot)) {
-                    event.setCancelled(menuBuilder.getItemToFill().get().getButton().executeClick(event));
+                if (guiData.getItemToFill().isPresent() && isClickable(guiData, slot)) {
+                    event.setCancelled(guiData.getItemToFill().get().getButton().executeClick(event));
                 } else {
-                    event.setCancelled(menuBuilder.isCancelClick());
+                    event.setCancelled(guiData.isCancelClick());
                 }
             }
 
@@ -113,11 +117,11 @@ public class MenuListeners implements Listener {
             return false;
         }
 
-        return inventory.getHolder() instanceof InventoryHolderImpl;
+        return inventory instanceof InventoryGui;
     }
 
-    private boolean isClickable(MenuBuilder menuBuilder, int input) {
-        return menuBuilder.getFrom() != -1 && menuBuilder.getTo() != -1 && input >= menuBuilder.getFrom() && input <= menuBuilder.getTo();
+    private boolean isClickable(GuiData guiData, int input) {
+        return guiData.getFrom() != -1 && guiData.getTo() != -1 && input >= guiData.getFrom() && input <= guiData.getTo();
     }
 
 }
