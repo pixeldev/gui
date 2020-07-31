@@ -5,22 +5,28 @@ import team.unnamed.gui.button.Button;
 
 public class DefaultItemClickable implements ItemClickable {
 
-    private final ItemStack item;
-    private final Button button;
+  private final int slot;
+  private final ItemStack item;
+  private final Button button;
 
-    public DefaultItemClickable(ItemStack item, Button button) {
-        this.item = item;
-        this.button = button;
-    }
+  public DefaultItemClickable(int slot, ItemStack item, Button button) {
+    this.slot = slot;
+    this.item = item;
+    this.button = button;
+  }
 
-    @Override
-    public ItemStack getItem() {
-        return item;
-    }
+  @Override
+  public int getSlot() {
+    return slot;
+  }
 
-    @Override
-    public Button getButton() {
-        return button;
-    }
+  @Override
+  public ItemStack getItem() {
+    return item;
+  }
 
+  @Override
+  public Button getButton() {
+    return button;
+  }
 }

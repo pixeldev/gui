@@ -1,12 +1,11 @@
 package team.unnamed.gui.menu;
 
 import org.bukkit.inventory.Inventory;
-
+import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.action.CloseMenuAction;
 import team.unnamed.gui.menu.action.OpenMenuAction;
-import team.unnamed.gui.item.ItemClickable;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 public interface MenuBuilder {
@@ -15,9 +14,9 @@ public interface MenuBuilder {
 
     MenuBuilder fillItem(ItemClickable itemClickable, int from, int to);
 
-    MenuBuilder setItems(Map<Integer, ItemClickable> items);
+    MenuBuilder setItems(List<ItemClickable> items);
 
-    MenuBuilder addItem(int slot, ItemClickable itemClickable);
+    MenuBuilder addItem(ItemClickable itemClickable);
 
     MenuBuilder openEvent(OpenMenuAction openMenuAction);
 
@@ -29,7 +28,7 @@ public interface MenuBuilder {
 
     int getRows();
 
-    Map<Integer, ItemClickable> getItems();
+    List<ItemClickable> getItems();
 
     Optional<OpenMenuAction> getOpenMenuAction();
 
@@ -47,9 +46,7 @@ public interface MenuBuilder {
         return Optional.ofNullable(getItems().get(slot));
     }
 
-    default Inventory build() {
-        return new DefaultMenuHolder(this).getInventory();
-    }
+    Inventory build();
 
     static MenuBuilder newBuilder(String title) {
         return new DefaultMenuBuilder(title);

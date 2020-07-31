@@ -14,7 +14,6 @@ import team.unnamed.gui.event.api.MenuClickEvent;
 import team.unnamed.gui.event.api.MenuCloseEvent;
 import team.unnamed.gui.event.api.MenuOpenEvent;
 import team.unnamed.gui.item.ItemClickable;
-import team.unnamed.gui.menu.DefaultMenuHolder;
 import team.unnamed.gui.menu.MenuBuilder;
 
 import java.util.Optional;
@@ -32,9 +31,9 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            DefaultMenuHolder defaultMenuHolder = (DefaultMenuHolder) inventory.getHolder();
+            Inventory defaultMenuInventoryHolderImpl = (Inventory) inventory.getHolder();
 
-            defaultMenuHolder.getMenuBuilder().getOpenMenuAction().ifPresent(openMenuAction -> event.setCancelled(openMenuAction.executeOpen(event)));
+            defaultMenuInventoryHolderImpl.getMenuBuilder().getOpenMenuAction().ifPresent(openMenuAction -> event.setCancelled(openMenuAction.executeOpen(event)));
 
             Bukkit.getPluginManager().callEvent(
                     new MenuOpenEvent(
@@ -56,9 +55,9 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            DefaultMenuHolder defaultMenuHolder = (DefaultMenuHolder) inventory.getHolder();
+            InventoryHolderImpl defaultMenuInventoryHolderImpl = (InventoryHolderImpl) inventory.getHolder();
 
-            defaultMenuHolder.getMenuBuilder().getCloseMenuAction().ifPresent(closeMenuAction -> closeMenuAction.executeClose(event));
+            defaultMenuInventoryHolderImpl.getMenuBuilder().getCloseMenuAction().ifPresent(closeMenuAction -> closeMenuAction.executeClose(event));
 
             Bukkit.getPluginManager().callEvent(
                     new MenuCloseEvent(
@@ -82,9 +81,9 @@ public class MenuListeners implements Listener {
         if (isInventory(inventory)) {
             int slot = event.getSlot();
 
-            DefaultMenuHolder defaultMenuHolder = (DefaultMenuHolder) inventory.getHolder();
+            InventoryHolderImpl defaultMenuInventoryHolderImpl = (InventoryHolderImpl) inventory.getHolder();
 
-            MenuBuilder menuBuilder = defaultMenuHolder.getMenuBuilder();
+            MenuBuilder menuBuilder = defaultMenuInventoryHolderImpl.getMenuBuilder();
 
             Optional<ItemClickable> itemClickableOptional = menuBuilder.getItemClickable(slot);
 
@@ -114,7 +113,7 @@ public class MenuListeners implements Listener {
             return false;
         }
 
-        return inventory.getHolder() instanceof DefaultMenuHolder;
+        return inventory.getHolder() instanceof InventoryHolderImpl;
     }
 
     private boolean isClickable(MenuBuilder menuBuilder, int input) {
