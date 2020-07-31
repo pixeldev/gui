@@ -85,56 +85,11 @@ public class DefaultMenuBuilder implements MenuBuilder {
     }
 
     @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public int getRows() {
-        return rows;
-    }
-
-    @Override
-    public List<ItemClickable> getItems() {
-        return items;
-    }
-
-    @Override
-    public Optional<OpenMenuAction> getOpenMenuAction() {
-        return Optional.ofNullable(openMenuAction);
-    }
-
-    @Override
-    public Optional<CloseMenuAction> getCloseMenuAction() {
-        return Optional.ofNullable(closeMenuAction);
-    }
-
-    @Override
-    public Optional<ItemClickable> getItemToFill() {
-        return Optional.ofNullable(itemClickable);
-    }
-
-    @Override
-    public int getFrom() {
-        return from;
-    }
-
-    @Override
-    public int getTo() {
-        return to;
-    }
-
-    @Override
-    public boolean isCancelClick() {
-        return cancelClick;
-    }
-
-    @Override
     public Inventory build() {
         GuiData guiData = new DefaultGuiData(title, rows, itemClickable, openMenuAction, closeMenuAction);
         Inventory inventory = new InventoryGui(Bukkit.createInventory(null, rows * 9, title), guiData);
 
-        getItemToFill().ifPresent(itemClickable -> {
+        guiData.getItemToFill().ifPresent(itemClickable -> {
             if (from != -1 && to != -1) {
                 for (int fill = from; fill <= to; fill++) {
                     inventory.setItem(fill, itemClickable.getItem());
