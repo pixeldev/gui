@@ -6,7 +6,7 @@ import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.action.CloseMenuAction;
 import team.unnamed.gui.menu.action.OpenMenuAction;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DefaultMenuBuilder implements MenuBuilder {
@@ -14,14 +14,10 @@ public class DefaultMenuBuilder implements MenuBuilder {
     private final String title;
     private int rows;
 
-    private List<ItemClickable> items = new ArrayList<>();
+    private ItemClickable[] items;
 
-    private ItemClickable itemClickable;
     private OpenMenuAction openMenuAction;
     private CloseMenuAction closeMenuAction;
-
-    private int from = -1;
-    private int to = -1;
 
     private boolean cancelClick = true;
 
@@ -32,33 +28,36 @@ public class DefaultMenuBuilder implements MenuBuilder {
     protected DefaultMenuBuilder(String title, int rows) {
         this.title = title;
         this.rows = rows;
+
+        items = new ItemClickable[rows * 9];
     }
 
     @Override
     public MenuBuilder setRows(int rows) {
         this.rows = rows;
+        items = Arrays.copyOfRange(items, 0, rows * 9);
 
         return this;
     }
 
     @Override
     public MenuBuilder fillItem(ItemClickable itemClickable, int from, int to) {
-        this.itemClickable = itemClickable;
-        this.from = from;
-        this.to = to;
+        for (int i = from; i < to; i++) {
+            items[i] = itemClickable;
+        }
 
         return this;
     }
 
     @Override
     public MenuBuilder setItems(List<ItemClickable> items) {
-        this.items = items;
+        this.items = items.toArray(new ItemClickable[0]);
         return this;
     }
 
     @Override
     public MenuBuilder addItem(ItemClickable itemClickable) {
-        items.add(itemClickable);
+        items[itemClickable.getSlot()] = itemClickable;
         return this;
     }
 
@@ -85,24 +84,15 @@ public class DefaultMenuBuilder implements MenuBuilder {
 
     @Override
     public Inventory build() {
-        GuiData guiData = new DefaultGuiData(title, rows, items, openMenuAction, closeMenuAction, cancelClick);
+        GuiData guiData = new DefaultGuiData(title, rows, Arrays.asList(items), openMenuAction, closeMenuAction, cancelClick);
         Inventory inventory = new InventoryGui(Bukkit.createInventory(null, rows * 9, title), guiData);
 
-        if (itemClickable != null) {
-            if (from != -1 && to != -1) {
-                for (int fill = from; fill <= to; fill++) {
-                    inventory.setItem(fill, itemClickable.getItem());
-                }
-            }
+        for (ItemClickable itemClickable : items) {
+            inventory.setItem(
+                    itemClickable.getSlot(),
+                    itemClickable.getItem()
+            );
         }
-
-        items.forEach((itemClickable) ->
-                inventory.setItem(
-                        itemClickable.getSlot(),
-                        itemClickable.getItem()
-                )
-        );
-
         return inventory;
     }
 }
