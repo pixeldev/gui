@@ -1,145 +1,62 @@
 package team.unnamed.gui.menu;
 
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
-import team.unnamed.gui.button.SimpleButton;
-import team.unnamed.gui.event.CloseMenuEvent;
-import team.unnamed.gui.event.OpenMenuEvent;
+import team.unnamed.gui.menu.action.CloseMenuAction;
+import team.unnamed.gui.menu.action.OpenMenuAction;
+import team.unnamed.gui.item.ItemClickable;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
-public class MenuBuilder {
+public interface MenuBuilder {
 
-    private ItemStack itemForFill;
-    private int fillFrom = -1;
-    private int fillTo = -1;
-    private boolean cancelFill = false;
+    MenuBuilder setRows(int rows);
 
-    private final String title;
-    private int rows;
-    private Map<Integer, ItemStack> items;
-    private Map<Integer, SimpleButton> buttons;
+    MenuBuilder fillItem(ItemClickable itemClickable, int from, int to);
 
-    private OpenMenuEvent openMenuEvent;
-    private CloseMenuEvent closeMenuEvent;
+    MenuBuilder setItems(Map<Integer, ItemClickable> items);
 
-    public MenuBuilder(String title) {
-        this(title, 6);
+    MenuBuilder addItem(int slot, ItemClickable itemClickable);
+
+    MenuBuilder openEvent(OpenMenuAction openMenuAction);
+
+    MenuBuilder closeEvent(CloseMenuAction closeMenuAction);
+
+    MenuBuilder cancelClick(boolean cancelClick);
+
+    String getTitle();
+
+    int getRows();
+
+    Map<Integer, ItemClickable> getItems();
+
+    Optional<OpenMenuAction> getOpenMenuAction();
+
+    Optional<CloseMenuAction> getCloseMenuAction();
+
+    Optional<ItemClickable> getItemToFill();
+
+    int getFrom();
+
+    int getTo();
+
+    boolean isCancelClick();
+
+    default Optional<ItemClickable> getItemClickable(int slot) {
+        return Optional.ofNullable(getItems().get(slot));
     }
 
-    public MenuBuilder(String title, int rows) {
-        this.title = title;
-        this.rows = rows;
-
-        this.items = new HashMap<>();
-        this.buttons = new HashMap<>();
+    default Inventory build() {
+        return new DefaultMenuHolder(this).getInventory();
     }
 
-    public MenuBuilder rows(int rows) {
-        this.rows = rows;
-
-        return this;
+    static MenuBuilder newBuilder(String title) {
+        return new DefaultMenuBuilder(title);
     }
 
-    public MenuBuilder fillItem(ItemStack itemForFill) {
-        this.itemForFill = itemForFill;
-
-        return this;
-    }
-
-    public MenuBuilder items(Map<Integer, ItemStack> items) {
-        this.items = items;
-
-        return this;
-    }
-
-    public MenuBuilder addItem(Integer slot, ItemStack item) {
-        this.items.putIfAbsent(slot, item);
-
-        return this;
-    }
-
-    public MenuBuilder buttons(Map<Integer, SimpleButton> buttons) {
-        this.buttons = buttons;
-
-        return this;
-    }
-
-    public MenuBuilder addButton(int slot, SimpleButton button) {
-        this.buttons.put(slot, button);
-
-        return this;
-    }
-
-    public MenuBuilder openEvent(OpenMenuEvent openMenuEvent) {
-        this.openMenuEvent = openMenuEvent;
-
-        return this;
-    }
-
-    public MenuBuilder closeEvent(CloseMenuEvent closeMenuEvent) {
-        this.closeMenuEvent = closeMenuEvent;
-
-        return this;
-    }
-
-    public MenuBuilder fillSlots(int from, int to) {
-        fillFrom = from;
-        fillTo = to;
-
-        return this;
-    }
-
-    public MenuBuilder cancelFill(boolean cancelFill) {
-        this.cancelFill = cancelFill;
-
-        return this;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Map<Integer, SimpleButton> getButtons() {
-        return buttons;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public Map<Integer, ItemStack> getItems() {
-        return items;
-    }
-
-    public OpenMenuEvent getOpenMenuEvent() {
-        return openMenuEvent;
-    }
-
-    public CloseMenuEvent getCloseMenuEvent() {
-        return closeMenuEvent;
-    }
-
-    public ItemStack getItemForFill() {
-        return itemForFill;
-    }
-
-    public int getFillFrom() {
-        return fillFrom;
-    }
-
-    public int getFillTo() {
-        return fillTo;
-    }
-
-    public boolean isCancelFill() {
-        return cancelFill;
-    }
-
-    public Inventory build() {
-        return new MenuHolder(this).getInventory();
+    static MenuBuilder newBuilder(String title, int rows) {
+        return new DefaultMenuBuilder(title, rows);
     }
 
 }
