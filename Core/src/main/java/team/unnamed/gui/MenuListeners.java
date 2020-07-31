@@ -86,12 +86,21 @@ public class MenuListeners implements Listener {
         if (isInventory(inventory)) {
             int slot = event.getSlot();
 
+            if (slot < 0) {
+                return;
+            }
+
             GuiDataHolder guiDataHolder = (GuiDataHolder) inventory.getHolder();
             GuiData guiData = guiDataHolder.getData();
 
             Optional<ItemClickable> itemClickableOptional = guiData.getItemClickable(slot);
 
             if (itemClickableOptional.isPresent()) {
+                if (event.getRawSlot() != slot && guiData.isCancelClick()) {
+                    event.setCancelled(true);
+                    return;
+                }
+
                 event.setCancelled(itemClickableOptional.get().getButton().executeClick(event));
             } else {
                 event.setCancelled(guiData.isCancelClick());
