@@ -1,4 +1,7 @@
 # **UnnamedGUI - Menu Creator**
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d288974ef2734b50bd34a800b2161c70)](https://app.codacy.com/gh/UnnamedWorks/UnnamedGUI?utm_source=github.com&utm_medium=referral&utm_content=UnnamedWorks/UnnamedGUI&utm_campaign=Badge_Grade_Dashboard)
+
 _A small, and very easy to use, library for creating menus at Spigot API!_
 
 ## **Maven Dependency**
