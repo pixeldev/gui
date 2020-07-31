@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * An utility class to make the creation of custom items easier
  */
@@ -127,5 +126,9 @@ public interface ItemBuilder {
     static LeatherArmorBuilder newArmorBuilder(Material material) {
         return new LeatherArmorBuilder(material);
     }
+
+    static FireworkBuilder newFireworkBuilder(Material material) { return new FireworkBuilder(material); }
+
+    static FireworkBuilder newFireworkBuilder(Material material, int amount) { return new FireworkBuilder(material, amount); }
 
 }
