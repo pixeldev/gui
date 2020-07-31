@@ -94,11 +94,7 @@ public class MenuListeners implements Listener {
             if (itemClickableOptional.isPresent()) {
                 event.setCancelled(itemClickableOptional.get().getButton().executeClick(event));
             } else {
-                if (guiData.getItemToFill().isPresent() && isClickable(guiData, slot)) {
-                    event.setCancelled(guiData.getItemToFill().get().getButton().executeClick(event));
-                } else {
-                    event.setCancelled(guiData.isCancelClick());
-                }
+                event.setCancelled(guiData.isCancelClick());
             }
 
             Bukkit.getPluginManager().callEvent(
@@ -121,10 +117,6 @@ public class MenuListeners implements Listener {
 
         // Fuck 'u bukkit
         return inventory instanceof InventoryGui || holder.equals(holder.getInventory());
-    }
-
-    private boolean isClickable(GuiData guiData, int input) {
-        return guiData.getFrom() != -1 && guiData.getTo() != -1 && input >= guiData.getFrom() && input <= guiData.getTo();
     }
 
 }

@@ -2,6 +2,7 @@ package team.unnamed.gui.menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
+import team.unnamed.gui.item.DefaultItemClickable;
 import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.action.CloseMenuAction;
 import team.unnamed.gui.menu.action.OpenMenuAction;
@@ -43,7 +44,7 @@ public class DefaultMenuBuilder implements MenuBuilder {
     @Override
     public MenuBuilder fillItem(ItemClickable itemClickable, int from, int to) {
         for (int i = from; i < to; i++) {
-            items[i] = itemClickable;
+            items[i] = new DefaultItemClickable(i, itemClickable.getItem(), itemClickable.getButton());
         }
 
         return this;
