@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
-public class InventoryGui implements Inventory, GuiDataHolder {
+public class InventoryGui implements Inventory, GuiDataHolder, InventoryHolder {
 
     private Inventory inventory;
     private GuiData guiData;
@@ -187,11 +187,6 @@ public class InventoryGui implements Inventory, GuiDataHolder {
     }
 
     @Override
-    public InventoryHolder getHolder() {
-        return inventory.getHolder();
-    }
-
-    @Override
     public ListIterator<ItemStack> iterator() {
         return inventory.iterator();
     }
@@ -204,5 +199,15 @@ public class InventoryGui implements Inventory, GuiDataHolder {
     @Override
     public GuiData getData() {
         return guiData;
+    }
+
+    @Override
+    public InventoryHolder getHolder() {
+        return this;
+    }
+
+    @Override
+    public Inventory getInventory() {
+        return this;
     }
 }
