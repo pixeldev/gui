@@ -88,6 +88,10 @@ public class DefaultMenuBuilder implements MenuBuilder {
         Inventory inventory = new InventoryGui(Bukkit.createInventory(null, rows * 9, title), guiData);
 
         for (ItemClickable itemClickable : items) {
+            if(itemClickable == null){
+                continue;
+            }
+
             inventory.setItem(
                     itemClickable.getSlot(),
                     itemClickable.getItem()
