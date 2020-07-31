@@ -1,12 +1,12 @@
 package team.unnamed.gui.menu;
 
 import org.bukkit.inventory.Inventory;
+
 import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.action.CloseMenuAction;
 import team.unnamed.gui.menu.action.OpenMenuAction;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MenuBuilder {
 

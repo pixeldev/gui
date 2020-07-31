@@ -13,8 +13,8 @@ import java.util.ListIterator;
 
 public class InventoryGui implements Inventory, GuiDataHolder, InventoryHolder {
 
-    private Inventory inventory;
-    private GuiData guiData;
+    private final Inventory inventory;
+    private final GuiData guiData;
 
     InventoryGui(Inventory inventory, GuiData data) {
         this.inventory = inventory;

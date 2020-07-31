@@ -99,7 +99,10 @@ public class DefaultMenuBuilder implements MenuBuilder {
         items.forEach((itemClickable) ->
                 inventory.setItem(
                         itemClickable.getSlot(),
-                        itemClickable.getItem()));
+                        itemClickable.getItem()
+                )
+        );
+
         return inventory;
     }
 }

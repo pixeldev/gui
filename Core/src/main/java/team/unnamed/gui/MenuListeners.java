@@ -9,8 +9,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
-
 import org.bukkit.inventory.InventoryHolder;
+
 import team.unnamed.gui.event.api.MenuClickEvent;
 import team.unnamed.gui.event.api.MenuCloseEvent;
 import team.unnamed.gui.event.api.MenuOpenEvent;
@@ -18,7 +18,6 @@ import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.GuiData;
 import team.unnamed.gui.menu.GuiDataHolder;
 import team.unnamed.gui.menu.InventoryGui;
-import team.unnamed.gui.menu.MenuBuilder;
 
 import java.util.Optional;
 

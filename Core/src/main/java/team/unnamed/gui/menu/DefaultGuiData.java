@@ -32,7 +32,6 @@ public class DefaultGuiData implements GuiData {
         this.cancelClick = cancelClick;
     }
 
-
     @Override
     public String getTitle() {
         return title;
