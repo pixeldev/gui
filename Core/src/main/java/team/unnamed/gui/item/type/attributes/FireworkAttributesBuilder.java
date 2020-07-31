@@ -38,15 +38,15 @@ public interface FireworkAttributesBuilder {
      * @param colors The primary {@link Color} list for the {@link FireworkEffect} being build
      * @return The same instance of FireworkAttributesBuilder
      */
-    FireworkAttributesBuilder colors(Color... color);
+    FireworkAttributesBuilder colors(Color... colors);
 
     /**
      * @see FireworkEffect#getFadeColors()
      *
-     * @param colors The fade {@link Color} list for the {@link FireworkEffect} being build
+     * @param colorsFade The fade {@link Color} list for the {@link FireworkEffect} being build
      * @return The same instance of FireworkAttributesBuilder
      */
-    FireworkAttributesBuilder colorsFade(Color... colorFade);
+    FireworkAttributesBuilder colorsFade(Color... colorsFade);
 
     FireworkEffect build();
 
