@@ -18,6 +18,9 @@ public class SimpleLoreBuilder implements LoreBuilder {
         this.lore = lore;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoreBuilder addLines(String... lines) {
         lore.addAll(Arrays.asList(lines));
@@ -25,6 +28,9 @@ public class SimpleLoreBuilder implements LoreBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoreBuilder colorize() {
         lore.replaceAll(line -> ChatColor.translateAlternateColorCodes('&', line));
@@ -32,6 +38,9 @@ public class SimpleLoreBuilder implements LoreBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LoreBuilder replace(String replace, String replacement) {
         lore.replaceAll(line -> line.replace(replace, replacement));
@@ -39,6 +48,9 @@ public class SimpleLoreBuilder implements LoreBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<String> build() {
         return lore;
