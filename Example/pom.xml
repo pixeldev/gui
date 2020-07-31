@@ -67,8 +67,8 @@
         </dependency>
         <dependency>
             <groupId>team.unnamed.gui</groupId>
-            <artifactId>UnnamedGUI-Core</artifactId>
-            <version>0.0.1</version>
+            <artifactId>gui-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
