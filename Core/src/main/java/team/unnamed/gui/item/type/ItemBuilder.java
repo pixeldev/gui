@@ -49,7 +49,7 @@ public interface ItemBuilder {
      * Multiple calls to this method with the same specified {@link Enchantment} will lead to overriding the last level for the enchantment
      *
      * @param enchantment The new {@link Enchantment} added to the {@linkplain ItemStack} being build
-     * @param level       The level of the {@link Enchantment} being added
+     * @param level The level of the {@link Enchantment} being added
      * @return The same mutable instance of ItemBuilder
      */
     ItemBuilder addEnchant(Enchantment enchantment, Integer level);
