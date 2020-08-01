@@ -2,6 +2,7 @@ package team.unnamed.gui.menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
+
 import team.unnamed.gui.item.DefaultItemClickable;
 import team.unnamed.gui.item.ItemClickable;
 import team.unnamed.gui.menu.action.CloseMenuAction;
@@ -33,6 +34,9 @@ public class DefaultMenuBuilder implements MenuBuilder {
         items = new ItemClickable[rows * 9];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MenuBuilder setRows(int rows) {
         this.rows = rows;
@@ -41,6 +45,9 @@ public class DefaultMenuBuilder implements MenuBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MenuBuilder fillItem(ItemClickable itemClickable, int from, int to) {
         for (int i = from; i < to; i++) {
@@ -50,18 +57,27 @@ public class DefaultMenuBuilder implements MenuBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MenuBuilder setItems(List<ItemClickable> items) {
         this.items = items.toArray(new ItemClickable[0]);
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MenuBuilder addItem(ItemClickable itemClickable) {
         items[itemClickable.getSlot()] = itemClickable;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MenuBuilder openEvent(OpenMenuAction openMenuAction) {
         this.openMenuAction = openMenuAction;
@@ -69,6 +85,9 @@ public class DefaultMenuBuilder implements MenuBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MenuBuilder closeEvent(CloseMenuAction closeMenuAction) {
         this.closeMenuAction = closeMenuAction;
@@ -76,6 +95,9 @@ public class DefaultMenuBuilder implements MenuBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MenuBuilder cancelClick(boolean cancelClick) {
         this.cancelClick = cancelClick;
@@ -83,6 +105,9 @@ public class DefaultMenuBuilder implements MenuBuilder {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Inventory build() {
         GuiData guiData = new DefaultGuiData(title, rows, Arrays.asList(items), openMenuAction, closeMenuAction, cancelClick);
