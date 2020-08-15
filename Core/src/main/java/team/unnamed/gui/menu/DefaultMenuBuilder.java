@@ -1,12 +1,13 @@
 package team.unnamed.gui.menu;
 
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 
+import team.unnamed.gui.api.item.ItemClickable;
+import team.unnamed.gui.api.menu.MenuData;
+import team.unnamed.gui.api.menu.action.CloseMenuAction;
+import team.unnamed.gui.api.menu.action.OpenMenuAction;
+import team.unnamed.gui.menu.factory.MenuFactory;
 import team.unnamed.gui.item.DefaultItemClickable;
-import team.unnamed.gui.item.ItemClickable;
-import team.unnamed.gui.menu.action.CloseMenuAction;
-import team.unnamed.gui.menu.action.OpenMenuAction;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,11 +24,11 @@ public class DefaultMenuBuilder implements MenuBuilder {
 
     private boolean cancelClick = true;
 
-    protected DefaultMenuBuilder(String title) {
+    DefaultMenuBuilder(String title) {
         this(title, 6);
     }
 
-    protected DefaultMenuBuilder(String title, int rows) {
+    DefaultMenuBuilder(String title, int rows) {
         this.title = title;
         this.rows = rows;
 
@@ -110,8 +111,12 @@ public class DefaultMenuBuilder implements MenuBuilder {
      */
     @Override
     public Inventory build() {
-        GuiData guiData = new DefaultGuiData(title, rows, Arrays.asList(items), openMenuAction, closeMenuAction, cancelClick);
-        Inventory inventory = new InventoryGui(Bukkit.createInventory(null, rows * 9, title), guiData);
+        MenuData guiData = new DefaultMenuData(title, rows, Arrays.asList(items), openMenuAction, closeMenuAction, cancelClick);
+        Inventory inventory = MenuFactory.get(rows * 9, title, guiData).getMenuInventory();
+
+        if (inventory == null) {
+            throw new NullPointerException("Some error has ocurred while opening menu " + guiData.getTitle());
+        }
 
         for (ItemClickable itemClickable : items) {
             if(itemClickable == null){
