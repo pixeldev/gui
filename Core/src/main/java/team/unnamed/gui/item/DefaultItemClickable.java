@@ -2,8 +2,8 @@ package team.unnamed.gui.item;
 
 import org.bukkit.inventory.ItemStack;
 
-import team.unnamed.gui.button.Button;
-
+import team.unnamed.gui.api.item.Button;
+import team.unnamed.gui.api.item.ItemClickable;
 
 /**
  * {@inheritDoc}

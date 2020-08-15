@@ -1,12 +1,13 @@
 package team.unnamed.gui.menu;
 
-import team.unnamed.gui.item.ItemClickable;
-import team.unnamed.gui.menu.action.CloseMenuAction;
-import team.unnamed.gui.menu.action.OpenMenuAction;
+import team.unnamed.gui.api.item.ItemClickable;
+import team.unnamed.gui.api.menu.MenuData;
+import team.unnamed.gui.api.menu.action.CloseMenuAction;
+import team.unnamed.gui.api.menu.action.OpenMenuAction;
 
 import java.util.*;
 
-public class DefaultGuiData implements GuiData {
+public class DefaultMenuData implements MenuData {
     private final String title;
     private final int rows;
 
@@ -17,7 +18,7 @@ public class DefaultGuiData implements GuiData {
 
     private final boolean cancelClick;
 
-    DefaultGuiData(String title, int rows, List<ItemClickable> items, OpenMenuAction openMenuAction, CloseMenuAction closeMenuAction, boolean cancelClick) {
+    DefaultMenuData(String title, int rows, List<ItemClickable> items, OpenMenuAction openMenuAction, CloseMenuAction closeMenuAction, boolean cancelClick) {
         this.title = title;
         this.rows = rows;
         this.items = items;
