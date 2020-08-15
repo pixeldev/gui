@@ -1,13 +1,13 @@
-package team.unnamed.gui.menu;
+package team.unnamed.gui.api.menu;
 
-import team.unnamed.gui.item.ItemClickable;
-import team.unnamed.gui.menu.action.CloseMenuAction;
-import team.unnamed.gui.menu.action.OpenMenuAction;
+import team.unnamed.gui.api.item.ItemClickable;
+import team.unnamed.gui.api.menu.action.CloseMenuAction;
+import team.unnamed.gui.api.menu.action.OpenMenuAction;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface GuiData {
+public interface MenuData {
 
     String getTitle();
 

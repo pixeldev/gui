@@ -1,4 +1,4 @@
-package team.unnamed.gui.menu.action;
+package team.unnamed.gui.api.menu.action;
 
 import org.bukkit.event.inventory.InventoryCloseEvent;
 

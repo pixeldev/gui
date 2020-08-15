@@ -1,8 +1,6 @@
-package team.unnamed.gui.item;
+package team.unnamed.gui.api.item;
 
 import org.bukkit.inventory.ItemStack;
-
-import team.unnamed.gui.button.Button;
 
 /**
  * Represents an {@link ItemStack} that can be clicked and is associated with a slot in a Menu
