@@ -9,15 +9,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 
-import team.unnamed.gui.event.api.MenuClickEvent;
-import team.unnamed.gui.event.api.MenuCloseEvent;
-import team.unnamed.gui.event.api.MenuOpenEvent;
-import team.unnamed.gui.item.ItemClickable;
-import team.unnamed.gui.menu.GuiData;
-import team.unnamed.gui.menu.GuiDataHolder;
-import team.unnamed.gui.menu.InventoryGui;
+import team.unnamed.gui.api.event.MenuClickEvent;
+import team.unnamed.gui.api.event.MenuCloseEvent;
+import team.unnamed.gui.api.event.MenuOpenEvent;
+import team.unnamed.gui.api.item.ItemClickable;
+import team.unnamed.gui.api.menu.MenuData;
+import team.unnamed.gui.api.menu.MenuInventory;
 
 import java.util.Optional;
 
@@ -34,10 +32,11 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            GuiDataHolder guiDataHolder = (GuiDataHolder) inventory.getHolder();
-            GuiData guiData = guiDataHolder.getData();
+            MenuInventory menuInventory = (MenuInventory) inventory;
 
-            guiData.getOpenMenuAction().ifPresent(openMenuAction -> event.setCancelled(openMenuAction.executeOpen(event)));
+            MenuData data = menuInventory.getData();
+
+            data.getOpenMenuAction().ifPresent(openMenuAction -> event.setCancelled(openMenuAction.executeOpen(event)));
 
             Bukkit.getPluginManager().callEvent(
                     new MenuOpenEvent(
@@ -59,10 +58,11 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            GuiDataHolder guiDataHolder = (GuiDataHolder) inventory.getHolder();
-            GuiData guiData = guiDataHolder.getData();
+            MenuInventory menuInventory = (MenuInventory) inventory;
 
-            guiData.getCloseMenuAction().ifPresent(closeMenuAction -> closeMenuAction.executeClose(event));
+            MenuData data = menuInventory.getData();
+
+            data.getCloseMenuAction().ifPresent(closeMenuAction -> closeMenuAction.executeClose(event));
 
             Bukkit.getPluginManager().callEvent(
                     new MenuCloseEvent(
@@ -90,20 +90,21 @@ public class MenuListeners implements Listener {
                 return;
             }
 
-            GuiDataHolder guiDataHolder = (GuiDataHolder) inventory.getHolder();
-            GuiData guiData = guiDataHolder.getData();
+            MenuInventory menuInventory = (MenuInventory) inventory;
 
-            Optional<ItemClickable> itemClickableOptional = guiData.getItemClickable(slot);
+            MenuData data = menuInventory.getData();
+
+            Optional<ItemClickable> itemClickableOptional = data.getItemClickable(slot);
 
             if (itemClickableOptional.isPresent()) {
-                if (event.getRawSlot() != slot && guiData.isCancelClick()) {
+                if (event.getRawSlot() != slot && data.isCancelClick()) {
                     event.setCancelled(true);
                     return;
                 }
 
                 event.setCancelled(itemClickableOptional.get().getButton().executeClick(event));
             } else {
-                event.setCancelled(guiData.isCancelClick());
+                event.setCancelled(data.isCancelClick());
             }
 
             Bukkit.getPluginManager().callEvent(
@@ -122,10 +123,8 @@ public class MenuListeners implements Listener {
             return false;
         }
 
-        InventoryHolder holder = inventory.getHolder();
-
         // Fuck 'u bukkit
-        return inventory instanceof InventoryGui || holder.equals(holder.getInventory());
+        return inventory instanceof MenuInventory;
     }
 
 }
