@@ -9,8 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import team.unnamed.gui.item.DefaultItemClickable;
 import team.unnamed.gui.menu.MenuBuilder;
+import team.unnamed.gui.item.DefaultItemClickable;
 
 @ACommand(names = "menu")
 public class ExampleCommand implements CommandClass {
