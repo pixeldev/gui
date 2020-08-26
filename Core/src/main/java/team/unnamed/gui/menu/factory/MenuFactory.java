@@ -1,6 +1,7 @@
 package team.unnamed.gui.menu.factory;
 
 import org.bukkit.Bukkit;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
 import team.unnamed.gui.api.menu.MenuData;
@@ -22,11 +23,15 @@ public class MenuFactory {
         }
     }
 
-    public static MenuInventory get(int size, String title, MenuData data) {
+    public static Inventory get(int size, String title, MenuData data) {
         try {
-            return (MenuInventory) MENU_CLASS
+            MenuInventory menuInventory = (MenuInventory) MENU_CLASS
                     .getConstructor(InventoryHolder.class, int.class, String.class, MenuData.class)
                     .newInstance(null, size, title, data);
+
+            System.out.println("Instance of " + (menuInventory.getMenuInventory() instanceof  MenuInventory));
+
+            return menuInventory.getMenuInventory();
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
