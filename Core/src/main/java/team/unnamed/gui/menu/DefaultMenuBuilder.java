@@ -4,6 +4,7 @@ import org.bukkit.inventory.Inventory;
 
 import team.unnamed.gui.api.item.ItemClickable;
 import team.unnamed.gui.api.menu.MenuData;
+import team.unnamed.gui.api.menu.MenuInventory;
 import team.unnamed.gui.api.menu.action.CloseMenuAction;
 import team.unnamed.gui.api.menu.action.OpenMenuAction;
 import team.unnamed.gui.menu.factory.MenuFactory;
@@ -112,10 +113,10 @@ public class DefaultMenuBuilder implements MenuBuilder {
     @Override
     public Inventory build() {
         MenuData guiData = new DefaultMenuData(title, rows, Arrays.asList(items), openMenuAction, closeMenuAction, cancelClick);
-        Inventory inventory = MenuFactory.get(rows * 9, title, guiData).getMenuInventory();
+        Inventory inventory = MenuFactory.get(rows * 9, title, guiData);
 
         if (inventory == null) {
-            throw new NullPointerException("Some error has ocurred while opening menu " + guiData.getTitle());
+            throw new NullPointerException("Some error has occurred while opening menu " + guiData.getTitle());
         }
 
         for (ItemClickable itemClickable : items) {
@@ -128,6 +129,7 @@ public class DefaultMenuBuilder implements MenuBuilder {
                     itemClickable.getItem()
             );
         }
+
         return inventory;
     }
 }
