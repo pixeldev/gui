@@ -8,6 +8,7 @@ import team.unnamed.gui.api.menu.action.OpenMenuAction;
 import java.util.*;
 
 public class DefaultMenuData implements MenuData {
+
     private final String title;
     private final int rows;
 
