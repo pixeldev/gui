@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
+import org.bukkit.inventory.InventoryHolder;
 import team.unnamed.gui.api.event.MenuClickEvent;
 import team.unnamed.gui.api.event.MenuCloseEvent;
 import team.unnamed.gui.api.event.MenuOpenEvent;
@@ -32,7 +33,13 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            MenuInventory menuInventory = (MenuInventory) inventory;
+            MenuInventory menuInventory;
+
+            if (inventory.getHolder() == null) {
+                menuInventory = (MenuInventory) inventory;
+            } else {
+                menuInventory = (MenuInventory) inventory.getHolder();
+            }
 
             MenuData data = menuInventory.getData();
 
@@ -58,7 +65,13 @@ public class MenuListeners implements Listener {
         }
 
         if (isInventory(inventory)) {
-            MenuInventory menuInventory = (MenuInventory) inventory;
+            MenuInventory menuInventory;
+
+            if (inventory.getHolder() == null) {
+                menuInventory = (MenuInventory) inventory;
+            } else {
+                menuInventory = (MenuInventory) inventory.getHolder();
+            }
 
             MenuData data = menuInventory.getData();
 
@@ -90,7 +103,13 @@ public class MenuListeners implements Listener {
                 return;
             }
 
-            MenuInventory menuInventory = (MenuInventory) inventory;
+            MenuInventory menuInventory;
+
+            if (inventory.getHolder() == null) {
+                menuInventory = (MenuInventory) inventory;
+            } else {
+                menuInventory = (MenuInventory) inventory.getHolder();
+            }
 
             MenuData data = menuInventory.getData();
 
@@ -123,8 +142,9 @@ public class MenuListeners implements Listener {
             return false;
         }
 
-        // Fuck 'u bukkit
-        return inventory instanceof MenuInventory;
+        InventoryHolder holder = inventory.getHolder();
+
+        return inventory instanceof MenuInventory || holder.equals(holder.getInventory());
     }
 
 }
