@@ -9,14 +9,14 @@ You only need to copy and paste this at your pom.xml, and that will be done!
 ````xml
 <repository>
     <id>unnamed-repo</id>
-    <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
+    <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
 </repository>
 ````
 ````xml
 <dependency>
     <groupId>team.unnamed.gui</groupId>
     <artifactId>gui-core</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.3.0</version>
 </dependency>
 ````
 
