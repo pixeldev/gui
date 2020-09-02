@@ -154,4 +154,49 @@ public interface ItemBuilder {
         return new FireworkBuilder(material, amount);
     }
 
+    /**
+     * Creates a new instance of {@link SkullBuilder} with the specified {@link Material} and the specified amount
+     * <p>
+     * The specified {@link Material} should be {@linkplain Material#SKULL_ITEM} or if you're
+     * in 1.13+ the Material must be PLAYER_HEAD, the builder won't raise an error
+     * when the {@link Material} isn't valid until you call the {@link SkullBuilder#build()} method
+     *
+     * @param material The material of the {@link ItemStack} to build
+     * @return A new instance of {@link SkullBuilder}
+     */
+    static SkullBuilder newSkullBuilder(Material material) {
+        return new SkullBuilder(material);
+    }
+
+    /**
+     * Creates a new instance of {@link SkullBuilder} with the specified {@link Material} and the specified amount
+     * <p>
+     * The specified {@link Material} should be {@linkplain Material#SKULL_ITEM} or if you're
+     * in 1.13+ the Material must be PLAYER_HEAD, the builder won't raise an error
+     * when the {@link Material} isn't valid until you call the {@link SkullBuilder#build()} method
+     *
+     * @param material The material of the {@link ItemStack} to build
+     * @param amount The amount of {@linkplain ItemStack} to build.
+     * @return A new instance of {@link SkullBuilder}
+     */
+    static SkullBuilder newSkullBuilder(Material material, int amount) {
+        return new SkullBuilder(material, amount);
+    }
+
+    /**
+     * Creates a new instance of {@link SkullBuilder} with the specified {@link Material} and the specified amount
+     * <p>
+     * The specified {@link Material} should be {@linkplain Material#SKULL_ITEM} or if you're
+     * in 1.13+ the Material must be PLAYER_HEAD, the builder won't raise an error
+     * when the {@link Material} isn't valid until you call the {@link SkullBuilder#build()} method
+     *
+     * @param material The material of the {@link ItemStack} to build
+     * @param amount The amount of {@linkplain ItemStack} to build.
+     * @param data The data of the {@linkplain ItemStack} to build.
+     * @return A new instance of {@link SkullBuilder}
+     */
+    static SkullBuilder newSkullBuilder(Material material, int amount, byte data) {
+        return new SkullBuilder(material, amount, data);
+    }
+
 }
