@@ -7,9 +7,12 @@
         <groupId>team.unnamed.gui</groupId>
         <version>0.0.1</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>gui-versions-v1_10_R1</artifactId>
+    <version>${versions.version}</version>
+
     <build>
         <plugins>
             <plugin>

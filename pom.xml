@@ -33,6 +33,7 @@
 
     <properties>
         <core.version>1.3.0</core.version>
+        <versions.verion>1.3.0</versions.verion>
     </properties>
 
 </project>
