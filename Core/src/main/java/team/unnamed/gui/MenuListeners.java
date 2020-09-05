@@ -144,7 +144,11 @@ public class MenuListeners implements Listener {
 
         InventoryHolder holder = inventory.getHolder();
 
-        return inventory instanceof MenuInventory || holder.equals(holder.getInventory());
+        if (holder != null) {
+            return inventory instanceof MenuInventory || holder.equals(holder.getInventory());
+        }
+
+        return inventory instanceof MenuInventory;
     }
 
 }
