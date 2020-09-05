@@ -16,7 +16,7 @@ You only need to copy and paste this at your pom.xml, and that will be done!
 <dependency>
     <groupId>team.unnamed.gui</groupId>
     <artifactId>gui-core</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
 </dependency>
 ````
 
