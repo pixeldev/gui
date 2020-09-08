@@ -8,7 +8,7 @@ _A small, and very easy to use, library for creating menus at Spigot API!_
 You only need to copy and paste this at your pom.xml, and that will be done!
 ````xml
 <repository>
-    <id>unnamed-repo</id>
+    <id>unnamed-releases</id>
     <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
 </repository>
 ````
