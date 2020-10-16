@@ -14,14 +14,12 @@ public class MenuFactory {
 
     public static final String SERVER_VERSION = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3].substring(1);
 
-    private static final Class<?> MENU_CLASS;
     private static final Constructor<?> MENU_CONSTRUCTOR;
 
     static {
         try {
-            MENU_CLASS = Class.forName("team.unnamed.gui.v" + SERVER_VERSION + ".CraftMenuInventory" + SERVER_VERSION);
-
-            MENU_CONSTRUCTOR = MENU_CLASS.getConstructor(InventoryHolder.class, int.class, String.class, MenuData.class);
+            Class<?> menuClass = Class.forName("team.unnamed.gui.v" + SERVER_VERSION + ".CraftMenuInventory" + SERVER_VERSION);
+            MENU_CONSTRUCTOR = menuClass.getConstructor(InventoryHolder.class, int.class, String.class, MenuData.class);
         } catch (ClassNotFoundException | NoSuchMethodException e) {
             throw new IllegalArgumentException("You server version isn't supported to UnnamedGUI!");
         }
