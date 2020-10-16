@@ -7,14 +7,14 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import team.unnamed.gui.item.type.attributes.LeatherArmorColor;
 
-public class LeatherArmorBuilder extends DefaultItemBuilder {
+public class LeatherArmorBuilder extends ItemBuilderLayout<LeatherArmorBuilder> {
 
     private int red;
     private int green;
     private int blue;
 
     LeatherArmorBuilder(Material material) {
-        super(material);
+        super(material, 1, (byte) 0);
     }
 
     /**
@@ -67,8 +67,12 @@ public class LeatherArmorBuilder extends DefaultItemBuilder {
         leatherArmorMeta.setColor(Color.fromBGR(blue, green, red));
 
         item.setItemMeta(leatherArmorMeta);
-
         return item;
+    }
+
+    @Override
+    protected LeatherArmorBuilder back() {
+        return this;
     }
 
 }

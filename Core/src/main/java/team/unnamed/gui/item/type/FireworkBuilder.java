@@ -8,18 +8,18 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FireworkBuilder extends DefaultItemBuilder {
+public class FireworkBuilder extends ItemBuilderLayout<FireworkBuilder> {
 
     private int power = 3;
 
     private final List<FireworkEffect> fireworkEffects = new ArrayList<>();
 
     FireworkBuilder(Material material) {
-        super(material);
+        this(material, 1);
     }
 
     FireworkBuilder(Material material, int amount) {
-        super(material, amount);
+        super(material, amount, (byte) 0);
     }
 
     /**
@@ -71,6 +71,11 @@ public class FireworkBuilder extends DefaultItemBuilder {
         item.setItemMeta(fireworkMeta);
 
         return item;
+    }
+
+    @Override
+    protected FireworkBuilder back() {
+        return this;
     }
 
 }

@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MenuFactory {
 
-    private static final String SERVER_VERSION = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3].substring(1);
+    public static final String SERVER_VERSION = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3].substring(1);
 
     private static final Class<?> MENU_CLASS;
     private static final Constructor<?> MENU_CONSTRUCTOR;
