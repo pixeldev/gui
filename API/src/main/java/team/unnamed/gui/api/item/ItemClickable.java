@@ -7,6 +7,13 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface ItemClickable {
 
+    static ItemClickable newItem(int slot,
+                                 ItemStack itemStack,
+                                 Button button) {
+        return new DefaultItemClickable(
+            slot, itemStack, button);
+    }
+
     /**
      * The slot in which the item returned by {@linkplain ItemClickable#getSlot()} can be found
      *

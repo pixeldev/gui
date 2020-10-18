@@ -4,11 +4,10 @@ import org.bukkit.inventory.Inventory;
 
 import team.unnamed.gui.api.item.ItemClickable;
 import team.unnamed.gui.api.menu.MenuData;
-import team.unnamed.gui.api.menu.MenuInventory;
 import team.unnamed.gui.api.menu.action.CloseMenuAction;
 import team.unnamed.gui.api.menu.action.OpenMenuAction;
 import team.unnamed.gui.menu.factory.MenuFactory;
-import team.unnamed.gui.item.DefaultItemClickable;
+import team.unnamed.gui.api.item.DefaultItemClickable;
 
 import java.util.Arrays;
 import java.util.List;
