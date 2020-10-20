@@ -1,5 +1,6 @@
 package team.unnamed.gui.item.type;
 
+import com.google.common.collect.Lists;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -31,6 +32,18 @@ public interface ItemBuilder {
      * @param lore The new lore for the {@linkplain ItemStack} being build
      * @return The same mutable instance of ItemBuilder
      */
+    default ItemBuilder lore(String... lore) {
+        return lore(Lists.newArrayList(lore));
+    }
+
+    /**
+     * Sets the lore for the {@linkplain ItemStack}
+     * <p>
+     * Multiple calls to this method will override the last value set
+     *
+     * @param lore The new lore for the {@linkplain ItemStack} being build
+     * @return The same mutable instance of ItemBuilder
+     */
     ItemBuilder lore(List<String> lore);
 
     /**
@@ -53,6 +66,18 @@ public interface ItemBuilder {
      * @return The same mutable instance of ItemBuilder
      */
     ItemBuilder addEnchant(Enchantment enchantment, Integer level);
+
+    /**
+     * Sets a set of flags for the {@linkplain ItemStack}
+     * <p>
+     * Multiple calls to this method will override the last value set
+     *
+     * @param flags The new flags list for the {@linkplain ItemStack} being build
+     * @return The same mutable instance of ItemBuilder
+     */
+    default ItemBuilder flags(ItemFlag flags) {
+        return flags(Lists.newArrayList(flags));
+    }
 
     /**
      * Sets a set of flags for the {@linkplain ItemStack}
