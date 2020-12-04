@@ -66,4 +66,15 @@
         <module>core</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>unnamed-releases</id>
+            <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>unnamed-snapshots</id>
+            <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
