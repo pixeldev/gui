@@ -92,7 +92,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
 
         itemStack.setItemMeta(meta);
 
-        return null;
+        return itemStack;
     }
 
     protected abstract T back();
