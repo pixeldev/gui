@@ -6,10 +6,10 @@ import me.fixeddev.commandflow.bukkit.annotation.Sender;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import team.unnamed.gui.abstraction.item.ItemClickable;
 import team.unnamed.gui.core.gui.GUIBuilder;
+import team.unnamed.gui.core.item.type.ItemBuilder;
 
 @Command(names = "gui")
 public class ExampleCommand implements CommandClass {
@@ -20,7 +20,11 @@ public class ExampleCommand implements CommandClass {
                 .builder("Testing GUI")
                 .addItem(ItemClickable
                         .builder(5)
-                        .setItemStack(new ItemStack(Material.ENDER_PEARL))
+                        .setItemStack(ItemBuilder
+                                .newBuilder(Material.ENDER_PEARL)
+                                .setName("Test Item")
+                                .setLore("Just testing UnnamedGUI", "", "Only a test of ItemBuilder!")
+                                .build())
                         .setAction(event -> {
                             player.sendMessage("Hi, just testing unnamed gui!");
 
