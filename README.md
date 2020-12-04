@@ -16,57 +16,59 @@ You only need to copy and paste this at your pom.xml, and that will be done!
 <dependency>
     <groupId>team.unnamed.gui</groupId>
     <artifactId>gui-core</artifactId>
-    <version>1.3.4</version>
+    <version>2.0.0</version>
 </dependency>
 ````
 
+If you see that the version contains "SNAPSHOT", just use the following repository:
+`````xml
+<repository>
+    <id>unnamed-releases</id>
+    <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
+</repository>
+`````
+
 ## **How to use**
+Remember that you can also visit the [example module](https://github.com/unnamed/gui/tree/master/example/src/main/java/team/unnamed/gui/example).
+
 First we need register one listener for all menus. Example:
 
 ````java
-Bukkit.getPluginManager().registerEvents(new MenuListeners(), plugin);
+Bukkit.getPluginManager().registerEvents(new GUIListeners(), plugin);
 ````
 
 ## **MenuAPI**
 Creating menus with our api is too simple, we are going to explain everything a little,
-so that you can get an idea of ​​the new functionalities and systems that were re-made.
+so that you can get an idea of the new functionalities and systems that were re-made.
 
 ````java
-MenuBuilder menuBuilder = MenuBuilder.newBuilder("MenuTest", 3);
+GUIBuilder guiBuilder = GUIBuilder.newBuilder("MenuTest", 3);
 ````
-This is the basic structure to create a MenuBuilder, which will be used to place 
+This is the basic structure to create a GUIBuilder, which will be used to place 
 all the attributes it can have.
 
 Now let's see how we can add an item to the menu, it's quite simple, let's do it.
 
 ````java
-menuBuilder
+guiBuilder
     .addItem(
-        new DefaultItemClickable(
-            13,
-            new ItemStack(Material.ENDER_PEARL),
-            click -> {
+        ItemClickable.builder(13)
+            .setItemStack(new ItemStack(Material.ENDER_PEARL))
+            .setAction(event -> {
                 System.out.print("Just testing...")
 
                 return true;
-            }
-        )
+            })
+            .build()
     );
 ````
-
-This is the method to be able to add an item to the menu, you need to pass a **DefaultItemClickable**
-which needs 3 parameters in its constructor, the first one is the slot where it'll be put,
-the second one will be an _ItemStack_, and the third one is the action it will execute. This is a
-simple _FunctionalInterface_, which has a method that receives an **InventoryClickEvent**, so you 
-can access methods of that event. It's a method with a boolean return value, that's, 
-when you return true the event will be canceled, and vice versa.
 
 ### **Other events**
 There are also 2 more methods to execute an action when opening the inventory,
 and another to execute an action when closing the inventory, which are:
 
 ````java
-menuBuilder
+guiBuilder
     .openEvent(
             event -> {
                 Player player = (Player) event.getPlayer();
@@ -91,5 +93,5 @@ Now you will ask yourself, how can I get the inventory I create, it is easy,
 simply with the **build()** method that the MenuBuilder has.
 
 ````java
-Inventory inventory = menuBuilder.build();
+Inventory inventory = guiBuilder.build();
 ````
