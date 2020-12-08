@@ -23,7 +23,7 @@ You only need to copy and paste this at your pom.xml, and that will be done!
 If you see that the version contains "SNAPSHOT", just use the following repository:
 `````xml
 <repository>
-    <id>unnamed-releases</id>
+    <id>unnamed-snapshots</id>
     <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
 </repository>
 `````
