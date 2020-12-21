@@ -16,14 +16,14 @@ You only need to copy and paste this at your pom.xml, and that will be done!
 <dependency>
     <groupId>team.unnamed.gui</groupId>
     <artifactId>gui-core</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.0-SNAPSHOT</version>
 </dependency>
 ````
 
 If you see that the version contains "SNAPSHOT", just use the following repository:
 `````xml
 <repository>
-    <id>unnamed-releases</id>
+    <id>unnamed-snapshots</id>
     <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
 </repository>
 `````
