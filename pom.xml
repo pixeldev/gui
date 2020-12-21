@@ -22,6 +22,14 @@
             <id>codemc-repo</id>
             <url>https://repo.codemc.io/repository/nms/</url>
         </repository>
+        <repository>
+            <id>unnamed-releases</id>
+            <url>https://repo.unnamed.team/repository/unnamed-releases</url>
+        </repository>
+        <repository>
+            <id>unnamed-snapshots</id>
+            <url>https://repo.unnamed.team/repository/unnamed-snapshots</url>
+        </repository>
     </repositories>
 
     <properties>
