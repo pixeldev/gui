@@ -1,4 +1,4 @@
-package team.unnamed.gui.core.gui;
+package team.unnamed.gui.core.gui.type;
 
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -14,8 +14,9 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import static team.unnamed.validate.Validate.notNull;
+import static team.unnamed.validate.Validate.state;
 
-public class SimpleGUIBuilder implements GUIBuilder {
+abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     private final String title;
     private final int slots;
@@ -27,11 +28,14 @@ public class SimpleGUIBuilder implements GUIBuilder {
 
     private boolean cancelClick = true;
 
-    protected SimpleGUIBuilder(String title) {
+    protected GUIBuilderLayout(String title) {
         this(title, 6);
     }
 
-    protected SimpleGUIBuilder(String title, int rows) {
+    protected GUIBuilderLayout(String title, int rows) {
+        notNull(title, "Title can't be null.");
+        state(rows > 0, "Rows must be major than 0.");
+
         this.title = title;
         this.slots = rows * 9;
 
@@ -39,53 +43,53 @@ public class SimpleGUIBuilder implements GUIBuilder {
     }
 
     @Override
-    public GUIBuilder fillItem(ItemClickable item, int from, int to) {
+    public T fillItem(ItemClickable item, int from, int to) {
         notNull(item, "Item clickable can't be null");
 
         for (int i = from; i < to; i++) {
             items[i] = item;
         }
 
-        return this;
+        return back();
     }
 
     @Override
-    public GUIBuilder setItems(List<ItemClickable> items) {
+    public T setItems(List<ItemClickable> items) {
         notNull(items, "Items can't be null.");
 
         this.items = items.toArray(new ItemClickable[0]);
 
-        return this;
+        return back();
     }
 
     @Override
-    public GUIBuilder addItem(ItemClickable itemClickable) {
+    public T addItem(ItemClickable itemClickable) {
         notNull(itemClickable, "Item clickable can't be null.");
 
         items[itemClickable.getSlot()] = itemClickable;
 
-        return this;
+        return back();
     }
 
     @Override
-    public GUIBuilder openAction(Predicate<InventoryOpenEvent> openAction) {
+    public T openAction(Predicate<InventoryOpenEvent> openAction) {
         this.openAction = openAction;
 
-        return this;
+        return back();
     }
 
     @Override
-    public GUIBuilder closeAction(Consumer<InventoryCloseEvent> closeAction) {
+    public T closeAction(Consumer<InventoryCloseEvent> closeAction) {
         this.closeAction = closeAction;
 
-        return this;
+        return back();
     }
 
     @Override
-    public GUIBuilder toggleClick() {
+    public T toggleClick() {
         this.cancelClick = !cancelClick;
 
-        return this;
+        return back();
     }
 
     @Override
@@ -107,5 +111,7 @@ public class SimpleGUIBuilder implements GUIBuilder {
 
         return inventory;
     }
+
+    protected abstract T back();
 
 }

@@ -33,8 +33,16 @@ public final class ItemClickable {
         return action;
     }
 
+    public ItemClickable cloneInSlot(int slot) {
+        return new ItemClickable(slot, itemStack, action);
+    }
+
     public static ItemClickableBuilder builder(int slot) {
         return new ItemClickableBuilder(slot);
+    }
+
+    public static ItemClickableBuilder builder() {
+        return new ItemClickableBuilder(-1);
     }
 
 }

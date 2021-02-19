@@ -1,4 +1,4 @@
-package team.unnamed.gui.core.gui;
+package team.unnamed.gui.core.gui.type;
 
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -32,6 +32,14 @@ public interface GUIBuilder {
 
     static GUIBuilder builder(String title, int rows) {
         return new SimpleGUIBuilder(title, rows);
+    }
+
+    static StringLayoutGUIBuilder builderStringLayout(String title) {
+        return new StringLayoutGUIBuilder(title);
+    }
+
+    static StringLayoutGUIBuilder builderStringLayout(String title, int rows) {
+        return new StringLayoutGUIBuilder(title, rows);
     }
 
 }

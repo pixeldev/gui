@@ -1,4 +1,4 @@
-package team.unnamed.gui.core.gui;
+package team.unnamed.gui.core.gui.type;
 
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
