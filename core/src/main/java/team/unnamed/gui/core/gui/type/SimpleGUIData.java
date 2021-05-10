@@ -13,15 +13,15 @@ import java.util.function.Predicate;
 
 public class SimpleGUIData implements GUIData {
 
-    private final String title;
-    private final int slots;
+    protected final String title;
+    protected final int slots;
 
-    private final List<ItemClickable> items;
+    protected final List<ItemClickable> items;
 
-    private final Predicate<InventoryOpenEvent> openAction;
-    private final Consumer<InventoryCloseEvent> closeAction;
+    protected final Predicate<InventoryOpenEvent> openAction;
+    protected final Consumer<InventoryCloseEvent> closeAction;
 
-    private final boolean cancelClick;
+    protected final boolean cancelClick;
 
     protected SimpleGUIData(String title,
                             int slots,

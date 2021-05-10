@@ -42,4 +42,12 @@ public interface GUIBuilder {
         return new StringLayoutGUIBuilder(title, rows);
     }
 
+    static <E> PaginatedGUIBuilder<E> builderPaginated(Class<E> entityType, String title) {
+        return new PaginatedGUIBuilder<>(title);
+    }
+
+    static <E> PaginatedGUIBuilder<E> builderPaginated(Class<E> entityType, String title, int rows) {
+        return new PaginatedGUIBuilder<>(title, rows);
+    }
+
 }
