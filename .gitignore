@@ -50,7 +50,6 @@ hs_err_pid*
 
 ### Gradle ###
 /build/
-gradlew
 *.lock
 *.bin
 *.bat
