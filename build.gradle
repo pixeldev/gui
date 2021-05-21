@@ -10,7 +10,7 @@ subprojects {
   apply plugin: 'com.github.johnrengelman.shadow'
 
   group = 'team.unnamed.gui'
-  version = '2.2.0'
+  version = '2.2.1'
 
   publishing {
     repositories {
