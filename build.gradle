@@ -22,8 +22,8 @@ subprojects {
         name = snapshot ? 'unnamed-snapshots' : 'unnamed-releases'
         url = repoUrl
         credentials {
-          username = System.getenv('REPO_USER')
-          password = System.getenv('REPO_PASSWORD')
+          username = "${REPO_USER}"
+          password = "${REPO_PASSWORD}"
         }
       }
     }
