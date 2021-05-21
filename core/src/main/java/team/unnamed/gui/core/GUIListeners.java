@@ -127,8 +127,6 @@ public class GUIListeners implements Listener {
         }
 
         if (newPaginatedGUIData != null) {
-          System.out.println(paginatedGUIData.getTitle());
-
           humanEntity.openInventory(PaginatedGUICreator.createPage(
               GUIFactory.create(newPaginatedGUIData),
               newPaginatedGUIData
