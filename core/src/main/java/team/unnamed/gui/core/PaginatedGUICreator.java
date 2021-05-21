@@ -40,8 +40,8 @@ public class PaginatedGUICreator {
       ItemClickable itemClickable = itemParser.apply(entity);
 
       items.set(
-              slotIndex,
-              itemClickable.cloneInSlot(slotIndex)
+          slotIndex,
+          itemClickable.cloneInSlot(slotIndex)
       );
 
       slotIndex++;

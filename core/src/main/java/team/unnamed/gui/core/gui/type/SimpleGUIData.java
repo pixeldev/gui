@@ -13,54 +13,54 @@ import java.util.function.Predicate;
 
 public class SimpleGUIData implements GUIData {
 
-    protected final String title;
-    protected final int slots;
+  protected final String title;
+  protected final int slots;
 
-    protected final List<ItemClickable> items;
+  protected final List<ItemClickable> items;
 
-    protected final Predicate<InventoryOpenEvent> openAction;
-    protected final Consumer<InventoryCloseEvent> closeAction;
+  protected final Predicate<InventoryOpenEvent> openAction;
+  protected final Consumer<InventoryCloseEvent> closeAction;
 
-    protected final boolean cancelClick;
+  protected final boolean cancelClick;
 
-    protected SimpleGUIData(String title,
-                            int slots,
-                            List<ItemClickable> items,
-                            Predicate<InventoryOpenEvent> openAction,
-                            Consumer<InventoryCloseEvent> closeAction,
-                            boolean cancelClick) {
-        this.title = title;
-        this.slots = slots;
-        this.items = items;
-        this.openAction = openAction;
-        this.closeAction = closeAction;
-        this.cancelClick = cancelClick;
-    }
+  protected SimpleGUIData(String title,
+                          int slots,
+                          List<ItemClickable> items,
+                          Predicate<InventoryOpenEvent> openAction,
+                          Consumer<InventoryCloseEvent> closeAction,
+                          boolean cancelClick) {
+    this.title = title;
+    this.slots = slots;
+    this.items = items;
+    this.openAction = openAction;
+    this.closeAction = closeAction;
+    this.cancelClick = cancelClick;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    @Override
-    public int getSlots() {
-        return slots;
-    }
+  @Override
+  public int getSlots() {
+    return slots;
+  }
 
-    @Override
-    public List<ItemClickable> getItems() {
-        return items;
-    }
+  @Override
+  public List<ItemClickable> getItems() {
+    return items;
+  }
 
-    public Optional<Predicate<InventoryOpenEvent>> getOpenAction() {
-        return Optional.ofNullable(openAction);
-    }
+  public Optional<Predicate<InventoryOpenEvent>> getOpenAction() {
+    return Optional.ofNullable(openAction);
+  }
 
-    public Optional<Consumer<InventoryCloseEvent>> getCloseAction() {
-        return Optional.ofNullable(closeAction);
-    }
+  public Optional<Consumer<InventoryCloseEvent>> getCloseAction() {
+    return Optional.ofNullable(closeAction);
+  }
 
-    public boolean isCancelledClick() {
-        return cancelClick;
-    }
+  public boolean isCancelledClick() {
+    return cancelClick;
+  }
 
 }

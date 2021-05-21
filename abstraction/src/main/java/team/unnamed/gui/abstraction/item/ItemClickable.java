@@ -7,42 +7,57 @@ import java.util.function.Predicate;
 
 public final class ItemClickable {
 
-    private final int slot;
-    private final ItemStack itemStack;
+  private static final Predicate<InventoryClickEvent> CANCELLING
+      = event -> true;
 
-    /*
-     * Nullable instance of item action.
-     */
-    private final Predicate<InventoryClickEvent> action;
+  private final int slot;
+  private final ItemStack itemStack;
 
-    protected ItemClickable(int slot, ItemStack itemStack, Predicate<InventoryClickEvent> action) {
-        this.slot = slot;
-        this.itemStack = itemStack;
-        this.action = action;
-    }
+  /*
+   * Nullable instance of item action.
+   */
+  private final Predicate<InventoryClickEvent> action;
 
-    public int getSlot() {
-        return slot;
-    }
+  protected ItemClickable(int slot,
+                          ItemStack itemStack,
+                          Predicate<InventoryClickEvent> action) {
+    this.slot = slot;
+    this.itemStack = itemStack;
+    this.action = action;
+  }
 
-    public ItemStack getItemStack() {
-        return itemStack;
-    }
+  public int getSlot() {
+    return slot;
+  }
 
-    public Predicate<InventoryClickEvent> getAction() {
-        return action;
-    }
+  public ItemStack getItemStack() {
+    return itemStack;
+  }
 
-    public ItemClickable cloneInSlot(int slot) {
-        return new ItemClickable(slot, itemStack, action);
-    }
+  public Predicate<InventoryClickEvent> getAction() {
+    return action;
+  }
 
-    public static ItemClickableBuilder builder(int slot) {
-        return new ItemClickableBuilder(slot);
-    }
+  public ItemClickable cloneInSlot(int slot) {
+    return new ItemClickable(slot, itemStack, action);
+  }
 
-    public static ItemClickableBuilder builder() {
-        return new ItemClickableBuilder(-1);
-    }
+  public static ItemClickableBuilder builder(int slot) {
+    return new ItemClickableBuilder(slot);
+  }
+
+  public static ItemClickableBuilder builder() {
+    return new ItemClickableBuilder(-1);
+  }
+
+  public static ItemClickableBuilder builderCancellingEvent() {
+    return builder()
+        .setAction(CANCELLING);
+  }
+
+  public static ItemClickableBuilder builderCancellingEvent(int slot) {
+    return builder(slot)
+        .setAction(CANCELLING);
+  }
 
 }

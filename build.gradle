@@ -1,0 +1,59 @@
+plugins {
+  id 'java'
+  id 'maven-publish'
+  id 'com.github.johnrengelman.shadow' version "7.0.0"
+}
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'maven-publish'
+  apply plugin: 'com.github.johnrengelman.shadow'
+
+  group = 'team.unnamed.gui'
+  version = '2.2.0'
+
+  publishing {
+    repositories {
+      maven {
+        def snapshot = version.toString().endsWith("-SNAPSHOT")
+        def typeName = snapshot ? 'snapshots' : 'releases'
+        def repoUrl = 'https://repo.unnamed.team/repository/unnamed-' + typeName
+
+        name = snapshot ? 'unnamed-snapshots' : 'unnamed-releases'
+        url = repoUrl
+        credentials {
+          username = System.getenv('REPO_USER')
+          password = System.getenv('REPO_PASSWORD')
+        }
+      }
+    }
+    publications {
+      maven(MavenPublication) {
+        from components.java
+      }
+    }
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+
+    maven {
+      url = 'https://repo.unnamed.team/repository/unnamed-releases/'
+    }
+    maven {
+      url = 'https://repo.unnamed.team/repository/unnamed-snapshots/'
+    }
+    maven {
+      url = 'https://repo.codemc.io/repository/nms/'
+    }
+    maven {
+      url = 'https://repo.maven.apache.org/maven2/'
+    }
+  }
+
+  dependencies {
+    implementation 'team.unnamed.common:validation:0.1.1'
+  }
+
+}

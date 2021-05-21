@@ -17,6 +17,7 @@ import static team.unnamed.validate.Validate.state;
 
 public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder<E>> {
 
+  private final String originalTitle;
   private List<E> entities;
   private Function<E, ItemClickable> itemParser;
   private int from;
@@ -26,10 +27,14 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
 
   protected PaginatedGUIBuilder(String title) {
     super(title);
+
+    this.originalTitle = title;
   }
 
   protected PaginatedGUIBuilder(String title, int rows) {
     super(title, rows);
+
+    this.originalTitle = title;
   }
 
   public PaginatedGUIBuilder<E> setEntities(Collection<E> entities) {
@@ -85,10 +90,11 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     notNull(nextPageItem, "Next page item can't be null.");
 
     PaginatedGUIData<E> guiData = new PaginatedGUIData<>(
-            title, slots, new ArrayList<>(Arrays.asList(items)), openAction, closeAction, cancelClick,
-            entities, itemParser,
-            1, from, to,
-            previousPageItem, nextPageItem
+        slots, new ArrayList<>(Arrays.asList(items)),
+        openAction, closeAction, cancelClick,
+        originalTitle, entities, itemParser,
+        1, from, to,
+        previousPageItem, nextPageItem
     );
 
     Inventory inventory = GUIFactory.create(guiData);

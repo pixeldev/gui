@@ -1,0 +1,8 @@
+project.tasks.publish.enabled = false
+
+dependencies {
+  implementation project(':core')
+  compileOnly project(':abstraction')
+  implementation 'me.fixeddev:commandflow-bukkit:0.2.0-SNAPSHOT'
+  compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+}

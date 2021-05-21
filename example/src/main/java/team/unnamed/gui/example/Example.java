@@ -16,16 +16,17 @@ import team.unnamed.gui.core.GUIListeners;
 
 public class Example extends JavaPlugin {
 
-    public void onEnable() {
-        CommandManager commandManager = new BukkitCommandManager(getName());
-        PartInjector partInjector = new SimplePartInjector();
-        partInjector.install(new BukkitModule());
-        partInjector.install(new DefaultsModule());
+  public void onEnable() {
+    CommandManager commandManager = new BukkitCommandManager(getName());
+    PartInjector partInjector = new SimplePartInjector();
+    partInjector.install(new BukkitModule());
+    partInjector.install(new DefaultsModule());
 
-        AnnotatedCommandTreeBuilder builder = new AnnotatedCommandTreeBuilderImpl(partInjector);
+    AnnotatedCommandTreeBuilder builder = new AnnotatedCommandTreeBuilderImpl(partInjector);
 
-        commandManager.registerCommands(builder.fromClass(new ExampleCommand()));
+    commandManager.registerCommands(builder.fromClass(new ExampleCommand()));
 
-        Bukkit.getPluginManager().registerEvents(new GUIListeners(), this);
-    }
+    Bukkit.getPluginManager().registerEvents(new GUIListeners(), this);
+  }
+
 }

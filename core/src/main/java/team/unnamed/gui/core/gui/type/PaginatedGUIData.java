@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 
 public class PaginatedGUIData<E> extends SimpleGUIData {
 
+  private final String originalTitle;
   private final List<E> entities;
   private final Function<E, ItemClickable> itemParser;
   private final int currentPage;
@@ -22,18 +23,21 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
   private final ItemClickable previousPageItem;
   private final ItemClickable nextPageItem;
 
-  public PaginatedGUIData(String title,
-                             int slots,
-                             List<ItemClickable> items,
-                             Predicate<InventoryOpenEvent> openAction,
-                             Consumer<InventoryCloseEvent> closeAction,
-                             boolean cancelClick,
-                             List<E> entities,
-                             Function<E, ItemClickable> itemParser,
-                             int currentPage, int from, int to,
-                             ItemClickable previousPageItem, ItemClickable nextPageItem) {
+  public PaginatedGUIData(int slots,
+                          List<ItemClickable> items,
+                          Predicate<InventoryOpenEvent> openAction,
+                          Consumer<InventoryCloseEvent> closeAction,
+                          boolean cancelClick,
+                          String originalTitle, List<E> entities,
+                          Function<E, ItemClickable> itemParser,
+                          int currentPage, int from, int to,
+                          ItemClickable previousPageItem, ItemClickable nextPageItem) {
 
-    super(title, slots, items, openAction, closeAction, cancelClick);
+    super(originalTitle.replace("%page%", currentPage + ""),
+        slots, items, openAction, closeAction, cancelClick
+    );
+
+    this.originalTitle = originalTitle;
 
     this.entities = entities;
     this.itemParser = itemParser;
@@ -86,10 +90,10 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
 
   public PaginatedGUIData<E> createNewDataFromPage(int newPage) {
     return new PaginatedGUIData<>(
-            title, slots, items, openAction, closeAction, cancelClick,
-            entities, itemParser,
-            newPage, from, to,
-            previousPageItem, nextPageItem
+        slots, items, openAction, closeAction, cancelClick,
+        originalTitle, entities, itemParser,
+        newPage, from, to,
+        previousPageItem, nextPageItem
     );
   }
 

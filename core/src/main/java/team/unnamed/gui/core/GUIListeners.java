@@ -35,8 +35,8 @@ public class GUIListeners implements Listener {
       GUIData guiData = guiInventory.getData();
 
       guiData
-              .getOpenAction()
-              .ifPresent(action -> event.setCancelled(action.test(event)));
+          .getOpenAction()
+          .ifPresent(action -> event.setCancelled(action.test(event)));
     }
   }
 
@@ -54,8 +54,8 @@ public class GUIListeners implements Listener {
       GUIData guiData = guiInventory.getData();
 
       guiData
-              .getCloseAction()
-              .ifPresent(action -> action.accept(event));
+          .getCloseAction()
+          .ifPresent(action -> action.accept(event));
     }
   }
 
@@ -107,29 +107,31 @@ public class GUIListeners implements Listener {
         int previousPageItemSlot = paginatedGUIData.getPreviousPageItem().getSlot();
 
         if (
-                paginatedGUIData.getItems().get(nextPageItemSlot) != null &&
+            paginatedGUIData.getItems().get(nextPageItemSlot) != null &&
                 slot == nextPageItemSlot
         ) {
           event.setCancelled(true);
 
           newPaginatedGUIData = paginatedGUIData.createNewDataFromPage(
-                  currentPage + 1
+              currentPage + 1
           );
         } else if (
-                paginatedGUIData.getItems().get(previousPageItemSlot) != null &&
+            paginatedGUIData.getItems().get(previousPageItemSlot) != null &&
                 slot == previousPageItemSlot
         ) {
           event.setCancelled(true);
 
           newPaginatedGUIData = paginatedGUIData.createNewDataFromPage(
-                  currentPage - 1
+              currentPage - 1
           );
         }
 
         if (newPaginatedGUIData != null) {
+          System.out.println(paginatedGUIData.getTitle());
+
           humanEntity.openInventory(PaginatedGUICreator.createPage(
-                  GUIFactory.create(newPaginatedGUIData),
-                  newPaginatedGUIData
+              GUIFactory.create(newPaginatedGUIData),
+              newPaginatedGUIData
           ));
 
           return;
@@ -149,16 +151,16 @@ public class GUIListeners implements Listener {
     boolean instanceOf = inventory instanceof GUIInventory;
 
     return holder == null ?
-            instanceOf :
-            instanceOf || holder.equals(holder.getInventory());
+        instanceOf :
+        instanceOf || holder.equals(holder.getInventory());
   }
 
   private GUIInventory getGui(Inventory inventory) {
     InventoryHolder holder = inventory.getHolder();
 
     return holder == null ?
-            (GUIInventory) inventory :
-            (GUIInventory) inventory.getHolder();
+        (GUIInventory) inventory :
+        (GUIInventory) inventory.getHolder();
   }
 
 }

@@ -9,22 +9,22 @@ import team.unnamed.gui.abstraction.menu.GUIInventory;
 
 public class CraftGUIInventory1_16_R1 extends CraftInventoryCustom implements GUIInventory {
 
-    private final GUIData guiData;
+  private final GUIData guiData;
 
-    public CraftGUIInventory1_16_R1(InventoryHolder owner, GUIData guiData) {
-        super(owner, guiData.getSlots(), guiData.getTitle());
+  public CraftGUIInventory1_16_R1(InventoryHolder owner, GUIData guiData) {
+    super(owner, guiData.getSlots(), guiData.getTitle());
 
-        this.guiData = guiData;
-    }
+    this.guiData = guiData;
+  }
 
-    @Override
-    public Inventory getMenuInventory() {
-        return this;
-    }
+  @Override
+  public Inventory getMenuInventory() {
+    return this;
+  }
 
-    @Override
-    public GUIData getData() {
-        return guiData;
-    }
+  @Override
+  public GUIData getData() {
+    return guiData;
+  }
 
 }
