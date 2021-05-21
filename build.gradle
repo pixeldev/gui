@@ -1,16 +1,14 @@
 plugins {
-  id 'java'
+  id 'java-library'
   id 'maven-publish'
-  id 'com.github.johnrengelman.shadow' version "7.0.0"
 }
 
 subprojects {
-  apply plugin: 'java'
+  apply plugin: 'java-library'
   apply plugin: 'maven-publish'
-  apply plugin: 'com.github.johnrengelman.shadow'
 
   group = 'team.unnamed.gui'
-  version = '2.2.1'
+  version = '2.2.1-SNAPSHOT'
 
   publishing {
     repositories {
