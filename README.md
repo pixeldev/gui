@@ -5,9 +5,9 @@
 _A small, and very easy to use, library for creating menus at Spigot API!_
 
 ## Installation
-[![Latest Snapshot](https://img.shields.io/nexus/s/team.unnamed.gui/core.svg?server=https%3A%2F%2Frepo.unnamed.team)](https://repo.unnamed.team/repository/unnamed-snapshots)
+Latest Snapshot: [![Latest Snapshot](https://img.shields.io/nexus/s/team.unnamed.gui/core.svg?server=https%3A%2F%2Frepo.unnamed.team)](https://repo.unnamed.team/repository/unnamed-snapshots)
 
-[![Latest Release](https://img.shields.io/nexus/r/team.unnamed.gui/core.svg?server=https%3A%2F%2Frepo.unnamed.team)](https://repo.unnamed.team/repository/unnamed-snapshots)
+Latest Release: [![Latest Release](https://img.shields.io/nexus/r/team.unnamed.gui/core.svg?server=https%3A%2F%2Frepo.unnamed.team)](https://repo.unnamed.team/repository/unnamed-snapshots)
 
 ### **Maven Dependency**
 Add the repositories into your `<repositories>` tag (`pom.xml`)
