@@ -4,29 +4,48 @@
 
 _A small, and very easy to use, library for creating menus at Spigot API!_
 
-## **Maven Dependency**
-You only need to copy and paste this at your pom.xml, and that will be done!
-````xml
-<repository>
-    <id>unnamed-releases</id>
-    <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
-</repository>
-````
-````xml
-<dependency>
-    <groupId>team.unnamed.gui</groupId>
-    <artifactId>gui-core</artifactId>
-    <version>2.2.0-SNAPSHOT</version>
-</dependency>
-````
+## Installation
+[![Latest Snapshot](https://img.shields.io/nexus/s/team.unnamed.gui/core.svg?server=https%3A%2F%2Frepo.unnamed.team)](https://repo.unnamed.team/repository/unnamed-snapshots)
 
-If you see that the version contains "SNAPSHOT", just use the following repository:
-`````xml
+[![Latest Release](https://img.shields.io/nexus/r/team.unnamed.gui/core.svg?server=https%3A%2F%2Frepo.unnamed.team)](https://repo.unnamed.team/repository/unnamed-snapshots)
+
+### **Maven Dependency**
+Add the repositories into your `<repositories>` tag (`pom.xml`)
+```xml
 <repository>
-    <id>unnamed-snapshots</id>
-    <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
+  <id>unnamed-releases</id>
+  <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
 </repository>
-`````
+<repository>
+  <id>unnamed-snapshots</id>
+  <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
+</repository>
+```
+Add the dependency into your `<dependencies>` tag (`pom.xml`)
+```xml
+<dependency>
+  <groupId>team.unnamed.gui</groupId>
+  <artifactId>core</artifactId>
+  <version>VERSION</version>
+</dependency>
+```
+
+### **Gradle Dependency**
+Add the repositories into your `repositories` section (`build.gradle`)
+```groovy
+maven {
+  name = 'unnamed-releases'
+  url = 'https://repo.unnamed.team/repository/unnamed-releases/'
+}
+maven {
+  name = 'unnamed-snapshots'
+  url = 'https://repo.unnamed.team/repository/unnamed-snapshots/'
+}
+```
+Add the dependency into your `dependencies` section (`build.gradle`)
+```groovy
+implementation 'team.unnamed.gui:core:VERSION'
+```
 
 ## **How to use**
 Remember that you can also visit the [example module](https://github.com/unnamed/gui/tree/master/example/src/main/java/team/unnamed/gui/example).
