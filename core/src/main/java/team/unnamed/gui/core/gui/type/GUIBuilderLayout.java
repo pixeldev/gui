@@ -55,7 +55,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
   }
 
   @Override
-  public GUIBuilder fillRow(ItemClickable item, int row) {
+  public T fillRow(ItemClickable item, int row) {
     state(
         row < 0 || row > 6,
         "Row cannot be minor than 0 or major than 6"
@@ -72,7 +72,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
   }
 
   @Override
-  public GUIBuilder fillColumn(ItemClickable item, int column) {
+  public T fillColumn(ItemClickable item, int column) {
     state(
         column < 0 || column > 9,
         "Column cannot be minor than 0 or major than 9"
@@ -86,7 +86,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
   }
 
   @Override
-  public GUIBuilder fillBorders(ItemClickable item) {
+  public T fillBorders(ItemClickable item) {
     fillRow(item, 1);
     fillRow(item, 6);
     fillColumn(item, 1);
