@@ -1,5 +1,6 @@
 package team.unnamed.gui.core.item.type;
 
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -149,6 +150,18 @@ public interface ItemBuilder {
    */
   static SkullBuilder newSkullBuilder(Material material, int amount, byte data) {
     return new SkullBuilder(material, amount, data);
+  }
+
+  static DyeItemBuilder newDyeItemBuilder(Material material) {
+    return new DyeItemBuilder(material);
+  }
+
+  static DyeItemBuilder newDyeItemBuilder(Material material, DyeColor dyeColor) {
+    return new DyeItemBuilder(material, dyeColor);
+  }
+
+  static DyeItemBuilder newDyeItemBuilder(Material material, int amount, DyeColor dyeColor) {
+    return new DyeItemBuilder(material, amount, dyeColor);
   }
 
 }
