@@ -14,6 +14,12 @@ public interface GUIBuilder {
 
   GUIBuilder fillItem(ItemClickable item, int from, int to);
 
+  GUIBuilder fillRow(ItemClickable item, int row);
+
+  GUIBuilder fillColumn(ItemClickable item, int column);
+
+  GUIBuilder fillBorders(ItemClickable item);
+
   GUIBuilder setItems(List<ItemClickable> items);
 
   GUIBuilder addItem(ItemClickable itemClickable);

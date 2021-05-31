@@ -55,6 +55,47 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
   }
 
   @Override
+  public GUIBuilder fillRow(ItemClickable item, int row) {
+    state(
+        row < 0 || row > 6,
+        "Row cannot be minor than 0 or major than 6"
+    );
+
+    int indexStart = row == 1 ? 0 : row * 9;
+    int indexEnd = indexStart + 9;
+
+    for (int slot = indexStart; slot < indexEnd; slot++) {
+      items[slot] = item.cloneInSlot(slot);
+    }
+
+    return back();
+  }
+
+  @Override
+  public GUIBuilder fillColumn(ItemClickable item, int column) {
+    state(
+        column < 0 || column > 9,
+        "Column cannot be minor than 0 or major than 9"
+    );
+
+    for (int slot = column; slot <= column * 6; slot += 9) {
+      items[slot] = item.cloneInSlot(slot);
+    }
+
+    return back();
+  }
+
+  @Override
+  public GUIBuilder fillBorders(ItemClickable item) {
+    fillRow(item, 1);
+    fillRow(item, 6);
+    fillColumn(item, 1);
+    fillColumn(item, 9);
+
+    return back();
+  }
+
+  @Override
   public T setItems(List<ItemClickable> items) {
     notNull(items, "Items can't be null.");
 
