@@ -62,7 +62,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
     );
 
     int indexStart = row == 1 ? 0 : row * 9;
-    int indexEnd = indexStart + 9;
+    int indexEnd = indexStart + 8;
 
     for (int slot = indexStart; slot < indexEnd; slot++) {
       items[slot] = item.cloneInSlot(slot);
