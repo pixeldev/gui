@@ -61,8 +61,8 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
         "Row cannot be minor than 0 or major than 6"
     );
 
-    int indexStart = row == 1 ? 0 : row * 9;
-    int indexEnd = indexStart + 8;
+    int indexStart = row == 1 ? 0 : (row - 1) * 9;
+    int indexEnd = indexStart + 9;
 
     for (int slot = indexStart; slot < indexEnd; slot++) {
       items[slot] = item.cloneInSlot(slot);
