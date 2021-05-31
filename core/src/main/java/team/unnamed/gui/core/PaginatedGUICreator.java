@@ -54,8 +54,6 @@ public class PaginatedGUICreator {
         }
       }
 
-      i++;
-
       E entity = entities.get(i);
       ItemClickable itemClickable = itemParser.apply(entity);
 
@@ -64,6 +62,7 @@ public class PaginatedGUICreator {
           itemClickable.cloneInSlot(slotIndex)
       );
 
+      i++;
       slotIndex++;
     }
 

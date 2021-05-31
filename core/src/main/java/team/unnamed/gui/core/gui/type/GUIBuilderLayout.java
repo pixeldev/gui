@@ -78,7 +78,9 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
         "Column cannot be minor than 0 or major than 9"
     );
 
-    for (int slot = column; slot <= column * 6; slot += 9) {
+    column -= 1;
+
+    for (int slot = column; slot <= 45 + column; slot += 9) {
       items[slot] = item.cloneInSlot(slot);
     }
 
