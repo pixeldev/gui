@@ -23,18 +23,38 @@ public class PaginatedGUICreator {
     }
 
     int slotIndex = guiData.getFrom();
+    int[] skippedSlotsInBounds = guiData.getSkippedSlotsInBounds();
+
+    if (skippedSlotsInBounds[0] == slotIndex) {
+      slotIndex += 1;
+    }
 
     int entityIndexStart = currentPage == 1 ? 0 : spaces * (currentPage - 1);
     int entityIndexEnd = spaces * currentPage;
 
+    int itemsPerRow = guiData.getItemsPerRow();
+    int freeBoundSlots = 10 - itemsPerRow;
+    int counterItemsPerRow = 0;
     boolean hasNextPage = true;
 
-    for (int i = entityIndexStart; i < entityIndexEnd; i++) {
+    ENTITIES: for (int i = entityIndexStart; i < entityIndexEnd;) {
       if (i >= entities.size()) {
         hasNextPage = false;
 
         break;
       }
+
+      if (counterItemsPerRow == itemsPerRow) {
+        slotIndex += freeBoundSlots;
+      }
+
+      for (int skippedSlot : skippedSlotsInBounds) {
+        if (slotIndex == skippedSlot) {
+          continue ENTITIES;
+        }
+      }
+
+      i++;
 
       E entity = entities.get(i);
       ItemClickable itemClickable = itemParser.apply(entity);
