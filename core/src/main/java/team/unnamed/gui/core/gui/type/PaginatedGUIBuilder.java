@@ -22,8 +22,8 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
   private Function<E, ItemClickable> itemParser;
   private int from;
   private int to;
-  private int[] skippedSlotsInBounds;
-  private int itemsPerRow;
+  private int[] skippedSlotsInBounds = {};
+  private int itemsPerRow = 9;
   private ItemClickable previousPageItem;
   private ItemClickable nextPageItem;
 
@@ -73,7 +73,10 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
   }
 
   public PaginatedGUIBuilder<E> setItemsPerRow(int amount) {
-    state(amount > 0, "Items per row cannot be equals than 0.");
+    state(
+        amount > 0 && amount <= 9,
+        "Items per row cannot be equals than 0 or major than 9."
+    );
 
     this.itemsPerRow = amount;
 
@@ -84,7 +87,6 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     notNull(previousPageItem, "Previous page item can't be null.");
 
     this.previousPageItem = previousPageItem;
-    addItem(previousPageItem);
 
     return this;
   }
@@ -93,7 +95,6 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     notNull(nextPageItem, "Next page item can't be null.");
 
     this.nextPageItem = nextPageItem;
-    addItem(nextPageItem);
 
     return this;
   }

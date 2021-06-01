@@ -112,18 +112,18 @@ public class GUIListeners implements Listener {
         ) {
           event.setCancelled(true);
 
-          newPaginatedGUIData = paginatedGUIData.createNewDataFromPage(
-              currentPage + 1
-          );
+          currentPage++;
         } else if (
             paginatedGUIData.getItems().get(previousPageItemSlot) != null &&
                 slot == previousPageItemSlot
         ) {
           event.setCancelled(true);
 
-          newPaginatedGUIData = paginatedGUIData.createNewDataFromPage(
-              currentPage - 1
-          );
+          currentPage--;
+        }
+
+        if (currentPage != paginatedGUIData.getCurrentPage()) {
+          newPaginatedGUIData = paginatedGUIData.createNewDataFromPage(currentPage);
         }
 
         if (newPaginatedGUIData != null) {

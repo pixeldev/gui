@@ -8,25 +8,15 @@ subprojects {
   apply plugin: 'maven-publish'
 
   group = 'team.unnamed.gui'
-  version = '2.2.1-SNAPSHOT'
+  version = '2.2.2-SNAPSHOT'
 
   publishing {
-    repositories {
-      maven {
-        def snapshot = version.toString().endsWith("-SNAPSHOT")
-        def typeName = snapshot ? 'snapshots' : 'releases'
-        def repoUrl = 'https://repo.unnamed.team/repository/unnamed-' + typeName
-
-        name = snapshot ? 'unnamed-snapshots' : 'unnamed-releases'
-        url = repoUrl
-        credentials {
-          username = System.getenv('REPO_USER')
-          password = System.getenv('REPO_PASSWORD')
-        }
-      }
-    }
     publications {
       maven(MavenPublication) {
+        groupId "team.unnamed.gui"
+        artifactId "${project.name}"
+        version "2.2.2-SNAPSHOT"
+
         from components.java
       }
     }
@@ -34,8 +24,6 @@ subprojects {
 
   repositories {
     mavenLocal()
-    mavenCentral()
-
     maven {
       url = 'https://repo.unnamed.team/repository/unnamed-releases/'
     }
@@ -48,6 +36,8 @@ subprojects {
     maven {
       url = 'https://repo.maven.apache.org/maven2/'
     }
+
+    mavenCentral()
   }
 
   dependencies {

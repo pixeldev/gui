@@ -116,6 +116,17 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
   }
 
   @Override
+  public T addItem(ItemClickable itemClickable, int... slots) {
+    notNull(itemClickable, "Item clickable can't be null.");
+
+    for (int slot : slots) {
+      addItem(itemClickable.cloneInSlot(slot));
+    }
+
+    return back();
+  }
+
+  @Override
   public T openAction(Predicate<InventoryOpenEvent> openAction) {
     this.openAction = openAction;
 

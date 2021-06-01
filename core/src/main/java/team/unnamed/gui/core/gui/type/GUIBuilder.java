@@ -22,6 +22,8 @@ public interface GUIBuilder {
 
   GUIBuilder setItems(List<ItemClickable> items);
 
+  GUIBuilder addItem(ItemClickable itemClickable, int... slots);
+
   GUIBuilder addItem(ItemClickable itemClickable);
 
   GUIBuilder openAction(Predicate<InventoryOpenEvent> openAction);

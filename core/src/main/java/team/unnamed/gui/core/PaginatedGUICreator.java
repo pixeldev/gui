@@ -5,6 +5,7 @@ import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.abstraction.item.ItemClickable;
 import team.unnamed.gui.core.gui.type.PaginatedGUIData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -17,76 +18,55 @@ public class PaginatedGUICreator {
     int spaces = guiData.getSpaces();
 
     List<ItemClickable> items = guiData.getItems();
+    List<ItemClickable> copyItems = new ArrayList<>(guiData.getBaseItems());
 
-    for (int i = guiData.getFrom(); i < guiData.getTo(); i++) {
-      items.set(i, null);
-    }
-
-    int slotIndex = guiData.getFrom();
-    int[] skippedSlotsInBounds = guiData.getSkippedSlotsInBounds();
-
-    if (skippedSlotsInBounds[0] == slotIndex) {
-      slotIndex += 1;
-    }
+    List<Integer> availableSlots = guiData.getAvailableSlots();
 
     int entityIndexStart = currentPage == 1 ? 0 : spaces * (currentPage - 1);
     int entityIndexEnd = spaces * currentPage;
+    int slotIndex = 0;
+    int entitiesSize = entities.size();
 
-    int itemsPerRow = guiData.getItemsPerRow();
-    int freeBoundSlots = 10 - itemsPerRow;
-    int counterItemsPerRow = 0;
-    boolean hasNextPage = true;
-
-    ENTITIES: for (int i = entityIndexStart; i < entityIndexEnd;) {
-      if (i >= entities.size()) {
-        hasNextPage = false;
-
+    for (int i = entityIndexStart; i < entityIndexEnd; i++) {
+      if (i >= entitiesSize) {
         break;
-      }
-
-      if (counterItemsPerRow == itemsPerRow) {
-        slotIndex += freeBoundSlots;
-      }
-
-      for (int skippedSlot : skippedSlotsInBounds) {
-        if (slotIndex == skippedSlot) {
-          continue ENTITIES;
-        }
       }
 
       E entity = entities.get(i);
       ItemClickable itemClickable = itemParser.apply(entity);
 
-      items.set(
-          slotIndex,
-          itemClickable.cloneInSlot(slotIndex)
+      int slot = availableSlots.get(slotIndex);
+
+      copyItems.set(
+          slot,
+          itemClickable.cloneInSlot(slot)
       );
 
-      i++;
       slotIndex++;
     }
 
     ItemClickable nextPageItem = guiData.getNextPageItem();
     ItemClickable previousPageItem = guiData.getPreviousPageItem();
 
-    if (currentPage == 1) {
-      items.set(previousPageItem.getSlot(), null);
-    } else {
-      items.set(previousPageItem.getSlot(), previousPageItem);
+    if (currentPage > 1) {
+      copyItems.set(previousPageItem.getSlot(), previousPageItem);
     }
 
-    if (!hasNextPage) {
-      items.set(nextPageItem.getSlot(), null);
-    } else {
-      items.set(nextPageItem.getSlot(), nextPageItem);
+    if (currentPage < guiData.getMaxPages()) {
+      copyItems.set(nextPageItem.getSlot(), nextPageItem);
     }
 
-    for (ItemClickable itemClickable : items) {
+    for (ItemClickable itemClickable : copyItems) {
+      items.add(itemClickable);
+
       if (itemClickable == null) {
         continue;
       }
 
-      delegate.setItem(itemClickable.getSlot(), itemClickable.getItemStack());
+      delegate.setItem(
+          itemClickable.getSlot(),
+          itemClickable.getItemStack()
+      );
     }
 
     return delegate;
