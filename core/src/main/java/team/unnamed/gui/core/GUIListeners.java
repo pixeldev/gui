@@ -103,18 +103,23 @@ public class GUIListeners implements Listener {
 
         PaginatedGUIData<?> newPaginatedGUIData = null;
 
-        int nextPageItemSlot = paginatedGUIData.getNextPageItem().getSlot();
-        int previousPageItemSlot = paginatedGUIData.getPreviousPageItem().getSlot();
+        ItemStack clickedItem = event.getCurrentItem();
+
+        ItemClickable nextPageItem = paginatedGUIData.getNextPageItem();
+        ItemClickable previousPageItem = paginatedGUIData.getPreviousPageItem();
+
+        int nextPageItemSlot = nextPageItem.getSlot();
+        int previousPageItemSlot = previousPageItem.getSlot();
 
         if (
-            paginatedGUIData.getItems().get(nextPageItemSlot) != null &&
+            nextPageItem.getItemStack().equals(clickedItem) &&
                 slot == nextPageItemSlot
         ) {
           event.setCancelled(true);
 
           currentPage++;
         } else if (
-            paginatedGUIData.getItems().get(previousPageItemSlot) != null &&
+            previousPageItem.getItemStack().equals(clickedItem) &&
                 slot == previousPageItemSlot
         ) {
           event.setCancelled(true);
