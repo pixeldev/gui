@@ -1,11 +1,13 @@
 plugins {
-  id 'java-library'
+  id 'java'
   id 'maven-publish'
+  id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 subprojects {
-  apply plugin: 'java-library'
+  apply plugin: 'java'
   apply plugin: 'maven-publish'
+  apply plugin: 'com.github.johnrengelman.shadow'
 
   group = 'team.unnamed.gui'
   version = '2.2.3-SNAPSHOT'
@@ -44,6 +46,7 @@ subprojects {
 
   repositories {
     mavenLocal()
+
     maven {
       url = 'https://repo.unnamed.team/repository/unnamed-releases/'
     }
@@ -60,8 +63,8 @@ subprojects {
     mavenCentral()
   }
 
-  dependencies {
-    implementation 'team.unnamed.common:validation:0.1.1'
+  shadowJar {
+    archiveFileName.set("${project.name}-${project.version}.jar")
   }
 
 }
