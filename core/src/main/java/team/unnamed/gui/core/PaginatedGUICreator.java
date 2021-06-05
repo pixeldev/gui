@@ -22,7 +22,9 @@ public class PaginatedGUICreator {
     if (entitiesSize == 0) {
       ItemClickable itemIfNotEntities = guiData.getItemIfNotEntities();
 
-      copyItems.set(itemIfNotEntities.getSlot(), itemIfNotEntities);
+      if (itemIfNotEntities != null) {
+        copyItems.set(itemIfNotEntities.getSlot(), itemIfNotEntities);
+      }
     } else {
       Function<E, ItemClickable> itemParser = guiData.getItemParser();
       int spaces = guiData.getSpaces();
@@ -52,18 +54,28 @@ public class PaginatedGUICreator {
       }
     }
 
-    ItemClickable nextPageItem = guiData.getNextPageItem();
-    ItemClickable previousPageItem = guiData.getPreviousPageItem();
-    ItemClickable itemIfNotPreviousPage = guiData.getItemIfNotPreviousPage();
-
     if (currentPage > 1) {
+      ItemClickable previousPageItem = guiData.getPreviousPageItem().apply(currentPage - 1);
+
       copyItems.set(previousPageItem.getSlot(), previousPageItem);
     } else {
-      copyItems.set(itemIfNotPreviousPage.getSlot(),  itemIfNotPreviousPage);
+      ItemClickable itemIfNotPreviousPage = guiData.getItemIfNotPreviousPage();
+
+      if (itemIfNotPreviousPage != null) {
+        copyItems.set(itemIfNotPreviousPage.getSlot(),  itemIfNotPreviousPage);
+      }
     }
 
     if (currentPage < guiData.getMaxPages()) {
+      ItemClickable nextPageItem = guiData.getNextPageItem().apply(currentPage + 1);
       copyItems.set(nextPageItem.getSlot(), nextPageItem);
+    }
+
+    for (Function<Integer, ItemClickable> itemReplacingPage :
+        guiData.getItemsReplacingWithPage()
+    ) {
+      ItemClickable itemClickable = itemReplacingPage.apply(currentPage);
+      copyItems.set(itemClickable.getSlot(), itemClickable);
     }
 
     for (ItemClickable itemClickable : copyItems) {

@@ -105,8 +105,8 @@ public class GUIListeners implements Listener {
 
         ItemStack clickedItem = event.getCurrentItem();
 
-        ItemClickable nextPageItem = paginatedGUIData.getNextPageItem();
-        ItemClickable previousPageItem = paginatedGUIData.getPreviousPageItem();
+        ItemClickable nextPageItem = paginatedGUIData.getNextPageItem().apply(currentPage + 1);
+        ItemClickable previousPageItem = paginatedGUIData.getPreviousPageItem().apply(currentPage - 1);
 
         int nextPageItemSlot = nextPageItem.getSlot();
         int previousPageItemSlot = previousPageItem.getSlot();

@@ -7,6 +7,7 @@ import team.unnamed.gui.abstraction.item.ItemClickable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -25,8 +26,9 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
   private final int[] skippedSlotsInBounds;
   private final int itemsPerRow;
   private final List<Integer> availableSlots;
-  private final ItemClickable previousPageItem;
-  private final ItemClickable nextPageItem;
+  private final Set<Function<Integer, ItemClickable>> itemsReplacingWithPage;
+  private final Function<Integer, ItemClickable> previousPageItem;
+  private final Function<Integer, ItemClickable> nextPageItem;
   private final ItemClickable itemIfNotEntities;
   private final ItemClickable itemIfNotPreviousPage;
 
@@ -40,7 +42,9 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
                           int currentPage, int from, int to,
                           List<Integer> availableSlots, int spaces,
                           int[] skippedSlotsInBounds, int itemsPerRow,
-                          ItemClickable previousPageItem, ItemClickable nextPageItem,
+                          Set<Function<Integer, ItemClickable>> itemsReplacingWithPage,
+                          Function<Integer, ItemClickable> previousPageItem,
+                          Function<Integer, ItemClickable> nextPageItem,
                           ItemClickable itemIfNotEntities, ItemClickable itemIfNotPreviousPage) {
 
     super(originalTitle.replace("%page%", currentPage + ""),
@@ -59,6 +63,7 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     this.availableSlots = availableSlots;
     this.baseItems = baseItems;
     this.spaces = spaces;
+    this.itemsReplacingWithPage = itemsReplacingWithPage;
     this.itemIfNotEntities = itemIfNotEntities;
     this.itemIfNotPreviousPage = itemIfNotPreviousPage;
 
@@ -77,8 +82,10 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
                           Function<E, ItemClickable> itemParser,
                           int currentPage, int from, int to,
                           int[] skippedSlotsInBounds, int itemsPerRow,
-                          ItemClickable previousPageItem, ItemClickable nextPageItem,
-                          ItemClickable itemIfNotEntities, ItemClickable itemIfNotPreviousPage) {
+                          Function<Integer, ItemClickable> previousPageItem,
+                          Function<Integer, ItemClickable> nextPageItem,
+                          ItemClickable itemIfNotEntities, ItemClickable itemIfNotPreviousPage,
+                          Set<Function<Integer, ItemClickable>> itemsReplacingWithPage) {
 
     this(
         slots,
@@ -89,7 +96,7 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
         currentPage, from, to,
         new ArrayList<>(), 0,
         skippedSlotsInBounds, itemsPerRow,
-        previousPageItem, nextPageItem,
+        itemsReplacingWithPage, previousPageItem, nextPageItem,
         itemIfNotEntities, itemIfNotPreviousPage);
 
 
@@ -126,6 +133,10 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     return entities;
   }
 
+  public Set<Function<Integer, ItemClickable>> getItemsReplacingWithPage() {
+    return itemsReplacingWithPage;
+  }
+
   public Function<E, ItemClickable> getItemParser() {
     return itemParser;
   }
@@ -138,11 +149,11 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     return maxPages;
   }
 
-  public ItemClickable getPreviousPageItem() {
+  public Function<Integer, ItemClickable> getPreviousPageItem() {
     return previousPageItem;
   }
 
-  public ItemClickable getNextPageItem() {
+  public Function<Integer, ItemClickable> getNextPageItem() {
     return nextPageItem;
   }
 
@@ -174,7 +185,7 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
         newPage, from, to,
         availableSlots, spaces,
         skippedSlotsInBounds, itemsPerRow,
-        previousPageItem, nextPageItem,
+        itemsReplacingWithPage, previousPageItem, nextPageItem,
         itemIfNotEntities, itemIfNotPreviousPage
     );
   }

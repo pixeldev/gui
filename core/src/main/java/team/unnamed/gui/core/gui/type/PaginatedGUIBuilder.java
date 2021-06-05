@@ -6,10 +6,7 @@ import team.unnamed.gui.abstraction.item.ItemClickable;
 import team.unnamed.gui.core.PaginatedGUICreator;
 import team.unnamed.gui.core.gui.factory.GUIFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 import static team.unnamed.validate.Validate.notNull;
@@ -24,8 +21,10 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
   private int to;
   private int[] skippedSlotsInBounds = {};
   private int itemsPerRow = 9;
-  private ItemClickable previousPageItem;
-  private ItemClickable nextPageItem;
+  private Function<Integer, ItemClickable> previousPageItem;
+  private Function<Integer, ItemClickable> nextPageItem;
+  private final Set<Function<Integer, ItemClickable>> itemsReplacingWithPage
+      = new HashSet<>();
   private ItemClickable itemIfNotEntities;
   private ItemClickable itemIfNotPreviousPage;
 
@@ -85,7 +84,15 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     return this;
   }
 
-  public PaginatedGUIBuilder<E> setPreviousPageItem(ItemClickable previousPageItem) {
+  public PaginatedGUIBuilder<E> addItemReplacingPage(Function<Integer, ItemClickable> item) {
+    notNull(item, "Item can't be null.");
+
+    itemsReplacingWithPage.add(item);
+
+    return this;
+  }
+
+  public PaginatedGUIBuilder<E> setPreviousPageItem(Function<Integer, ItemClickable> previousPageItem) {
     notNull(previousPageItem, "Previous page item can't be null.");
 
     this.previousPageItem = previousPageItem;
@@ -93,7 +100,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     return this;
   }
 
-  public PaginatedGUIBuilder<E> setNextPageItem(ItemClickable nextPageItem) {
+  public PaginatedGUIBuilder<E> setNextPageItem(Function<Integer, ItemClickable> nextPageItem) {
     notNull(nextPageItem, "Next page item can't be null.");
 
     this.nextPageItem = nextPageItem;
@@ -131,7 +138,8 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
         1, from, to,
         skippedSlotsInBounds, itemsPerRow,
         previousPageItem, nextPageItem,
-        itemIfNotEntities, itemIfNotPreviousPage
+        itemIfNotEntities, itemIfNotPreviousPage,
+        itemsReplacingWithPage
     );
 
     Inventory inventory = GUIFactory.create(guiData);
