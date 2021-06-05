@@ -10,7 +10,7 @@ subprojects {
   apply plugin: 'com.github.johnrengelman.shadow'
 
   group = 'team.unnamed.gui'
-  version = '2.2.3-SNAPSHOT'
+  version = '2.2.4-SNAPSHOT'
 
   publishing {
     repositories {
@@ -32,12 +32,14 @@ subprojects {
         from components.java
       }
     }
-//
+
+//    For install the project into ur .m2
+
 //    publications {
 //      mavenJava(MavenPublication) {
 //        groupId "team.unnamed.gui"
-//        artifactId "core"
-//        version "2.2.3-SNAPSHOT"
+//        artifactId "${project.name}"
+//        version "2.2.4-SNAPSHOT"
 //
 //        from components.java
 //      }
