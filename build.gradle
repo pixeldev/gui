@@ -8,7 +8,7 @@ subprojects {
   apply plugin: 'maven-publish'
 
   group = 'team.unnamed.gui'
-  version = '2.2.2-SNAPSHOT'
+  version = '2.2.3-SNAPSHOT'
 
   publishing {
     repositories {
@@ -30,6 +30,16 @@ subprojects {
         from components.java
       }
     }
+//
+//    publications {
+//      mavenJava(MavenPublication) {
+//        groupId "team.unnamed.gui"
+//        artifactId "core"
+//        version "2.2.3-SNAPSHOT"
+//
+//        from components.java
+//      }
+//    }
   }
 
   repositories {
