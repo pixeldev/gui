@@ -14,42 +14,52 @@ public class PaginatedGUICreator {
   public static <E> Inventory createPage(Inventory delegate, PaginatedGUIData<E> guiData) {
     int currentPage = guiData.getCurrentPage();
     List<E> entities = guiData.getEntities();
-    Function<E, ItemClickable> itemParser = guiData.getItemParser();
-    int spaces = guiData.getSpaces();
 
     List<ItemClickable> items = guiData.getItems();
     List<ItemClickable> copyItems = new ArrayList<>(guiData.getBaseItems());
 
-    List<Integer> availableSlots = guiData.getAvailableSlots();
-
-    int entityIndexStart = currentPage == 1 ? 0 : spaces * (currentPage - 1);
-    int entityIndexEnd = spaces * currentPage;
-    int slotIndex = 0;
     int entitiesSize = entities.size();
+    if (entitiesSize == 0) {
+      ItemClickable itemIfNotEntities = guiData.getItemIfNotEntities();
 
-    for (int i = entityIndexStart; i < entityIndexEnd; i++) {
-      if (i >= entitiesSize) {
-        break;
+      copyItems.set(itemIfNotEntities.getSlot(), itemIfNotEntities);
+    } else {
+      Function<E, ItemClickable> itemParser = guiData.getItemParser();
+      int spaces = guiData.getSpaces();
+
+      List<Integer> availableSlots = guiData.getAvailableSlots();
+
+      int entityIndexStart = currentPage == 1 ? 0 : spaces * (currentPage - 1);
+      int entityIndexEnd = spaces * currentPage;
+      int slotIndex = 0;
+
+      for (int i = entityIndexStart; i < entityIndexEnd; i++) {
+        if (i >= entitiesSize) {
+          break;
+        }
+
+        E entity = entities.get(i);
+        ItemClickable itemClickable = itemParser.apply(entity);
+
+        int slot = availableSlots.get(slotIndex);
+
+        copyItems.set(
+            slot,
+            itemClickable.cloneInSlot(slot)
+        );
+
+        slotIndex++;
       }
-
-      E entity = entities.get(i);
-      ItemClickable itemClickable = itemParser.apply(entity);
-
-      int slot = availableSlots.get(slotIndex);
-
-      copyItems.set(
-          slot,
-          itemClickable.cloneInSlot(slot)
-      );
-
-      slotIndex++;
     }
 
     ItemClickable nextPageItem = guiData.getNextPageItem();
     ItemClickable previousPageItem = guiData.getPreviousPageItem();
+    ItemClickable itemIfNotPreviousPage = guiData.getItemIfNotPreviousPage();
 
     if (currentPage > 1) {
       copyItems.set(previousPageItem.getSlot(), previousPageItem);
+    } else {
+      copyItems.set(itemIfNotPreviousPage.getSlot(),  itemIfNotPreviousPage);
     }
 
     if (currentPage < guiData.getMaxPages()) {

@@ -27,6 +27,8 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
   private final List<Integer> availableSlots;
   private final ItemClickable previousPageItem;
   private final ItemClickable nextPageItem;
+  private final ItemClickable itemIfNotEntities;
+  private final ItemClickable itemIfNotPreviousPage;
 
   public PaginatedGUIData(int slots,
                           List<ItemClickable> baseItems,
@@ -38,7 +40,8 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
                           int currentPage, int from, int to,
                           List<Integer> availableSlots, int spaces,
                           int[] skippedSlotsInBounds, int itemsPerRow,
-                          ItemClickable previousPageItem, ItemClickable nextPageItem) {
+                          ItemClickable previousPageItem, ItemClickable nextPageItem,
+                          ItemClickable itemIfNotEntities, ItemClickable itemIfNotPreviousPage) {
 
     super(originalTitle.replace("%page%", currentPage + ""),
         slots, new ArrayList<>(slots), openAction, closeAction, cancelClick
@@ -56,6 +59,8 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     this.availableSlots = availableSlots;
     this.baseItems = baseItems;
     this.spaces = spaces;
+    this.itemIfNotEntities = itemIfNotEntities;
+    this.itemIfNotPreviousPage = itemIfNotPreviousPage;
 
     maxPages = (int) Math.ceil(entities.size() / (double) spaces);
 
@@ -72,7 +77,8 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
                           Function<E, ItemClickable> itemParser,
                           int currentPage, int from, int to,
                           int[] skippedSlotsInBounds, int itemsPerRow,
-                          ItemClickable previousPageItem, ItemClickable nextPageItem) {
+                          ItemClickable previousPageItem, ItemClickable nextPageItem,
+                          ItemClickable itemIfNotEntities, ItemClickable itemIfNotPreviousPage) {
 
     this(
         slots,
@@ -83,8 +89,8 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
         currentPage, from, to,
         new ArrayList<>(), 0,
         skippedSlotsInBounds, itemsPerRow,
-        previousPageItem, nextPageItem
-    );
+        previousPageItem, nextPageItem,
+        itemIfNotEntities, itemIfNotPreviousPage);
 
 
     if (itemsPerRow < 9) {
@@ -124,14 +130,6 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     return itemParser;
   }
 
-  public int getFrom() {
-    return from;
-  }
-
-  public int getTo() {
-    return to;
-  }
-
   public int getSpaces() {
     return spaces;
   }
@@ -160,12 +158,12 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     return baseItems;
   }
 
-  public int[] getSkippedSlotsInBounds() {
-    return skippedSlotsInBounds;
+  public ItemClickable getItemIfNotEntities() {
+    return itemIfNotEntities;
   }
 
-  public int getItemsPerRow() {
-    return itemsPerRow;
+  public ItemClickable getItemIfNotPreviousPage() {
+    return itemIfNotPreviousPage;
   }
 
   public PaginatedGUIData<E> createNewDataFromPage(int newPage) {
@@ -176,7 +174,8 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
         newPage, from, to,
         availableSlots, spaces,
         skippedSlotsInBounds, itemsPerRow,
-        previousPageItem, nextPageItem
+        previousPageItem, nextPageItem,
+        itemIfNotEntities, itemIfNotPreviousPage
     );
   }
 
