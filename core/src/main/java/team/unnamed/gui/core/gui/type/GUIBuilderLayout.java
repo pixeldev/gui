@@ -21,6 +21,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
   protected final String title;
   protected final int slots;
+  private final int rows;
 
   protected ItemClickable[] items;
 
@@ -39,6 +40,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     this.title = title;
     this.slots = rows * 9;
+    this.rows = rows;
 
     items = new ItemClickable[this.slots];
   }
@@ -57,7 +59,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
   @Override
   public T fillRow(ItemClickable item, int row) {
     state(
-        row > 0 && row <= 6,
+        row > 0 && row <= this.rows,
         "Row cannot be minor than 0 or major than 6"
     );
 
@@ -89,8 +91,12 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
   @Override
   public T fillBorders(ItemClickable item) {
+    if (rows < 3) {
+      return back();
+    }
+
     fillRow(item, 1);
-    fillRow(item, 6);
+    fillRow(item, rows);
     fillColumn(item, 1);
     fillColumn(item, 9);
 

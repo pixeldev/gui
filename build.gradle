@@ -39,7 +39,7 @@ subprojects {
 //      mavenJava(MavenPublication) {
 //        groupId "team.unnamed.gui"
 //        artifactId "${project.name}"
-//        version "2.2.4-SNAPSHOT"
+//        version "${project.version}"
 //
 //        from components.java
 //      }
