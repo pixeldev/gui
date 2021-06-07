@@ -80,9 +80,10 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
         "Column cannot be minor than 0 or major than 9"
     );
 
-    column -= 1;
+    int indexStart = column - 1;
+    int indexEnd = (slots - 9) + column;
 
-    for (int slot = column; slot <= 45 + column; slot += 9) {
+    for (int slot = indexStart; slot <= indexEnd; slot += 9) {
       items[slot] = item.cloneInSlot(slot);
     }
 
