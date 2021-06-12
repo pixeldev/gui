@@ -7,50 +7,44 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import team.unnamed.gui.core.gui.factory.GUIFactory;
-
 import java.lang.reflect.Field;
 import java.util.Base64;
 import java.util.UUID;
 
-public class SkullBuilder extends ItemBuilderLayout<SkullBuilder> {
+import static team.unnamed.gui.core.version.ServerVersionProvider.SERVER_VERSION;
+
+public class SkullItemBuilder extends ItemBuilderLayout<SkullItemBuilder> {
 
   private static final Field PROFILE_FIELD;
 
   static {
-
     try {
-      Class<?> metaClass = Class.forName("org.bukkit.craftbukkit.v" + GUIFactory.SERVER_VERSION + ".inventory.CraftMetaSkull");
+      Class<?> metaClass = Class.forName(
+          "org.bukkit.craftbukkit.v"
+          + SERVER_VERSION +
+          ".inventory.CraftMetaSkull"
+      );
 
       PROFILE_FIELD = metaClass.getDeclaredField("profile");
     } catch (ClassNotFoundException | NoSuchFieldException e) {
       throw new IllegalStateException("Cannot get the SkullMeta profile field!", e);
     }
-
   }
 
   private String owner;
   private String url;
 
-  protected SkullBuilder(Material material) {
-    this(material, 1);
-  }
-
-  protected SkullBuilder(Material material, int amount) {
-    this(material, amount, (byte) 0);
-  }
-
-  protected SkullBuilder(Material material, int amount, byte data) {
+  protected SkullItemBuilder(Material material, int amount, short data) {
     super(material, amount, data);
   }
 
-  public SkullBuilder setOwner(String owner) {
+  public SkullItemBuilder setOwner(String owner) {
     this.owner = owner;
 
     return this;
   }
 
-  public SkullBuilder setUrl(String url) {
+  public SkullItemBuilder setUrl(String url) {
     this.url = url;
 
     return this;
@@ -89,7 +83,7 @@ public class SkullBuilder extends ItemBuilderLayout<SkullBuilder> {
   }
 
   @Override
-  protected SkullBuilder back() {
+  protected SkullItemBuilder back() {
     return this;
   }
 

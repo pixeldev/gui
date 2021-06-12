@@ -17,14 +17,14 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
 
   protected final Material material;
   private final int amount;
-  private final byte data;
+  private final short data;
 
   private String name;
   private List<String> lore;
   private Map<Enchantment, Integer> enchantments = new HashMap<>();
   private List<ItemFlag> flags = new ArrayList<>();
 
-  protected ItemBuilderLayout(Material material, int amount, byte data) {
+  protected ItemBuilderLayout(Material material, int amount, short data) {
     this.material = material;
     this.amount = amount;
     this.data = data;

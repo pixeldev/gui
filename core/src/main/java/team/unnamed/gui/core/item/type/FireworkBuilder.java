@@ -17,12 +17,8 @@ public class FireworkBuilder extends ItemBuilderLayout<FireworkBuilder> {
 
   private int power = 3;
 
-  protected FireworkBuilder(Material material) {
-    this(material, 1);
-  }
-
   protected FireworkBuilder(Material material, int amount) {
-    super(material, amount, (byte) 0);
+    super(material, amount, (short) 0);
   }
 
   public FireworkBuilder setFireworkEffects(List<FireworkEffect> fireworkEffects) {

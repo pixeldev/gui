@@ -1,6 +1,5 @@
 package team.unnamed.gui.core.gui.factory;
 
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
@@ -10,10 +9,9 @@ import team.unnamed.gui.abstraction.menu.GUIInventory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public final class GUIFactory {
+import static team.unnamed.gui.core.version.ServerVersionProvider.SERVER_VERSION;
 
-  public static final String SERVER_VERSION =
-      Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3].substring(1);
+public final class GUIFactory {
 
   private static final Constructor<?> GUI_CONSTRUCTOR;
 

@@ -1,4 +1,4 @@
-package team.unnamed.gui.core.item.attribute;
+package team.unnamed.gui.core.item;
 
 public enum LeatherArmorColor {
 

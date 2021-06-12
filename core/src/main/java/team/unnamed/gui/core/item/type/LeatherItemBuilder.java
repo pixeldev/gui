@@ -5,9 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import team.unnamed.gui.core.item.attribute.LeatherArmorColor;
+import team.unnamed.gui.core.item.LeatherArmorColor;
 
-import static team.unnamed.validate.Validate.*;
+import static team.unnamed.validate.Validate.state;
 
 public class LeatherItemBuilder extends ItemBuilderLayout<LeatherItemBuilder> {
 
@@ -15,12 +15,8 @@ public class LeatherItemBuilder extends ItemBuilderLayout<LeatherItemBuilder> {
   private int green;
   private int blue;
 
-  protected LeatherItemBuilder(Material material) {
-    this(material, 1);
-  }
-
   protected LeatherItemBuilder(Material material, int amount) {
-    super(material, amount, (byte) 0);
+    super(material, amount, (short) 0);
   }
 
   public LeatherItemBuilder fromLeatherColor(LeatherArmorColor color) {

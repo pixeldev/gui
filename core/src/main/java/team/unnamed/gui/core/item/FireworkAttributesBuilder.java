@@ -1,4 +1,4 @@
-package team.unnamed.gui.core.item.attribute;
+package team.unnamed.gui.core.item;
 
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -7,8 +7,8 @@ import static team.unnamed.validate.Validate.notNull;
 
 public class FireworkAttributesBuilder {
 
-  private boolean flicker = false;
-  private boolean trail = false;
+  private boolean flicker;
+  private boolean trail;
 
   private FireworkEffect.Type fireworkType = FireworkEffect.Type.STAR;
   private Color[] colors;
