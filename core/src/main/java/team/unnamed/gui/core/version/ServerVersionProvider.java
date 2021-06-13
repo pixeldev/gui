@@ -10,6 +10,10 @@ public class ServerVersionProvider {
 					.getName().split("\\.")[3]
 					.substring(1);
 
-	public static final int SERVER_VERSION_INT = SERVER_VERSION.charAt(2);
+	public static final int SERVER_VERSION_INT = Integer.parseInt(
+			SERVER_VERSION
+					.replace("1_", "")
+					.replaceAll("_R\\d", "")
+	);
 
 }
