@@ -109,16 +109,16 @@ public interface ItemBuilder {
 		return SkullBuilderProvider.createBuilder(amount);
 	}
 
-	static DyeItemBuilder newDyeItemBuilder(Material material) {
-		return newDyeItemBuilder(material, 1, DyeColor.WHITE);
+	static ItemBuilder newDyeItemBuilder(String materialKey) {
+		return newDyeItemBuilder(materialKey, 1, DyeColor.WHITE);
 	}
 
-	static DyeItemBuilder newDyeItemBuilder(Material material, DyeColor dyeColor) {
-		return ItemBuilder.newDyeItemBuilder(material, 1, dyeColor);
+	static ItemBuilder newDyeItemBuilder(String materialKey, DyeColor dyeColor) {
+		return newDyeItemBuilder(materialKey, 1, dyeColor);
 	}
 
-	static DyeItemBuilder newDyeItemBuilder(Material material, int amount, DyeColor dyeColor) {
-		return new DyeItemBuilder(material, amount, dyeColor);
+	static ItemBuilder newDyeItemBuilder(String materialKey, int amount, DyeColor dyeColor) {
+		return DyeBuilderProvider.createBuilder(materialKey, dyeColor, amount);
 	}
 
 }
