@@ -1,8 +1,13 @@
-rootProject.name = 'gui-parent'
-include (
-    'abstraction', 'core',
-    'versions:v1_8_R3', 'versions:v1_9_R2', 'versions:v1_10_R1',
-    'versions:v1_11_R1', 'versions:v1_12_R1', 'versions:v1_13_R2',
-    'versions:v1_14_R1', 'versions:v1_15_R1', 'versions:v1_16_R1',
-    'versions:v1_16_R3', 'versions:v1_17_R1'
-)
+rootProject.name = 'gui'
+
+['abstraction', 'core'].forEach {
+	include it
+}
+
+['v1_8_R3', 'v1_9_R2',
+ 'v1_10_R1', 'v1_11_R1', 'v1_12_R1',
+ 'v1_13_R2', 'v1_14_R1', 'v1_15_R1',
+ 'v1_16_R1', 'v1_16_R3', 'v1_17_R1'
+].forEach {
+	include "versions:$it"
+}

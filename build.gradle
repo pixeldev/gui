@@ -1,72 +1,51 @@
 plugins {
-  id 'java'
-  id 'maven-publish'
-  id "com.github.johnrengelman.shadow" version "7.0.0"
+	id 'maven-publish'
 }
 
 subprojects {
-  apply plugin: 'java'
+  apply plugin: 'java-library'
   apply plugin: 'maven-publish'
-  apply plugin: 'com.github.johnrengelman.shadow'
 
   group = 'team.unnamed.gui'
-  version = '2.3.0-SNAPSHOT'
+  version = '2.3.1-SNAPSHOT'
 
   publishing {
-//    repositories {
-//      maven {
-//        def snapshot = version.toString().endsWith("-SNAPSHOT")
-//        def typeName = snapshot ? 'snapshots' : 'releases'
-//        def repoUrl = 'https://repo.unnamed.team/repository/unnamed-' + typeName
-//
-//        name = snapshot ? 'unnamed-snapshots' : 'unnamed-releases'
-//        url = repoUrl
-//        credentials {
-//          username = System.getenv('REPO_USER')
-//          password = System.getenv('REPO_PASSWORD')
-//        }
-//      }
-//    }
+    repositories {
+      maven {
+        def snapshot = version.toString().endsWith("-SNAPSHOT")
+        def typeName = snapshot ? 'snapshots' : 'releases'
+        def repoUrl = 'https://repo.unnamed.team/repository/unnamed-' + typeName
+
+        name = snapshot ? 'unnamed-snapshots' : 'unnamed-releases'
+        url = repoUrl
+        credentials {
+          username = System.getenv('REPO_USER')
+          password = System.getenv('REPO_PASSWORD')
+        }
+      }
+    }
+    publications {
+      maven(MavenPublication) {
+        from components.java
+      }
+    }
+
+//    For install the project into ur .m2
+
 //    publications {
 //      maven(MavenPublication) {
 //        from components.java
 //      }
 //    }
-
-//    For install the project into ur .m2
-
-    publications {
-      mavenJava(MavenPublication) {
-        groupId "team.unnamed.gui"
-        artifactId "${project.name}"
-        version "${project.version}"
-
-        from components.java
-      }
-    }
   }
 
   repositories {
     mavenLocal()
-
-    maven {
-      url = 'https://repo.unnamed.team/repository/unnamed-releases/'
-    }
-    maven {
-      url = 'https://repo.unnamed.team/repository/unnamed-snapshots/'
-    }
-    maven {
-      url = 'https://repo.codemc.io/repository/nms/'
-    }
-    maven {
-      url = 'https://repo.maven.apache.org/maven2/'
-    }
-
+    maven { url = 'https://repo.unnamed.team/repository/unnamed-releases/' }
+    maven { url = 'https://repo.unnamed.team/repository/unnamed-snapshots/' }
+    maven { url = 'https://repo.codemc.io/repository/nms/' }
+    maven { url = 'https://repo.maven.apache.org/maven2/' }
     mavenCentral()
-  }
-
-  shadowJar {
-    archiveFileName.set("${project.name}-${project.version}.jar")
   }
 
 }
