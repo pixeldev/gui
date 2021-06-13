@@ -66,6 +66,13 @@ public class StringLayoutGUIBuilder extends GUIBuilderLayout<StringLayoutGUIBuil
       for (int i = 0; i < layoutLine.length(); i++) {
         char layoutIdentifier = layoutLine.charAt(i);
         ItemClickable itemClickable = layoutValues.get(layoutIdentifier);
+
+        if (itemClickable == null) {
+        	index++;
+
+        	continue;
+				}
+
         addItem(itemClickable.cloneInSlot(index++));
       }
     }
