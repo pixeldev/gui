@@ -7,7 +7,7 @@ subprojects {
 	apply plugin: 'maven-publish'
 
 	group = 'team.unnamed.gui'
-	version = '2.3.1-SNAPSHOT'
+	version = 'lol'
 
 	publishing {
 		repositories {
