@@ -13,12 +13,8 @@ Latest Release: [![Latest Release](https://img.shields.io/nexus/r/team.unnamed.g
 Add the repositories into your `<repositories>` tag (`pom.xml`)
 ```xml
 <repository>
-  <id>unnamed-releases</id>
-  <url>https://repo.unnamed.team/repository/unnamed-releases/</url>
-</repository>
-<repository>
-  <id>unnamed-snapshots</id>
-  <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
+  <id>unnamed-public</id>
+  <url>https://repo.unnamed.team/repository/unnamed-public/</url>
 </repository>
 ```
 Add the dependency into your `<dependencies>` tag (`pom.xml`)
@@ -34,12 +30,8 @@ Add the dependency into your `<dependencies>` tag (`pom.xml`)
 Add the repositories into your `repositories` section (`build.gradle`)
 ```groovy
 maven {
-  name = 'unnamed-releases'
-  url = 'https://repo.unnamed.team/repository/unnamed-releases/'
-}
-maven {
-  name = 'unnamed-snapshots'
-  url = 'https://repo.unnamed.team/repository/unnamed-snapshots/'
+  name = 'unnamed-public'
+  url = 'https://repo.unnamed.team/repository/unnamed-public/'
 }
 ```
 Add the dependency into your `dependencies` section (`build.gradle`)
