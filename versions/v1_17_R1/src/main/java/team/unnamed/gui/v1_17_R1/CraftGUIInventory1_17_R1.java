@@ -26,5 +26,4 @@ public class CraftGUIInventory1_17_R1 extends CraftInventoryCustom implements GU
 	public GUIData getData() {
 		return guiData;
 	}
-
 }

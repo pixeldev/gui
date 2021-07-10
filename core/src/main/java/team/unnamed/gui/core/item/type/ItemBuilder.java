@@ -3,8 +3,8 @@ package team.unnamed.gui.core.item.type;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import team.unnamed.gui.core.item.flag.ItemFlag;
 
 import java.util.Arrays;
 import java.util.List;

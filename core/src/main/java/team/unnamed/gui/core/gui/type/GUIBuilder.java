@@ -1,5 +1,6 @@
 package team.unnamed.gui.core.gui.type;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
@@ -33,6 +34,8 @@ public interface GUIBuilder {
   GUIBuilder toggleClick();
 
   Inventory build();
+
+  void open(Player player);
 
   static GUIBuilder builder(String title) {
     return new SimpleGUIBuilder(title);

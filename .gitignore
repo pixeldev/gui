@@ -1,6 +1,8 @@
 # User-specific stuff
 .idea/
 
+versions/*/build
+
 *.iml
 *.ipr
 *.iws
@@ -18,7 +20,6 @@ out/
 *.ctxt
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear

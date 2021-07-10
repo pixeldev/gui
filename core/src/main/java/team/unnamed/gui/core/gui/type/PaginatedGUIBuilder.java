@@ -1,10 +1,12 @@
 package team.unnamed.gui.core.gui.type;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import team.unnamed.gui.abstraction.item.ItemClickable;
 import team.unnamed.gui.core.PaginatedGUICreator;
 import team.unnamed.gui.core.gui.factory.GUIFactory;
+import team.unnamed.gui.core.opener.InventoryOpener;
 
 import java.util.*;
 import java.util.function.Function;
@@ -151,7 +153,12 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     return PaginatedGUICreator.createPage(inventory, guiData);
   }
 
-  @Override
+	@Override
+	public void open(Player player) {
+		InventoryOpener.open(player, build());
+	}
+
+	@Override
   protected PaginatedGUIBuilder<E> back() {
     return this;
   }
