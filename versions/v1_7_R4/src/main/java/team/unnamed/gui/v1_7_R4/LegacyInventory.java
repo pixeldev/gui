@@ -8,13 +8,6 @@ import org.bukkit.inventory.Inventory;
 
 import java.lang.reflect.Method;
 
-/**
- * Created by Ryzeon
- * Project: gui
- * Date: 10/07/2021 @ 03:45
- * Twitter: @Ryzeon_ 😎
- * Github:  github.ryzeon.me
- */
 public class LegacyInventory {
 
 	protected static Method customInvMethod;

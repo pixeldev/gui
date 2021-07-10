@@ -7,13 +7,6 @@ import team.unnamed.gui.core.version.ServerVersionProvider;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/**
- * Created by Ryzeon
- * Project: gui
- * Date: 10/07/2021 @ 03:48
- * Twitter: @Ryzeon_ 😎
- * Github:  github.ryzeon.me
- */
 public class LegacyInventoryOpener {
 
 	private static Method legacyMethod;
