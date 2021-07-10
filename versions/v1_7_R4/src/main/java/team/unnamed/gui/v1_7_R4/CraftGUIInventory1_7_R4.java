@@ -1,8 +1,5 @@
 package team.unnamed.gui.v1_7_R4;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftInventory;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftInventoryCustom;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
