@@ -16,7 +16,6 @@ public final class GUIFactory {
   private static final Constructor<?> GUI_CONSTRUCTOR;
 
   static {
-
     try {
       GUI_CONSTRUCTOR = Class.forName(
           "team.unnamed.gui.v" + SERVER_VERSION + ".CraftGUIInventory" + SERVER_VERSION

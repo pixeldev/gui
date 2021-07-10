@@ -152,7 +152,6 @@ public class GUIListeners implements Listener {
 
     InventoryHolder holder = inventory.getHolder();
     boolean instanceOf = inventory instanceof GUIInventory;
-
     return holder == null ?
         instanceOf :
         instanceOf || holder.equals(holder.getInventory());

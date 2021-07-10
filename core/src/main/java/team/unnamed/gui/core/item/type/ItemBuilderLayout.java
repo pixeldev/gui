@@ -2,14 +2,16 @@ package team.unnamed.gui.core.item.type;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import team.unnamed.gui.core.item.flag.uItemFlag;
+import team.unnamed.gui.core.version.ServerVersionProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static team.unnamed.validate.Validate.*;
 
@@ -22,7 +24,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
   private String name;
   private List<String> lore;
   private Map<Enchantment, Integer> enchantments = new HashMap<>();
-  private List<ItemFlag> flags = new ArrayList<>();
+  private List<uItemFlag> flags = new ArrayList<>();
 
   protected ItemBuilderLayout(Material material, int amount, short data) {
     this.material = material;
@@ -62,14 +64,14 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
   }
 
   @Override
-  public T setFlags(List<ItemFlag> flags) {
+  public T setFlags(List<uItemFlag> flags) {
     this.flags = notNull(flags, "Item flags can't be null.");
 
     return back();
   }
 
   @Override
-  public T addFlag(ItemFlag flag) {
+  public T addFlag(uItemFlag flag) {
     notNull(flag, "Flag can't be null");
 
     flags.add(flag);
@@ -88,7 +90,10 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
     meta.setDisplayName(name);
     meta.setLore(lore);
 
-    flags.forEach(meta::addItemFlags);
+    if (ServerVersionProvider.SERVER_VERSION_INT  != 7) {
+    	List<org.bukkit.inventory.ItemFlag> itemFlags = flags.stream().map(uItemFlag -> org.bukkit.inventory.ItemFlag.valueOf(uItemFlag.name())).collect(Collectors.toList());
+			itemFlags.forEach(meta::addItemFlags);
+		}
 
     itemStack.setItemMeta(meta);
 
@@ -96,5 +101,4 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
   }
 
   protected abstract T back();
-
 }

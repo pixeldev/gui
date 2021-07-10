@@ -1,5 +1,8 @@
 package team.unnamed.gui.core.gui.type;
 
+import org.bukkit.entity.Player;
+import team.unnamed.gui.core.legacy.LegacyInventoryOpener;
+
 public class SimpleGUIBuilder extends GUIBuilderLayout<SimpleGUIBuilder> {
 
   protected SimpleGUIBuilder(String title) {
@@ -15,4 +18,8 @@ public class SimpleGUIBuilder extends GUIBuilderLayout<SimpleGUIBuilder> {
     return this;
   }
 
+	@Override
+	public void open(Player player) {
+		LegacyInventoryOpener.open(player, build());
+	}
 }
