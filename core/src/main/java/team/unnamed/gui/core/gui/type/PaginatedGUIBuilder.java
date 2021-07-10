@@ -6,8 +6,7 @@ import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.abstraction.item.ItemClickable;
 import team.unnamed.gui.core.PaginatedGUICreator;
 import team.unnamed.gui.core.gui.factory.GUIFactory;
-import team.unnamed.gui.core.legacy.LegacyInventoryOpener;
-import team.unnamed.gui.core.version.ServerVersionProvider;
+import team.unnamed.gui.core.opener.InventoryOpener;
 
 import java.util.*;
 import java.util.function.Function;
@@ -156,7 +155,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
 
 	@Override
 	public void open(Player player) {
-		LegacyInventoryOpener.open(player, build());
+		InventoryOpener.open(player, build());
 	}
 
 	@Override

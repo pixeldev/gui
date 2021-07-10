@@ -12,23 +12,25 @@ public class LegacyInventory {
 
 	protected static Method customInvMethod;
 
-	public static void openCustomInventory(Player player, Inventory inventory) {
-		EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
+	static {
 		try {
-			getCustomOpenInventoryMethod().invoke(player, inventory, entityPlayer, 0);
-		} catch (Exception e) {
-			e.printStackTrace();
+			customInvMethod = CraftHumanEntity.class.getDeclaredMethod("openCustomInventory", Inventory.class, EntityPlayer.class, int.class);
+		} catch (NoSuchMethodException ex) {
+			ex.printStackTrace();
 		}
 	}
 
-	protected static Method getCustomOpenInventoryMethod() {
-		if (customInvMethod == null)
-			try {
-				customInvMethod = CraftHumanEntity.class.getDeclaredMethod("openCustomInventory", Inventory.class, EntityPlayer.class, int.class);
-				customInvMethod.setAccessible(true);
-			} catch (NoSuchMethodException ex) {
-				ex.printStackTrace();
-			}
-		return customInvMethod;
+	public static void openCustomInventory(Player player, Inventory inventory) {
+		EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
+		boolean accessible = customInvMethod.isAccessible();
+
+		try {
+			customInvMethod.setAccessible(true);
+			customInvMethod.invoke(player, inventory, entityPlayer, 0);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("An error has occurred while opening inventory " + inventory.getTitle(), e);
+		} finally {
+			customInvMethod.setAccessible(accessible);
+		}
 	}
 }

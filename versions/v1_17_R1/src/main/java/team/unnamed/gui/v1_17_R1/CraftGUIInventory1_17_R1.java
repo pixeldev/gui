@@ -1,7 +1,6 @@
 package team.unnamed.gui.v1_17_R1;
 
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftInventoryCustom;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 

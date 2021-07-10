@@ -1,7 +1,7 @@
 package team.unnamed.gui.core.gui.type;
 
 import org.bukkit.entity.Player;
-import team.unnamed.gui.core.legacy.LegacyInventoryOpener;
+import team.unnamed.gui.core.opener.InventoryOpener;
 
 public class SimpleGUIBuilder extends GUIBuilderLayout<SimpleGUIBuilder> {
 
@@ -20,6 +20,6 @@ public class SimpleGUIBuilder extends GUIBuilderLayout<SimpleGUIBuilder> {
 
 	@Override
 	public void open(Player player) {
-		LegacyInventoryOpener.open(player, build());
+		InventoryOpener.open(player, build());
 	}
 }

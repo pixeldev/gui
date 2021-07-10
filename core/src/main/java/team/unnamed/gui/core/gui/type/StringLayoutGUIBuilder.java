@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import team.unnamed.gui.abstraction.item.ItemClickable;
-import team.unnamed.gui.core.legacy.LegacyInventoryOpener;
+import team.unnamed.gui.core.opener.InventoryOpener;
 
 import java.util.*;
 
@@ -84,7 +84,7 @@ public class StringLayoutGUIBuilder extends GUIBuilderLayout<StringLayoutGUIBuil
 
 	@Override
 	public void open(Player player) {
-		LegacyInventoryOpener.open(player, build());
+		InventoryOpener.open(player, build());
 	}
 
 	@Override

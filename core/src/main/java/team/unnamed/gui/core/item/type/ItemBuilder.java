@@ -4,7 +4,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
-import team.unnamed.gui.core.item.flag.uItemFlag;
+import team.unnamed.gui.core.item.flag.ItemFlag;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,11 +24,11 @@ public interface ItemBuilder {
 
 	ItemBuilder addEnchant(Enchantment enchantment, int level);
 
-	ItemBuilder setFlags(List<uItemFlag> flags);
+	ItemBuilder setFlags(List<ItemFlag> flags);
 
-	ItemBuilder addFlag(uItemFlag flag);
+	ItemBuilder addFlag(ItemFlag flag);
 
-	default ItemBuilder setFlags(uItemFlag... flags) {
+	default ItemBuilder setFlags(ItemFlag... flags) {
 		return setFlags(Arrays.asList(flags));
 	}
 
