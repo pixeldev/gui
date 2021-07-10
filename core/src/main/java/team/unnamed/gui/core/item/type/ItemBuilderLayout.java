@@ -92,11 +92,11 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
 
 		if (SERVER_VERSION_INT != 7) {
 			List<org.bukkit.inventory.ItemFlag> itemFlags = new ArrayList<>();
-
+			
 			if (SERVER_VERSION_INT <= 13) {
 				flags.remove(ItemFlag.HIDE_DYE);
 			}
-			
+
 			for (ItemFlag itemFlag : flags) {
 				itemFlags.add(org.bukkit.inventory.ItemFlag.valueOf(itemFlag.name()));
 			}
