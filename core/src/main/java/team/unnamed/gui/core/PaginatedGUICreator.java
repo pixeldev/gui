@@ -68,7 +68,14 @@ public class PaginatedGUICreator {
 
     if (currentPage < guiData.getMaxPages()) {
       ItemClickable nextPageItem = guiData.getNextPageItem().apply(currentPage + 1);
+
       copyItems.set(nextPageItem.getSlot(), nextPageItem);
+    } else {
+      ItemClickable itemIfNotNextPage = guiData.getItemIfNotNextPage();
+
+      if (itemIfNotNextPage != null) {
+        copyItems.set(itemIfNotNextPage.getSlot(), itemIfNotNextPage);
+      }
     }
 
     for (Function<Integer, ItemClickable> itemReplacingPage :

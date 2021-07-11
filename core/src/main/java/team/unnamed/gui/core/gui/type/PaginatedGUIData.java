@@ -31,6 +31,7 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
   private final Function<Integer, ItemClickable> nextPageItem;
   private final ItemClickable itemIfNotEntities;
   private final ItemClickable itemIfNotPreviousPage;
+  private final ItemClickable itemIfNotNextPage;
 
   public PaginatedGUIData(int slots,
                           List<ItemClickable> baseItems,
@@ -45,7 +46,9 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
                           Set<Function<Integer, ItemClickable>> itemsReplacingWithPage,
                           Function<Integer, ItemClickable> previousPageItem,
                           Function<Integer, ItemClickable> nextPageItem,
-                          ItemClickable itemIfNotEntities, ItemClickable itemIfNotPreviousPage) {
+                          ItemClickable itemIfNotEntities,
+                          ItemClickable itemIfNotPreviousPage,
+                          ItemClickable itemIfNotNextPage) {
 
     super(originalTitle.replace("%page%", currentPage + ""),
         slots, new ArrayList<>(slots), openAction, closeAction, cancelClick
@@ -66,6 +69,7 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     this.itemsReplacingWithPage = itemsReplacingWithPage;
     this.itemIfNotEntities = itemIfNotEntities;
     this.itemIfNotPreviousPage = itemIfNotPreviousPage;
+    this.itemIfNotNextPage = itemIfNotNextPage;
 
     maxPages = (int) Math.ceil(entities.size() / (double) spaces);
 
@@ -84,7 +88,9 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
                           int[] skippedSlotsInBounds, int itemsPerRow,
                           Function<Integer, ItemClickable> previousPageItem,
                           Function<Integer, ItemClickable> nextPageItem,
-                          ItemClickable itemIfNotEntities, ItemClickable itemIfNotPreviousPage,
+                          ItemClickable itemIfNotEntities,
+                          ItemClickable itemIfNotPreviousPage,
+                          ItemClickable itemIfNotNextPage,
                           Set<Function<Integer, ItemClickable>> itemsReplacingWithPage) {
 
     this(
@@ -97,7 +103,7 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
         new ArrayList<>(), 0,
         skippedSlotsInBounds, itemsPerRow,
         itemsReplacingWithPage, previousPageItem, nextPageItem,
-        itemIfNotEntities, itemIfNotPreviousPage);
+        itemIfNotEntities, itemIfNotPreviousPage, itemIfNotNextPage);
 
 
     if (itemsPerRow < 9) {
@@ -177,6 +183,10 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
     return itemIfNotPreviousPage;
   }
 
+  public ItemClickable getItemIfNotNextPage() {
+    return itemIfNotNextPage;
+  }
+
   public PaginatedGUIData<E> createNewDataFromPage(int newPage) {
     return new PaginatedGUIData<>(
         slots, baseItems,
@@ -186,7 +196,7 @@ public class PaginatedGUIData<E> extends SimpleGUIData {
         availableSlots, spaces,
         skippedSlotsInBounds, itemsPerRow,
         itemsReplacingWithPage, previousPageItem, nextPageItem,
-        itemIfNotEntities, itemIfNotPreviousPage
+        itemIfNotEntities, itemIfNotPreviousPage, itemIfNotNextPage
     );
   }
 

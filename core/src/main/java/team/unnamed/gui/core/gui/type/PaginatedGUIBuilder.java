@@ -29,6 +29,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
       = new HashSet<>();
   private ItemClickable itemIfNotEntities;
   private ItemClickable itemIfNotPreviousPage;
+  private ItemClickable itemIfNotNextPage;
 
   protected PaginatedGUIBuilder(String title) {
     super(title);
@@ -126,6 +127,14 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     return this;
   }
 
+  public PaginatedGUIBuilder<E> setItemIfNotNextPage(ItemClickable itemIfNotNextPage) {
+    notNull(itemIfNotNextPage, "Item if not next page can't be null.");
+
+    this.itemIfNotNextPage = itemIfNotNextPage;
+
+    return this;
+  }
+
   @Override
   public Inventory build() {
     notNull(itemParser, "Item parser can't be null.");
@@ -140,7 +149,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
         1, from, to,
         skippedSlotsInBounds, itemsPerRow,
         previousPageItem, nextPageItem,
-        itemIfNotEntities, itemIfNotPreviousPage,
+        itemIfNotEntities, itemIfNotPreviousPage, itemIfNotNextPage,
         itemsReplacingWithPage
     );
 
