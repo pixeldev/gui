@@ -31,7 +31,15 @@ public class GUIListeners implements Listener {
     }
 
     if (isGui(inventory)) {
-      GUIInventory guiInventory = getGui(inventory);
+      GUIInventory guiInventory;
+
+      try {
+        guiInventory = getGui(inventory);
+      } catch (ClassCastException exception) {
+        //prevent from continue the listener with other ugui project
+        return;
+      }
+
       GUIData guiData = guiInventory.getData();
 
       guiData
@@ -50,7 +58,15 @@ public class GUIListeners implements Listener {
     }
 
     if (isGui(inventory)) {
-      GUIInventory guiInventory = getGui(inventory);
+      GUIInventory guiInventory;
+
+      try {
+        guiInventory = getGui(inventory);
+      } catch (ClassCastException exception) {
+        //prevent from continue the listener with other ugui project
+        return;
+      }
+
       GUIData guiData = guiInventory.getData();
 
       guiData
@@ -76,7 +92,14 @@ public class GUIListeners implements Listener {
         return;
       }
 
-      GUIInventory guiInventory = getGui(inventory);
+      GUIInventory guiInventory;
+
+      try {
+        guiInventory = getGui(inventory);
+      } catch (ClassCastException exception) {
+        //prevent from continue the listener with other ugui project
+        return;
+      }
 
       GUIData guiData = guiInventory.getData();
       Optional<ItemClickable> itemClickableOptional = guiData.getItemClickable(slot);
