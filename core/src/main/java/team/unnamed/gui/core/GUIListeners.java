@@ -21,6 +21,8 @@ import java.util.Optional;
 
 public class GUIListeners implements Listener {
 
+  private final static Class<?> GUI_REFERENCE = GUIInventory.class;
+
   @EventHandler
   public void onOpen(InventoryOpenEvent event) {
     Inventory inventory = event.getInventory();
@@ -151,7 +153,7 @@ public class GUIListeners implements Listener {
     }
 
     InventoryHolder holder = inventory.getHolder();
-    boolean instanceOf = inventory instanceof GUIInventory;
+    boolean instanceOf = inventory.getClass().getPackage().equals(GUI_REFERENCE.getPackage());
     return holder == null ?
         instanceOf :
         instanceOf || holder.equals(holder.getInventory());
