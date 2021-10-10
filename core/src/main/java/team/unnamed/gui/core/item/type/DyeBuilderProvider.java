@@ -39,7 +39,7 @@ public class DyeBuilderProvider {
 
 		if (SERVER_VERSION_INT < 13) {
 			material = Material.valueOf(materialKey);
-			data = dyeColor.getWoolData();
+			data = materialKey.equals("DYE") ? dyeColor.getDyeData() : dyeColor.getWoolData();
 		} else {
 			if (materialKey.equals("STAINED_CLAY")) {
 				materialKey = "TERRACOTTA";
