@@ -43,6 +43,10 @@ public class PaginatedGUICreator {
         E entity = entities.get(i);
         ItemClickable itemClickable = itemParser.apply(entity);
 
+				if (itemClickable == null) {
+					continue;
+				}
+
         int slot = availableSlots.get(slotIndex);
 
         copyItems.set(
