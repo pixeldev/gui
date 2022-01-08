@@ -6,13 +6,16 @@ jobs:
   build:
     if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
     runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        java-version: [ 8, 16, 17 ]
     steps:
       - name: 'checkout repo'
         uses: 'actions/checkout@v2'
-      - name: 'setup JDK 1.8'
+      - name: 'setup JDK'
         uses: 'actions/setup-java@v1'
         with:
-          java-version: 1.8
+          java-version: ${{ matrix.java-version }}
       - name: 'gradle build'
         run: './gradlew build'
       - name: 'gradle publish'
