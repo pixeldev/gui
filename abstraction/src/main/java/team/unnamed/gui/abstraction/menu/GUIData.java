@@ -2,7 +2,6 @@ package team.unnamed.gui.abstraction.menu;
 
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-
 import team.unnamed.gui.abstraction.item.ItemClickable;
 
 import java.util.List;
@@ -12,20 +11,20 @@ import java.util.function.Predicate;
 
 public interface GUIData {
 
-  String getTitle();
+    String getTitle();
 
-  int getSlots();
+    int getSlots();
 
-  List<ItemClickable> getItems();
+    List<ItemClickable> getItems();
 
-  Optional<Predicate<InventoryOpenEvent>> getOpenAction();
+    Optional<Predicate<InventoryOpenEvent>> getOpenAction();
 
-  Optional<Consumer<InventoryCloseEvent>> getCloseAction();
+    Optional<Consumer<InventoryCloseEvent>> getCloseAction();
 
-  boolean isCancelledClick();
+    boolean isCancelledClick();
 
-  default Optional<ItemClickable> getItemClickable(int slot) {
-    return Optional.ofNullable(getItems().get(slot));
-  }
+    default Optional<ItemClickable> getItemClickable(int slot) {
+        return Optional.ofNullable(getItems().get(slot));
+    }
 
 }

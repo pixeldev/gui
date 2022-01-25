@@ -4,7 +4,8 @@ import org.bukkit.inventory.Inventory;
 
 public interface GUIInventory {
 
-	Inventory getMenuInventory();
+    Inventory getMenuInventory();
 
-	GUIData getData();
+    GUIData getData();
+
 }
