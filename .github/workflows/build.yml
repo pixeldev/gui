@@ -18,9 +18,9 @@ jobs:
           java-version: ${{ matrix.java-version }}
       - name: 'gradle build'
         run: './gradlew build'
-      - name: 'gradle publish'
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        run: './gradlew publish'
-        env:
-          REPO_USER: '${{ secrets.REPO_USER }}'
-          REPO_PASSWORD: '${{ secrets.REPO_PASSWORD }}'
+#      - name: 'gradle publish'
+#        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+#        run: './gradlew publish'
+#        env:
+#          REPO_USER: '${{ secrets.REPO_USER }}'
+#          REPO_PASSWORD: '${{ secrets.REPO_PASSWORD }}'
