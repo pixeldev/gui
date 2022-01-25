@@ -68,7 +68,6 @@ gradle-app.setting
 .idea
 */build
 *.MF`
-*.properties
 
 # General
 .DS_Store
