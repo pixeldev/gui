@@ -22,5 +22,4 @@ public class SkullBuilderProvider {
     protected static SkullItemBuilder createBuilder(int amount) {
         return new SkullItemBuilder(SKULL_MATERIAL, amount, data);
     }
-
 }

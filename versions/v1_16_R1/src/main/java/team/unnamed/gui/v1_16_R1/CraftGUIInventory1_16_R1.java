@@ -1,6 +1,6 @@
 package team.unnamed.gui.v1_16_R1;
 
-import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftInventoryCustom;
+import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftInventoryCustom;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import team.unnamed.gui.abstraction.menu.GUIData;

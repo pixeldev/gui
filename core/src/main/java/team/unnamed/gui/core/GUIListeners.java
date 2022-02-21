@@ -1,5 +1,6 @@
 package team.unnamed.gui.core;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,15 +11,23 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import team.unnamed.gui.abstraction.item.ItemClickable;
 import team.unnamed.gui.abstraction.menu.GUIData;
 import team.unnamed.gui.abstraction.menu.GUIInventory;
 import team.unnamed.gui.core.gui.factory.GUIFactory;
+import team.unnamed.gui.core.gui.factory.ItemStackNBTFactory;
 import team.unnamed.gui.core.gui.type.PaginatedGUIData;
 
 import java.util.Optional;
 
 public class GUIListeners implements Listener {
+
+    private final Plugin plugin;
+
+    public GUIListeners(Plugin plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {
@@ -55,13 +64,23 @@ public class GUIListeners implements Listener {
             guiData
                     .getCloseAction()
                     .ifPresent(action -> action.accept(event));
+
+            Player player = (Player) humanEntity;
+            plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
+                for(ItemStack item : player.getInventory().getContents()) {
+                    if(item != null && ItemStackNBTFactory.getInstance().hasTag(item, "UNNAMEDGUI")) {
+                        player.getInventory().remove(item);
+                    }
+                }
+
+                player.updateInventory();
+            }, 3L);
         }
     }
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         Inventory inventory = event.getClickedInventory();
-
         HumanEntity humanEntity = event.getWhoClicked();
 
         if (!(humanEntity instanceof Player)) {
@@ -71,7 +90,7 @@ public class GUIListeners implements Listener {
         if (isGui(inventory)) {
             int slot = event.getSlot();
 
-            if (slot < 0) { //Player has clicked outside of inventory.
+            if (slot < 0) { // Player has clicked outside of inventory.
                 return;
             }
 
@@ -82,17 +101,15 @@ public class GUIListeners implements Listener {
 
             boolean cancelClick = guiData.isCancelledClick();
 
-            if (!itemClickableOptional.isPresent()) {
+            if (itemClickableOptional.isEmpty()) {
                 event.setCancelled(cancelClick);
-
                 return;
             }
 
             ItemClickable itemClickable = itemClickableOptional.get();
 
-            if (event.getRawSlot() != slot && cancelClick) { //Check if clicked slot isn't an item clickable and click is cancelled.
+            if (event.getRawSlot() != slot && cancelClick) { // Check if clicked slot isn't an item clickable and click is cancelled.
                 event.setCancelled(true);
-
                 return;
             }
 
@@ -103,7 +120,6 @@ public class GUIListeners implements Listener {
                 PaginatedGUIData<?> newPaginatedGUIData = null;
 
                 ItemStack clickedItem = event.getCurrentItem();
-
                 ItemClickable nextPageItem = paginatedGUIData.getNextPageItem().apply(currentPage + 1);
                 ItemClickable previousPageItem = paginatedGUIData.getPreviousPageItem().apply(currentPage - 1);
 
@@ -160,5 +176,4 @@ public class GUIListeners implements Listener {
                 (GUIInventory) inventory :
                 (GUIInventory) inventory.getHolder();
     }
-
 }
