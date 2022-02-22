@@ -101,7 +101,7 @@ public class GUIListeners implements Listener {
 
             boolean cancelClick = guiData.isCancelledClick();
 
-            if (itemClickableOptional.isEmpty()) {
+            if (!itemClickableOptional.isPresent()) {
                 event.setCancelled(cancelClick);
                 return;
             }
