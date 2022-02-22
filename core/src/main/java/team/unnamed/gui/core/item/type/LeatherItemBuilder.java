@@ -26,7 +26,6 @@ public class LeatherItemBuilder extends ItemBuilderLayout<LeatherItemBuilder> {
         this.red = red;
         this.green = green;
         this.blue = blue;
-
         return this;
     }
 
@@ -35,7 +34,6 @@ public class LeatherItemBuilder extends ItemBuilderLayout<LeatherItemBuilder> {
         state(material.name().startsWith("LEATHER_"), "Material must be leather armor!");
 
         ItemStack itemStack = super.build();
-
         LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta) itemStack.getItemMeta();
 
         leatherArmorMeta.setColor(Color.fromRGB(red, green, blue));

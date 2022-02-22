@@ -12,5 +12,4 @@ public class SimpleItemBuilder extends ItemBuilderLayout<SimpleItemBuilder> {
     protected SimpleItemBuilder back() {
         return this;
     }
-
 }

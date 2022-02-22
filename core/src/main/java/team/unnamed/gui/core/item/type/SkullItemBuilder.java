@@ -39,13 +39,11 @@ public class SkullItemBuilder extends ItemBuilderLayout<SkullItemBuilder> {
 
     public SkullItemBuilder setOwner(String owner) {
         this.owner = owner;
-
         return this;
     }
 
     public SkullItemBuilder setUrl(String url) {
         this.url = url;
-
         return this;
     }
 
@@ -73,11 +71,9 @@ public class SkullItemBuilder extends ItemBuilderLayout<SkullItemBuilder> {
             } finally {
                 PROFILE_FIELD.setAccessible(accessible);
             }
-
         }
 
         itemStack.setItemMeta(skullMeta);
-
         return itemStack;
     }
 

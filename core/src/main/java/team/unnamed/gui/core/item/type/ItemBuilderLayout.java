@@ -4,6 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import team.unnamed.gui.abstraction.item.nbt.ItemStackNBT;
+import team.unnamed.gui.core.gui.factory.ItemStackNBTFactory;
 import team.unnamed.gui.core.item.flag.ItemFlag;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
     private List<String> lore;
     private Map<Enchantment, Integer> enchantments = new HashMap<>();
     private List<ItemFlag> flags = new ArrayList<>();
+    private boolean removalNBT;
 
     protected ItemBuilderLayout(Material material, int amount, short data) {
         this.material = material;
@@ -35,21 +38,18 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
     @Override
     public T setName(String name) {
         this.name = notNull(name, "Item name can't be null.");
-
         return back();
     }
 
     @Override
     public T setLore(List<String> lore) {
         this.lore = notNull(lore, "Item lore can't be null.");
-
         return back();
     }
 
     @Override
     public T setEnchantments(Map<Enchantment, Integer> enchantments) {
         this.enchantments = notNull(enchantments, "Item enchantments can't be null.");
-
         return back();
     }
 
@@ -59,14 +59,12 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
         state(level >= 0, "Enchantment level must be higher or equals than 0.");
 
         enchantments.put(enchantment, level);
-
         return back();
     }
 
     @Override
     public T setFlags(List<ItemFlag> flags) {
         this.flags = notNull(flags, "Item flags can't be null.");
-
         return back();
     }
 
@@ -75,14 +73,18 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
         notNull(flag, "Flag can't be null");
 
         flags.add(flag);
+        return back();
+    }
 
+    @Override
+    public T setRemovalNBT(boolean removal) {
+        this.removalNBT = removal;
         return back();
     }
 
     @Override
     public ItemStack build() {
         ItemStack itemStack = new ItemStack(material, amount, data);
-
         ItemMeta meta = itemStack.getItemMeta();
 
         enchantments.forEach((enchantment, level) -> meta.addEnchant(enchantment, level, true));
@@ -105,6 +107,11 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
         }
 
         itemStack.setItemMeta(meta);
+
+        if(removalNBT) {
+            ItemStackNBT nbt = ItemStackNBTFactory.getInstance();
+            itemStack = nbt.applyTag(itemStack, "UNNAMEDGUI");
+        }
 
         return itemStack;
     }

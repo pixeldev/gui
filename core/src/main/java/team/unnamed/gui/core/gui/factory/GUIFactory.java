@@ -21,7 +21,7 @@ public final class GUIFactory {
                     )
                     .getConstructor(InventoryHolder.class, GUIData.class);
         } catch (NoSuchMethodException | ClassNotFoundException e) {
-            throw new IllegalArgumentException("Your server version isn't supported to unnamed gui!");
+            throw new IllegalArgumentException("Your server version isn't supported by Unnamed GUI yet!");
         }
 
     }
@@ -38,5 +38,4 @@ public final class GUIFactory {
             );
         }
     }
-
 }

@@ -48,6 +48,7 @@ public class DyeBuilderProvider {
 			material = Material.valueOf(
 					COLORS_BY_DYE.get(dyeColor) + "_" + materialKey
 			);
+
 			data = 0;
 		}
 
