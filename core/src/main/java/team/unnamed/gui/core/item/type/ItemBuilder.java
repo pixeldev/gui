@@ -28,7 +28,7 @@ public interface ItemBuilder {
 
     ItemBuilder addFlag(ItemFlag flag);
 
-    ItemBuilder setRemovalNBT(boolean removal);
+    ItemBuilder setFromGUI(boolean value);
 
     default ItemBuilder setFlags(ItemFlag... flags) {
         return setFlags(Arrays.asList(flags));

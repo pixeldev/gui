@@ -1,6 +1,5 @@
 package team.unnamed.gui.core;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -45,9 +44,9 @@ public class GUIListeners implements Listener {
             GUIInventory guiInventory = getGui(inventory);
             GUIData guiData = guiInventory.getData();
 
-            guiData
-                    .getOpenAction()
-                    .ifPresent(action -> event.setCancelled(action.test(event)));
+            guiData.getOpenAction().ifPresent(
+                    action -> event.setCancelled(action.test(event))
+            );
         }
     }
 
@@ -71,7 +70,7 @@ public class GUIListeners implements Listener {
             Player player = (Player) humanEntity;
             plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
                 for(ItemStack item : player.getInventory().getContents()) {
-                    if(item != null && itemStackNBT.hasTag(item, "UNNAMEDGUI")) {
+                    if(item != null && itemStackNBT.hasTag(item, "isFromGUI")) {
                         player.getInventory().remove(item);
                     }
                 }
@@ -93,7 +92,8 @@ public class GUIListeners implements Listener {
         if (isGui(inventory)) {
             int slot = event.getSlot();
 
-            if (slot < 0) { // Player has clicked outside of inventory.
+            // Check if player has clicked outside of inventory.
+            if (slot < 0) {
                 return;
             }
 
@@ -111,7 +111,8 @@ public class GUIListeners implements Listener {
 
             ItemClickable itemClickable = itemClickableOptional.get();
 
-            if (event.getRawSlot() != slot && cancelClick) { // Check if clicked slot isn't an item clickable and click is cancelled.
+            // Check if clicked slot isn't an item clickable and click is cancelled.
+            if (event.getRawSlot() != slot && cancelClick) {
                 event.setCancelled(true);
                 return;
             }

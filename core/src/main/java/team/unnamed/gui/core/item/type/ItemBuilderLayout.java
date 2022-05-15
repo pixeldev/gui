@@ -27,7 +27,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
     private List<String> lore;
     private Map<Enchantment, Integer> enchantments = new HashMap<>();
     private List<ItemFlag> flags = new ArrayList<>();
-    private boolean removalNBT;
+    private boolean isFromGUI;
 
     protected ItemBuilderLayout(Material material, int amount, short data) {
         this.material = material;
@@ -77,8 +77,8 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
     }
 
     @Override
-    public T setRemovalNBT(boolean removal) {
-        this.removalNBT = removal;
+    public T setFromGUI(boolean value) {
+        this.isFromGUI = value;
         return back();
     }
 
@@ -108,9 +108,9 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
 
         itemStack.setItemMeta(meta);
 
-        if(removalNBT) {
+        if(isFromGUI) {
             ItemStackNBT nbt = ItemStackNBTFactory.getInstance();
-            itemStack = nbt.applyTag(itemStack, "UNNAMEDGUI");
+            itemStack = nbt.applyTag(itemStack, "isFromGUI");
         }
 
         return itemStack;
