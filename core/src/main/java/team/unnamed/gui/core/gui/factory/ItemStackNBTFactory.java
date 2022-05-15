@@ -22,7 +22,7 @@ public final class ItemStackNBTFactory {
 
     }
 
-    public static ItemStackNBT getInstance() {
+    public static ItemStackNBT create() {
         try {
             return (ItemStackNBT) NBT_CONSTRUCTOR.newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {

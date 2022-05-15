@@ -109,7 +109,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
         itemStack.setItemMeta(meta);
 
         if(isFromGUI) {
-            ItemStackNBT nbt = ItemStackNBTFactory.getInstance();
+            ItemStackNBT nbt = ItemStackNBTFactory.create();
             itemStack = nbt.applyTag(itemStack, "isFromGUI");
         }
 

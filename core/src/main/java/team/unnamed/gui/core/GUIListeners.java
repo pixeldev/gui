@@ -28,7 +28,7 @@ public class GUIListeners implements Listener {
 
     public GUIListeners(Plugin plugin) {
         this.plugin = plugin;
-        this.itemStackNBT = ItemStackNBTFactory.getInstance();
+        this.itemStackNBT = ItemStackNBTFactory.create();
     }
 
     @EventHandler
