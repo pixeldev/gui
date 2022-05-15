@@ -1,14 +1,14 @@
-package team.unnamed.gui.v1_18_R1;
+package team.unnamed.gui.v1_18_R2;
 
 import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.nbt.NBTTagString;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import team.unnamed.gui.abstraction.item.nbt.NBTHelper;
 
-public class NBTHelper1_18_R1 implements NBTHelper {
+public class NBTHelper1_18_R2 implements NBTHelper {
 
     @Override
     public boolean hasTag(ItemStack itemStack, String key) {
@@ -23,7 +23,7 @@ public class NBTHelper1_18_R1 implements NBTHelper {
             net.minecraft.world.item.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Check if the ItemStack has the NBT tag
-            return nmsCopy.r() && nmsCopy.s().b(key);
+            return nmsCopy.r() && nmsCopy.t().b(key);
         } catch (Exception ex) {
             // Return false if an exception is thrown
             return false;
@@ -43,13 +43,13 @@ public class NBTHelper1_18_R1 implements NBTHelper {
             net.minecraft.world.item.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Check if the item has the NBT tag we're about to remove
-            if (!nmsCopy.r() || !nmsCopy.s().b(key)) {
+            if (!nmsCopy.s() || !nmsCopy.t().b(key)) {
                 // If not, return the original item
                 return itemStack;
             }
 
             // Remove the NBT tag
-            nmsCopy.s().r(key);
+            nmsCopy.t().r(key);
 
             // Return a new Bukkit copy
             return CraftItemStack.asBukkitCopy(nmsCopy);
@@ -83,7 +83,7 @@ public class NBTHelper1_18_R1 implements NBTHelper {
             net.minecraft.world.item.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Set tag
-            NBTTagCompound tag = nmsCopy.r() ? ((nmsCopy.s() == null) ? new NBTTagCompound() : nmsCopy.s()) : new NBTTagCompound();
+            NBTTagCompound tag = nmsCopy.s() ? ((nmsCopy.t() == null) ? new NBTTagCompound() : nmsCopy.t()) : new NBTTagCompound();
             tag.a(key, NBTTagInt.a(value));
             nmsCopy.b(tag);
 
@@ -108,7 +108,7 @@ public class NBTHelper1_18_R1 implements NBTHelper {
             net.minecraft.world.item.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Set tag
-            NBTTagCompound tag = nmsCopy.r() ? ((nmsCopy.s() == null) ? new NBTTagCompound() : nmsCopy.s()) : new NBTTagCompound();
+            NBTTagCompound tag = nmsCopy.s() ? ((nmsCopy.t() == null) ? new NBTTagCompound() : nmsCopy.t()) : new NBTTagCompound();
             tag.a(key, NBTTagString.a(value));
             nmsCopy.b(tag);
 
@@ -133,7 +133,7 @@ public class NBTHelper1_18_R1 implements NBTHelper {
             net.minecraft.world.item.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Set tag
-            NBTTagCompound tag = nmsCopy.r() ? ((nmsCopy.s() == null) ? new NBTTagCompound() : nmsCopy.s()) : new NBTTagCompound();
+            NBTTagCompound tag = nmsCopy.s() ? ((nmsCopy.t() == null) ? new NBTTagCompound() : nmsCopy.t()) : new NBTTagCompound();
             tag.a(key, NBTTagByte.a(value));
             nmsCopy.b(tag);
 
@@ -156,6 +156,6 @@ public class NBTHelper1_18_R1 implements NBTHelper {
         }
 
         // Return the NBT tags of the item
-        return nmsCopy.s().toString();
+        return nmsCopy.t().toString();
     }
 }
