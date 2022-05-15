@@ -6,9 +6,9 @@ import net.minecraft.server.v1_16_R3.NBTTagInt;
 import net.minecraft.server.v1_16_R3.NBTTagString;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
-import team.unnamed.gui.abstraction.item.nbt.ItemStackNBT;
+import team.unnamed.gui.abstraction.item.nbt.NBTHelper;
 
-public class ItemStackNBT1_16_R3 implements ItemStackNBT {
+public class NBTHelper1_16_R3 implements NBTHelper {
 
     @Override
     public boolean hasTag(ItemStack itemStack, String key) {

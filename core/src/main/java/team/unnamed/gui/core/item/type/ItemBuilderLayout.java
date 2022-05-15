@@ -4,8 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import team.unnamed.gui.abstraction.item.nbt.ItemStackNBT;
-import team.unnamed.gui.core.gui.factory.ItemStackNBTFactory;
+import team.unnamed.gui.abstraction.item.nbt.NBTHelper;
+import team.unnamed.gui.core.gui.factory.NBTHelperFactory;
 import team.unnamed.gui.core.item.flag.ItemFlag;
 
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
         itemStack.setItemMeta(meta);
 
         if(isFromGUI) {
-            ItemStackNBT nbt = ItemStackNBTFactory.create();
+            NBTHelper nbt = NBTHelperFactory.create();
             itemStack = nbt.applyTag(itemStack, "isFromGUI");
         }
 

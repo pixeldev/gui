@@ -12,11 +12,11 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import team.unnamed.gui.abstraction.item.ItemClickable;
-import team.unnamed.gui.abstraction.item.nbt.ItemStackNBT;
+import team.unnamed.gui.abstraction.item.nbt.NBTHelper;
 import team.unnamed.gui.abstraction.menu.GUIData;
 import team.unnamed.gui.abstraction.menu.GUIInventory;
 import team.unnamed.gui.core.gui.factory.GUIFactory;
-import team.unnamed.gui.core.gui.factory.ItemStackNBTFactory;
+import team.unnamed.gui.core.gui.factory.NBTHelperFactory;
 import team.unnamed.gui.core.gui.type.PaginatedGUIData;
 
 import java.util.Optional;
@@ -24,11 +24,11 @@ import java.util.Optional;
 public class GUIListeners implements Listener {
 
     private final Plugin plugin;
-    private final ItemStackNBT itemStackNBT;
+    private final NBTHelper NBTHelper;
 
     public GUIListeners(Plugin plugin) {
         this.plugin = plugin;
-        this.itemStackNBT = ItemStackNBTFactory.create();
+        this.NBTHelper = NBTHelperFactory.create();
     }
 
     @EventHandler
@@ -70,7 +70,7 @@ public class GUIListeners implements Listener {
             Player player = (Player) humanEntity;
             plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
                 for(ItemStack item : player.getInventory().getContents()) {
-                    if(item != null && itemStackNBT.hasTag(item, "isFromGUI")) {
+                    if(item != null && NBTHelper.hasTag(item, "isFromGUI")) {
                         player.getInventory().remove(item);
                     }
                 }

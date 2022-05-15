@@ -2,7 +2,7 @@ package team.unnamed.gui.abstraction.item.nbt;
 
 import org.bukkit.inventory.ItemStack;
 
-public interface ItemStackNBT {
+public interface NBTHelper {
 
     boolean hasTag(ItemStack itemStack, String key);
 

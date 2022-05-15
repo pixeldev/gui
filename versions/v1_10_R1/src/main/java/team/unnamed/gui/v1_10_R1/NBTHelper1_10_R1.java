@@ -1,14 +1,14 @@
-package team.unnamed.gui.v1_14_R1;
+package team.unnamed.gui.v1_10_R1;
 
-import net.minecraft.server.v1_14_R1.NBTTagByte;
-import net.minecraft.server.v1_14_R1.NBTTagCompound;
-import net.minecraft.server.v1_14_R1.NBTTagInt;
-import net.minecraft.server.v1_14_R1.NBTTagString;
-import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
+import net.minecraft.server.v1_10_R1.NBTTagByte;
+import net.minecraft.server.v1_10_R1.NBTTagCompound;
+import net.minecraft.server.v1_10_R1.NBTTagInt;
+import net.minecraft.server.v1_10_R1.NBTTagString;
+import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
-import team.unnamed.gui.abstraction.item.nbt.ItemStackNBT;
+import team.unnamed.gui.abstraction.item.nbt.NBTHelper;
 
-public class ItemStackNBT1_14_R1 implements ItemStackNBT {
+public class NBTHelper1_10_R1 implements NBTHelper {
 
     @Override
     public boolean hasTag(ItemStack itemStack, String key) {
@@ -20,7 +20,7 @@ public class ItemStackNBT1_14_R1 implements ItemStackNBT {
 
         try {
             // Create a NMS copy of the provided Bukkit ItemStack
-            net.minecraft.server.v1_14_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
+            net.minecraft.server.v1_10_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Check if the ItemStack has the NBT tag
             return nmsCopy.hasTag() && nmsCopy.getTag().hasKey(key);
@@ -40,7 +40,7 @@ public class ItemStackNBT1_14_R1 implements ItemStackNBT {
 
         try {
             // Create a NMS copy of the provided Bukkit ItemStack
-            net.minecraft.server.v1_14_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
+            net.minecraft.server.v1_10_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Check if the item has the NBT tag we're about to remove
             if (!nmsCopy.hasTag() || !nmsCopy.getTag().hasKey(key)) {
@@ -80,7 +80,7 @@ public class ItemStackNBT1_14_R1 implements ItemStackNBT {
 
         try {
             // Create a NMS copy of the Bukkit ItemStack
-            net.minecraft.server.v1_14_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
+            net.minecraft.server.v1_10_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Set tag
             NBTTagCompound tag = nmsCopy.hasTag() ? ((nmsCopy.getTag() == null) ? new NBTTagCompound() : nmsCopy.getTag()) : new NBTTagCompound();
@@ -105,7 +105,7 @@ public class ItemStackNBT1_14_R1 implements ItemStackNBT {
 
         try {
             // Create a NMS copy of the Bukkit ItemStack
-            net.minecraft.server.v1_14_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
+            net.minecraft.server.v1_10_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Set tag
             NBTTagCompound tag = nmsCopy.hasTag() ? ((nmsCopy.getTag() == null) ? new NBTTagCompound() : nmsCopy.getTag()) : new NBTTagCompound();
@@ -130,7 +130,7 @@ public class ItemStackNBT1_14_R1 implements ItemStackNBT {
 
         try {
             // Create a NMS copy of the Bukkit ItemStack
-            net.minecraft.server.v1_14_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
+            net.minecraft.server.v1_10_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
             // Set tag
             NBTTagCompound tag = nmsCopy.hasTag() ? ((nmsCopy.getTag() == null) ? new NBTTagCompound() : nmsCopy.getTag()) : new NBTTagCompound();
@@ -148,7 +148,7 @@ public class ItemStackNBT1_14_R1 implements ItemStackNBT {
     @Override
     public String getTags(ItemStack itemStack) {
         // Create a new NMS copy
-        net.minecraft.server.v1_14_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
+        net.minecraft.server.v1_10_R1.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
 
         // Check if the item has tags
         if(!nmsCopy.hasTag()) {

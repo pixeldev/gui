@@ -1,13 +1,13 @@
 package team.unnamed.gui.core.gui.factory;
 
-import team.unnamed.gui.abstraction.item.nbt.ItemStackNBT;
+import team.unnamed.gui.abstraction.item.nbt.NBTHelper;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import static team.unnamed.gui.core.version.ServerVersionProvider.SERVER_VERSION;
 
-public final class ItemStackNBTFactory {
+public final class NBTHelperFactory {
 
     private static final Constructor<?> NBT_CONSTRUCTOR;
 
@@ -22,9 +22,9 @@ public final class ItemStackNBTFactory {
 
     }
 
-    public static ItemStackNBT create() {
+    public static NBTHelper create() {
         try {
-            return (ItemStackNBT) NBT_CONSTRUCTOR.newInstance();
+            return (NBTHelper) NBT_CONSTRUCTOR.newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(
                     "Unable to create an instance for the ItemStackNBT class", e
