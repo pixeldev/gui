@@ -26,6 +26,10 @@ subprojects {
             create<MavenPublication>("maven") {
                 from(components["java"])
             }
+
+            tasks.withType<JavaCompile> {
+                options.compilerArgs.addAll(arrayOf("--release", "8"))
+            }
         }
     }
 
