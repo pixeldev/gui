@@ -14,7 +14,7 @@ public final class NBTHelperFactory {
     static {
         try {
             NBT_CONSTRUCTOR = Class.forName(
-                    "team.unnamed.gui.v" + SERVER_VERSION + ".ItemStackNBT" + SERVER_VERSION
+                    "team.unnamed.gui.v" + SERVER_VERSION + ".NBTHelper" + SERVER_VERSION
             ).getConstructor();
         } catch (NoSuchMethodException | ClassNotFoundException e) {
             throw new IllegalArgumentException("Your server version isn't supported by Unnamed GUI yet!");
@@ -27,7 +27,7 @@ public final class NBTHelperFactory {
             return (NBTHelper) NBT_CONSTRUCTOR.newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(
-                    "Unable to create an instance for the ItemStackNBT class", e
+                    "Unable to create an instance for the NBTHelper class", e
             );
         }
     }
