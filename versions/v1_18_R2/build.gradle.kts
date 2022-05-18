@@ -1,5 +1,5 @@
 repositories {
-    maven("https://libraries.minecraft.net/")
+    maven("https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
