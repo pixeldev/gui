@@ -24,11 +24,11 @@ import java.util.Optional;
 public class GUIListeners implements Listener {
 
     private final Plugin plugin;
-    private final NBTHelper NBTHelper;
+    private final NBTHelper nbtHelper;
 
     public GUIListeners(Plugin plugin) {
         this.plugin = plugin;
-        this.NBTHelper = NBTHelperFactory.create();
+        this.nbtHelper = NBTHelperFactory.create();
     }
 
     @EventHandler
@@ -70,7 +70,7 @@ public class GUIListeners implements Listener {
             Player player = (Player) humanEntity;
             plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
                 for(ItemStack item : player.getInventory().getContents()) {
-                    if(item != null && NBTHelper.hasTag(item, "isFromGUI")) {
+                    if(item != null && nbtHelper.hasTag(item, "isFromGUI")) {
                         player.getInventory().remove(item);
                     }
                 }
