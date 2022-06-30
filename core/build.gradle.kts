@@ -7,7 +7,7 @@ dependencies {
         "v1_13_R2", "v1_14_R1", "v1_15_R1",
         "v1_16_R1", "v1_16_R3"
     ).forEach {
-        runtimeOnly(project(":gui-versions-$it"))
+        runtimeOnly(project(":gui-adapt-$it"))
     }
 
     compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
