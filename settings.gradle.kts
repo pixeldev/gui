@@ -1,7 +1,7 @@
 rootProject.name = "gui"
 
 arrayOf("abstraction", "core").forEach {
-    include(it)
+    includePrefixed(it)
 }
 
 arrayOf(
@@ -10,5 +10,14 @@ arrayOf(
     "v1_13_R2", "v1_14_R1", "v1_15_R1",
     "v1_16_R1", "v1_16_R3"
 ).forEach {
-    include("versions:$it")
+    includePrefixed("versions:$it")
+}
+
+fun includePrefixed(name: String) {
+    val kebabName = name.replace(':', '-')
+    val path = name.replace(':', '/')
+    val baseName = "${rootProject.name}-$kebabName"
+
+    include(baseName)
+    project(":$baseName").projectDir = file(path)
 }
