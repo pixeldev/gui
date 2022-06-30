@@ -1,5 +1,9 @@
 rootProject.name = "gui"
 
+arrayOf("api").forEach {
+    includePrefixed("item:$it")
+}
+
 fun includePrefixed(name: String) {
     val kebabName = name.replace(':', '-')
     val path = name.replace(':', '/')
