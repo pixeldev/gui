@@ -1,3 +1,7 @@
+plugins {
+    id("gui.publishing-conventions")
+}
+
 dependencies {
     api(libs.annotations)
     arrayOf("validation", "bukkit").forEach {
