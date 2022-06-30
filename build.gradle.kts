@@ -6,6 +6,12 @@ subprojects {
     apply(plugin = "java-library")
     apply(plugin = "maven-publish")
 
+    configure<JavaPluginExtension> {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
+    }
+
     configure<PublishingExtension> {
         repositories {
             /*maven {
