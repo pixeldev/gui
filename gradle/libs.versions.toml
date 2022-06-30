@@ -1,0 +1,5 @@
+[versions]
+annotations = "23.0.0"
+
+[libraries]
+annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations"}
