@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import static team.unnamed.gui.core.version.ServerVersionProvider.SERVER_VERSION_INT;
-import static team.unnamed.validate.Validate.notNull;
-import static team.unnamed.validate.Validate.state;
+import static team.unnamed.validate.Validate.isNotNull;
+import static team.unnamed.validate.Validate.isState;
 
 abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
 
@@ -37,26 +37,26 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
 
     @Override
     public T setName(String name) {
-        this.name = notNull(name, "Item name can't be null.");
+        this.name = isNotNull(name, "Item name can't be null.");
         return back();
     }
 
     @Override
     public T setLore(List<String> lore) {
-        this.lore = notNull(lore, "Item lore can't be null.");
+        this.lore = isNotNull(lore, "Item lore can't be null.");
         return back();
     }
 
     @Override
     public T setEnchantments(Map<Enchantment, Integer> enchantments) {
-        this.enchantments = notNull(enchantments, "Item enchantments can't be null.");
+        this.enchantments = isNotNull(enchantments, "Item enchantments can't be null.");
         return back();
     }
 
     @Override
     public T addEnchant(Enchantment enchantment, int level) {
-        notNull(enchantment, "Enchantment to add can't be null.");
-        state(level >= 0, "Enchantment level must be higher or equals than 0.");
+        isNotNull(enchantment, "Enchantment to add can't be null.");
+        isState(level >= 0, "Enchantment level must be higher or equals than 0.");
 
         enchantments.put(enchantment, level);
         return back();
@@ -64,13 +64,13 @@ abstract class ItemBuilderLayout<T extends ItemBuilder> implements ItemBuilder {
 
     @Override
     public T setFlags(List<ItemFlag> flags) {
-        this.flags = notNull(flags, "Item flags can't be null.");
+        this.flags = isNotNull(flags, "Item flags can't be null.");
         return back();
     }
 
     @Override
     public T addFlag(ItemFlag flag) {
-        notNull(flag, "Flag can't be null");
+        isNotNull(flag, "Flag can't be null");
 
         flags.add(flag);
         return back();

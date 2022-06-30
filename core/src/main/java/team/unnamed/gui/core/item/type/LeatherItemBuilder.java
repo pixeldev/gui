@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import team.unnamed.gui.core.item.LeatherArmorColor;
 
-import static team.unnamed.validate.Validate.state;
+import static team.unnamed.validate.Validate.isState;
 
 public class LeatherItemBuilder extends ItemBuilderLayout<LeatherItemBuilder> {
 
@@ -31,7 +31,7 @@ public class LeatherItemBuilder extends ItemBuilderLayout<LeatherItemBuilder> {
 
     @Override
     public ItemStack build() {
-        state(material.name().startsWith("LEATHER_"), "Material must be leather armor!");
+        isState(material.name().startsWith("LEATHER_"), "Material must be leather armor!");
 
         ItemStack itemStack = super.build();
         LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta) itemStack.getItemMeta();

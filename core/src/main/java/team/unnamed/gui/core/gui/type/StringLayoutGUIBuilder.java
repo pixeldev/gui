@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static team.unnamed.validate.Validate.argument;
-import static team.unnamed.validate.Validate.notNull;
+import static team.unnamed.validate.Validate.isState;
+import static team.unnamed.validate.Validate.isNotNull;
 
 public class StringLayoutGUIBuilder extends GUIBuilderLayout<StringLayoutGUIBuilder> {
 
@@ -33,7 +33,7 @@ public class StringLayoutGUIBuilder extends GUIBuilderLayout<StringLayoutGUIBuil
     }
 
     public StringLayoutGUIBuilder setLayoutItem(char identifier, ItemClickable item) {
-        notNull(item, "Item can't be null.");
+        isNotNull(item, "Item can't be null.");
 
         layoutValues.put(identifier, item);
 
@@ -41,7 +41,7 @@ public class StringLayoutGUIBuilder extends GUIBuilderLayout<StringLayoutGUIBuil
     }
 
     public StringLayoutGUIBuilder setLayoutLines(String... lines) {
-        notNull(lines, "Layout lines can't be null.");
+        isNotNull(lines, "Layout lines can't be null.");
 
         for (String line : lines) {
             addLayoutLine(line);
@@ -59,8 +59,8 @@ public class StringLayoutGUIBuilder extends GUIBuilderLayout<StringLayoutGUIBuil
     }
 
     private void validateLine(String line) {
-        notNull(line, "Layout line can't be null.");
-        argument(line.length() <= 9, "Cannot add layout line '" + line + "' because has more than 9 characters.");
+        isNotNull(line, "Layout line can't be null.");
+        isState(line.length() <= 9, "Cannot add layout line '" + line + "' because has more than 9 characters.");
     }
 
     @Override

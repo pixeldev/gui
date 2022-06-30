@@ -3,7 +3,7 @@ package team.unnamed.gui.core.item;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 
-import static team.unnamed.validate.Validate.notNull;
+import static team.unnamed.validate.Validate.isNotNull;
 
 public class FireworkAttributesBuilder {
 
@@ -31,19 +31,19 @@ public class FireworkAttributesBuilder {
     }
 
     public FireworkAttributesBuilder setType(FireworkEffect.Type fireworkType) {
-        this.fireworkType = notNull(fireworkType, "Firework type can't be null.");
+        this.fireworkType = isNotNull(fireworkType, "Firework type can't be null.");
 
         return this;
     }
 
     public FireworkAttributesBuilder setColors(Color... colors) {
-        this.colors = notNull(colors, "Colors can't be null.");
+        this.colors = isNotNull(colors, "Colors can't be null.");
 
         return this;
     }
 
     public FireworkAttributesBuilder setFadeColors(Color... fadeColors) {
-        this.fadeColors = notNull(fadeColors, "Fade colors can't be null.");
+        this.fadeColors = isNotNull(fadeColors, "Fade colors can't be null.");
 
         return this;
     }

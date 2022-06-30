@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static team.unnamed.validate.Validate.notNull;
-import static team.unnamed.validate.Validate.state;
+import static team.unnamed.validate.Validate.isNotNull;
+import static team.unnamed.validate.Validate.isState;
 
 public class FireworkBuilder extends ItemBuilderLayout<FireworkBuilder> {
 
@@ -23,7 +23,7 @@ public class FireworkBuilder extends ItemBuilderLayout<FireworkBuilder> {
     }
 
     public FireworkBuilder setFireworkEffects(List<FireworkEffect> fireworkEffects) {
-        this.fireworkEffects = notNull(fireworkEffects, "Firework effects can't be null.");
+        this.fireworkEffects = isNotNull(fireworkEffects, "Firework effects can't be null.");
 
         return this;
     }
@@ -33,7 +33,7 @@ public class FireworkBuilder extends ItemBuilderLayout<FireworkBuilder> {
     }
 
     public FireworkBuilder addFireworkEffect(FireworkEffect fireworkEffect) {
-        notNull(fireworkEffect, "Firework effect can't be null.");
+        isNotNull(fireworkEffect, "Firework effect can't be null.");
 
         fireworkEffects.add(fireworkEffect);
 
@@ -41,7 +41,7 @@ public class FireworkBuilder extends ItemBuilderLayout<FireworkBuilder> {
     }
 
     public FireworkBuilder setPower(int power) {
-        state(power > 0, "Power must be higher than 0.");
+        isState(power > 0, "Power must be higher than 0.");
 
         this.power = power;
 
@@ -50,7 +50,7 @@ public class FireworkBuilder extends ItemBuilderLayout<FireworkBuilder> {
 
     @Override
     public ItemStack build() {
-        state(material.name().startsWith("FIREWORK"), "Material must be firework!");
+        isState(material.name().startsWith("FIREWORK"), "Material must be firework!");
 
         ItemStack itemStack = super.build();
 

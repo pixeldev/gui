@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import static team.unnamed.validate.Validate.notNull;
-import static team.unnamed.validate.Validate.state;
+import static team.unnamed.validate.Validate.isNotNull;
+import static team.unnamed.validate.Validate.isState;
 
 abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
@@ -34,8 +34,8 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
     }
 
     protected GUIBuilderLayout(String title, int rows) {
-        notNull(title, "Title can't be null.");
-        state(rows > 0, "Rows must be major than 0.");
+        isNotNull(title, "Title can't be null.");
+        isState(rows > 0, "Rows must be major than 0.");
 
         this.title = title;
         this.slots = rows * 9;
@@ -46,7 +46,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     @Override
     public T fillItem(ItemClickable item, int from, int to) {
-        notNull(item, "Item clickable can't be null");
+        isNotNull(item, "Item clickable can't be null");
 
         for (int i = from; i < to; i++) {
             items[i] = item.cloneInSlot(i);
@@ -57,7 +57,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     @Override
     public T fillRow(ItemClickable item, int row) {
-        state(
+        isState(
                 row > 0 && row <= this.rows,
                 "Row cannot be minor than 0 or major than 6"
         );
@@ -74,7 +74,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     @Override
     public T fillColumn(ItemClickable item, int column) {
-        state(
+        isState(
                 column > 0 && column <= 9,
                 "Column cannot be minor than 0 or major than 9"
         );
@@ -105,7 +105,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     @Override
     public T setItems(List<ItemClickable> items) {
-        notNull(items, "Items can't be null.");
+        isNotNull(items, "Items can't be null.");
 
         this.items = items.toArray(new ItemClickable[0]);
 
@@ -114,7 +114,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     @Override
     public T addItem(ItemClickable itemClickable) {
-        notNull(itemClickable, "Item clickable can't be null.");
+        isNotNull(itemClickable, "Item clickable can't be null.");
 
         items[itemClickable.getSlot()] = itemClickable;
 
@@ -123,7 +123,7 @@ abstract class GUIBuilderLayout<T extends GUIBuilder> implements GUIBuilder {
 
     @Override
     public T addItem(ItemClickable itemClickable, int... slots) {
-        notNull(itemClickable, "Item clickable can't be null.");
+        isNotNull(itemClickable, "Item clickable can't be null.");
 
         for (int slot : slots) {
             addItem(itemClickable.cloneInSlot(slot));

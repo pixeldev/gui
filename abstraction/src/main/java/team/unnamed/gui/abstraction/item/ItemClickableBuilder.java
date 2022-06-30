@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.function.Predicate;
 
-import static team.unnamed.validate.Validate.notNull;
+import static team.unnamed.validate.Validate.isNotNull;
 
 public class ItemClickableBuilder {
 
@@ -20,7 +20,7 @@ public class ItemClickableBuilder {
     }
 
     public ItemClickableBuilder setItemStack(ItemStack itemStack) {
-        this.itemStack = notNull(itemStack, "Item can't be null.");
+        this.itemStack = isNotNull(itemStack, "Item can't be null.");
 
         return this;
     }

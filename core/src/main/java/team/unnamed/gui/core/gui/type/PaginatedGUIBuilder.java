@@ -10,8 +10,8 @@ import team.unnamed.gui.core.opener.InventoryOpener;
 import java.util.*;
 import java.util.function.Function;
 
-import static team.unnamed.validate.Validate.notNull;
-import static team.unnamed.validate.Validate.state;
+import static team.unnamed.validate.Validate.isNotNull;
+import static team.unnamed.validate.Validate.isState;
 
 public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder<E>> {
 
@@ -42,7 +42,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setEntities(Collection<E> entities) {
-        notNull(entities, "Entities can't be null.");
+        isNotNull(entities, "Entities can't be null.");
 
         this.entities = new ArrayList<>(entities);
 
@@ -50,7 +50,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setItemParser(Function<E, ItemClickable> itemParser) {
-        notNull(itemParser, "Item parser can't be null.");
+        isNotNull(itemParser, "Item parser can't be null.");
 
         this.itemParser = itemParser;
 
@@ -58,9 +58,9 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setBounds(int from, int to) {
-        state(from >= 0, "From value must be major or equal than 0.");
-        state(to >= 0 && to <= 54, "From value must be major or equal than 0 and less or equal than 54.");
-        state(to > from, "To value must be major than from value.");
+        isState(from >= 0, "From value must be major or equal than 0.");
+        isState(to >= 0 && to <= 54, "From value must be major or equal than 0 and less or equal than 54.");
+        isState(to > from, "To value must be major than from value.");
 
         this.from = from;
         this.to = to;
@@ -75,7 +75,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setItemsPerRow(int amount) {
-        state(
+        isState(
                 amount > 0 && amount <= 9,
                 "Items per row cannot be equals than 0 or major than 9."
         );
@@ -86,7 +86,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> addItemReplacingPage(Function<Integer, ItemClickable> item) {
-        notNull(item, "Item can't be null.");
+        isNotNull(item, "Item can't be null.");
 
         itemsReplacingWithPage.add(item);
 
@@ -94,7 +94,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setPreviousPageItem(Function<Integer, ItemClickable> previousPageItem) {
-        notNull(previousPageItem, "Previous page item can't be null.");
+        isNotNull(previousPageItem, "Previous page item can't be null.");
 
         this.previousPageItem = previousPageItem;
 
@@ -102,7 +102,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setNextPageItem(Function<Integer, ItemClickable> nextPageItem) {
-        notNull(nextPageItem, "Next page item can't be null.");
+        isNotNull(nextPageItem, "Next page item can't be null.");
 
         this.nextPageItem = nextPageItem;
 
@@ -110,7 +110,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setItemIfNotEntities(ItemClickable itemIfNotEntities) {
-        notNull(itemIfNotEntities, "Item if not entities can't be null.");
+        isNotNull(itemIfNotEntities, "Item if not entities can't be null.");
 
         this.itemIfNotEntities = itemIfNotEntities;
 
@@ -118,7 +118,7 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
     }
 
     public PaginatedGUIBuilder<E> setItemIfNotPreviousPage(ItemClickable itemIfNotPreviousPage) {
-        notNull(itemIfNotPreviousPage, "Item if not previous page can't be null.");
+        isNotNull(itemIfNotPreviousPage, "Item if not previous page can't be null.");
 
         this.itemIfNotPreviousPage = itemIfNotPreviousPage;
 
@@ -127,10 +127,10 @@ public class PaginatedGUIBuilder<E> extends GUIBuilderLayout<PaginatedGUIBuilder
 
     @Override
     public Inventory build() {
-        notNull(itemParser, "Item parser can't be null.");
-        notNull(entities, "Entities can't be null.");
-        notNull(previousPageItem, "Previous page item can't be null.");
-        notNull(nextPageItem, "Next page item can't be null.");
+        isNotNull(itemParser, "Item parser can't be null.");
+        isNotNull(entities, "Entities can't be null.");
+        isNotNull(previousPageItem, "Previous page item can't be null.");
+        isNotNull(nextPageItem, "Next page item can't be null.");
 
         PaginatedGUIData<E> guiData = new PaginatedGUIData<>(
                 slots, new ArrayList<>(Arrays.asList(items)),
