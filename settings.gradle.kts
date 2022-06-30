@@ -8,7 +8,7 @@ arrayOf("api").forEach {
     includePrefixed("menu:$it")
 }
 
-arrayOf("1_8_R3").forEach {
+arrayOf("1_8_R3", "1_16_R3").forEach {
     includePrefixed("menu:adapt:v$it")
 }
 
