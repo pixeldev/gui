@@ -1,5 +1,5 @@
 subprojects {
 	dependencies {
-        compileOnly(project(":abstraction"))
+        compileOnly(project(":gui-abstraction"))
 	}
 }
