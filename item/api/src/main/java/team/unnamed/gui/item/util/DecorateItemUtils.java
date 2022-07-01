@@ -12,7 +12,7 @@ public final class DecorateItemUtils {
 
     public static ItemBuilder newStainedPaneBuilder(DyeColor dyeColor) {
         return ItemBuilder.newDyeBuilder("STAINED_GLASS_PANE", dyeColor)
-                .setName("");
+                .setName(" ");
     }
 
     public static ItemStack newStainedPane(DyeColor dyeColor) {
