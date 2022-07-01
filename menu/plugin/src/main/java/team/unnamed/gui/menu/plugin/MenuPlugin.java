@@ -17,7 +17,7 @@ import team.unnamed.gui.menu.type.MenuInventory;
 import java.util.ArrayList;
 import java.util.List;
 
-import static team.unnamed.gui.item.util.DecorateItemUtils.newStainedPane;
+import static team.unnamed.gui.item.util.DecorateItemUtils.stainedPane;
 
 public class MenuPlugin extends JavaPlugin {
 
@@ -34,20 +34,20 @@ public class MenuPlugin extends JavaPlugin {
             switch (args[0]) {
                 case "default": {
                     player.openInventory(MenuInventory.newBuilder("Test")
-                            .fillBorders(ItemClickable.onlyItem(newStainedPane(DyeColor.PINK)))
-                            .addItem(ItemClickable.builder(22)
-                                    .setItem(new ItemStack(Material.ENDER_PEARL))
-                                    .setAction(inventory -> {
+                            .fillBorders(ItemClickable.onlyItem(stainedPane(DyeColor.PINK)))
+                            .item(ItemClickable.builder(22)
+                                    .item(new ItemStack(Material.ENDER_PEARL))
+                                    .action(inventory -> {
                                         player.sendMessage("Testing");
                                         player.closeInventory();
                                         return true;
                                     })
                                     .build())
-                            .setOpenAction(inventory -> {
+                            .openAction(inventory -> {
                                 player.sendMessage("Opening...");
                                 return false;
                             })
-                            .setCloseAction(inventory -> {
+                            .closeAction(inventory -> {
                                 player.sendMessage("Closing...");
 
                                 return false;
@@ -59,32 +59,32 @@ public class MenuPlugin extends JavaPlugin {
                     List<ItemStack> entities = new ArrayList<>();
 
                     for (int i = 0; i <= 90; i++) {
-                        entities.add(ItemBuilder.newBuilder(Material.ENDER_PEARL)
-                                .setName("Item #" + i)
+                        entities.add(ItemBuilder.builder(Material.ENDER_PEARL)
+                                .name("Item #" + i)
                                 .build()
                         );
                     }
 
                     ItemClickable decorationItem = ItemClickable.onlyItem(
-                            newStainedPane(DyeColor.PINK)
+                            stainedPane(DyeColor.PINK)
                     );
 
                     player.openInventory(MenuInventory
                             .newPaginatedBuilder(ItemStack.class, "Paginated Test")
-                            .setEntities(entities)
-                            .setItemsPerRow(7)
-                            .setEntityParser(ItemClickable::onlyItem)
-                            .setSkippedSlots(10, 16, 28, 34, 37, 38, 42, 43)
-                            .setBounds(10, 44)
-                            .setItemIfNoPreviousPage(decorationItem)
-                            .setItemIfNoNextPage(decorationItem)
-                            .setNextPageItem(page -> ItemClickable.onlyItem(ItemBuilder.newBuilder(Material.ARROW)
-                                    .setName("Next page - " + page)
+                            .entities(entities)
+                            .itemsPerRow(7)
+                            .entityParser(ItemClickable::onlyItem)
+                            .skipSlots(10, 16, 28, 34, 37, 38, 42, 43)
+                            .bounds(10, 44)
+                            .itemIfNoPreviousPage(decorationItem)
+                            .itemIfNoNextPage(decorationItem)
+                            .nextPageItem(page -> ItemClickable.onlyItem(ItemBuilder.builder(Material.ARROW)
+                                    .name("Next page - " + page)
                                     .build()))
-                            .setPreviousPageItem(page -> ItemClickable.onlyItem(ItemBuilder.newBuilder(Material.ARROW)
-                                    .setName("Previous page - " + page)
+                            .previousPageItem(page -> ItemClickable.onlyItem(ItemBuilder.builder(Material.ARROW)
+                                    .name("Previous page - " + page)
                                     .build()))
-                            .setLayoutLines(
+                            .layoutLines(
                                     "xxxxxxxxx",
                                     "xseeeeesx",
                                     "xeeeeeeex",
@@ -92,8 +92,8 @@ public class MenuPlugin extends JavaPlugin {
                                     "xsseeessx",
                                     "xpxxxxxnx"
                             )
-                            .setLayoutItem('s', ItemClickable.onlyItem(newStainedPane(DyeColor.WHITE)))
-                            .setLayoutItem('x', decorationItem)
+                            .layoutItem('s', ItemClickable.onlyItem(stainedPane(DyeColor.WHITE)))
+                            .layoutItem('x', decorationItem)
                             .build());
                     break;
                 }

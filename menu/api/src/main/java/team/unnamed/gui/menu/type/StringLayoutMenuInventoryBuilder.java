@@ -27,12 +27,12 @@ public class StringLayoutMenuInventoryBuilder
         this.layoutItems = new HashMap<>();
     }
 
-    public StringLayoutMenuInventoryBuilder setLayoutItem(char identifier, ItemClickable item) {
+    public StringLayoutMenuInventoryBuilder layoutItem(char identifier, ItemClickable item) {
         this.layoutItems.put(identifier, isNotNull(item));
         return back();
     }
 
-    public StringLayoutMenuInventoryBuilder setLayoutLines(String... lines) {
+    public StringLayoutMenuInventoryBuilder layoutLines(String... lines) {
         for (String line : lines) {
             isState(line.length() == 9,
                     "Cannot add layout line '" + line + "' because length is minor than 9");
@@ -54,7 +54,7 @@ public class StringLayoutMenuInventoryBuilder
                     continue;
                 }
 
-                addItem(itemClickable.clone(slotIndex));
+                item(itemClickable.clone(slotIndex));
             }
         }
 

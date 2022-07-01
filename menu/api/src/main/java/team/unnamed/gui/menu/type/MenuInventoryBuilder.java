@@ -16,17 +16,17 @@ public interface MenuInventoryBuilder {
 
     MenuInventoryBuilder fillBorders(ItemClickable item);
 
-    MenuInventoryBuilder setItems(List<ItemClickable> items);
+    MenuInventoryBuilder items(List<ItemClickable> items);
 
-    MenuInventoryBuilder addItem(ItemClickable item, int... slots);
+    MenuInventoryBuilder item(ItemClickable item, int... slots);
 
-    MenuInventoryBuilder addItem(ItemClickable item);
+    MenuInventoryBuilder item(ItemClickable item);
 
-    MenuInventoryBuilder setOpenAction(Predicate<Inventory> action);
+    MenuInventoryBuilder openAction(Predicate<Inventory> action);
 
-    MenuInventoryBuilder setCloseAction(Predicate<Inventory> action);
+    MenuInventoryBuilder closeAction(Predicate<Inventory> action);
 
-    MenuInventoryBuilder setIntroduceItems(boolean canIntroduceItems);
+    MenuInventoryBuilder introduceItems(boolean canIntroduceItems);
 
     Inventory build();
 }

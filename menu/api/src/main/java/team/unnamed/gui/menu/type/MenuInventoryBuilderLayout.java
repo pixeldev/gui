@@ -93,13 +93,13 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
-    public T setItems(List<ItemClickable> items) {
+    public T items(List<ItemClickable> items) {
         this.items = isNotNull(items, "Items cannot be null.");
         return back();
     }
 
     @Override
-    public T addItem(ItemClickable item, int... slots) {
+    public T item(ItemClickable item, int... slots) {
         isNotNull(item, "Item cannot be null.");
 
         for (int slot : slots) {
@@ -110,7 +110,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
-    public T addItem(ItemClickable item) {
+    public T item(ItemClickable item) {
         isNotNull(item, "Item cannot be null.");
 
         this.items.set(item.getSlot(), item);
@@ -119,7 +119,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
-    public T setOpenAction(Predicate<Inventory> action) {
+    public T openAction(Predicate<Inventory> action) {
         isNotNull(action, "Open action cannot be null.");
         this.openAction = action;
 
@@ -127,7 +127,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
-    public T setCloseAction(Predicate<Inventory> action) {
+    public T closeAction(Predicate<Inventory> action) {
         isNotNull(action, "Close action cannot be null.");
         this.closeAction = action;
 
@@ -135,7 +135,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
-    public T setIntroduceItems(boolean canIntroduceItems) {
+    public T introduceItems(boolean canIntroduceItems) {
         this.canIntroduceItems = canIntroduceItems;
         return back();
     }

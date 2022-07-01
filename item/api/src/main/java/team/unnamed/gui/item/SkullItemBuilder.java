@@ -47,13 +47,13 @@ public class SkullItemBuilder
         super(SKULL_MATERIAL, amount, DATA);
     }
 
-    public SkullItemBuilder setOwner(String owner) {
+    public SkullItemBuilder owner(String owner) {
         this.owner = owner;
 
         return this;
     }
 
-    public SkullItemBuilder setUrl(String url) {
+    public SkullItemBuilder url(String url) {
         this.url = url;
 
         return this;

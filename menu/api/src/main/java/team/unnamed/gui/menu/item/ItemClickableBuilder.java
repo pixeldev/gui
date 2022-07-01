@@ -20,12 +20,12 @@ public class ItemClickableBuilder {
         this.slot = slot;
     }
 
-    public ItemClickableBuilder setItem(ItemStack item) {
+    public ItemClickableBuilder item(ItemStack item) {
         this.item = isNotNull(item, "Item cannot be null.");
         return this;
     }
 
-    public ItemClickableBuilder setMultipleAction(Consumer<ItemClickableActionBuilder.Multiple> action) {
+    public ItemClickableBuilder multipleAction(Consumer<ItemClickableActionBuilder.Multiple> action) {
         ItemClickableActionBuilder.Multiple actionBuilder = ItemClickableAction.builder()
                 .multipleAction();
         action.accept(actionBuilder);
@@ -33,7 +33,7 @@ public class ItemClickableBuilder {
         return this;
     }
 
-    public ItemClickableBuilder setAction(Predicate<Inventory> action) {
+    public ItemClickableBuilder action(Predicate<Inventory> action) {
         isNotNull(action, "Action cannot be null.");
         this.action = ItemClickableAction.single(action);
         return this;

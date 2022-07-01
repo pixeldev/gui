@@ -37,43 +37,43 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
     }
 
     @Override
-    public ItemBuilder setName(String name) {
+    public ItemBuilder name(String name) {
         this.name = isNotNull(name, "Item name cannot be null.");
         return back();
     }
 
     @Override
-    public ItemBuilder setLore(List<String> lore) {
+    public ItemBuilder lore(List<String> lore) {
         this.lore = isNotNull(lore, "Item lore cannot be null.");
         return back();
     }
 
     @Override
-    public ItemBuilder setLore(String... lines) {
+    public ItemBuilder lore(String... lines) {
         this.lore = Arrays.asList(isNotNull(lines, "Item lore cannot be null."));
         return back();
     }
 
     @Override
-    public ItemBuilder setEnchantments(Map<Enchantment, Integer> enchantments) {
+    public ItemBuilder enchantments(Map<Enchantment, Integer> enchantments) {
         this.enchantments = isNotNull(enchantments, "Item enchantments cannot be null.");
         return back();
     }
 
     @Override
-    public ItemBuilder addEnchant(Enchantment enchantment, int level) {
+    public ItemBuilder enchant(Enchantment enchantment, int level) {
         this.enchantments.put(isNotNull(enchantment, "Item enchantment cannot be null."), level);
         return back();
     }
 
     @Override
-    public ItemBuilder setFlags(List<ItemFlag> flags) {
+    public ItemBuilder flags(List<ItemFlag> flags) {
         this.flags = isNotNull(flags, "Item flags cannot be null.");
         return back();
     }
 
     @Override
-    public ItemBuilder addFlag(ItemFlag... flags) {
+    public ItemBuilder flag(ItemFlag... flags) {
         this.flags.addAll(Arrays.asList(flags));
         return back();
     }
@@ -86,7 +86,7 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
     }
 
     @Override
-    public ItemBuilder setUnbreakable(boolean unbreakable) {
+    public ItemBuilder unbreakable(boolean unbreakable) {
         this.unbreakable = unbreakable;
         return back();
     }

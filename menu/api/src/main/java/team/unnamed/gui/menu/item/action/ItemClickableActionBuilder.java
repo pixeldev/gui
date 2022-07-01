@@ -33,7 +33,7 @@ public class ItemClickableActionBuilder {
             this.actions = new HashMap<>();
         }
 
-        public Multiple linkClickType(ClickType clickType, Predicate<Inventory> action) {
+        public Multiple link(ClickType clickType, Predicate<Inventory> action) {
             actions.put(
                     isNotNull(clickType, "Click type cannot be null."),
                     isNotNull(action, "Action cannot be null.")

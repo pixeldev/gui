@@ -10,13 +10,13 @@ public final class DecorateItemUtils {
         throw new UnsupportedOperationException();
     }
 
-    public static ItemBuilder newStainedPaneBuilder(DyeColor dyeColor) {
-        return ItemBuilder.newDyeBuilder("STAINED_GLASS_PANE", dyeColor)
-                .setName(" ");
+    public static ItemBuilder stainedPaneBuilder(DyeColor dyeColor) {
+        return ItemBuilder.dyeBuilder("STAINED_GLASS_PANE", dyeColor)
+                .name(" ");
     }
 
-    public static ItemStack newStainedPane(DyeColor dyeColor) {
-        return newStainedPaneBuilder(dyeColor).build();
+    public static ItemStack stainedPane(DyeColor dyeColor) {
+        return stainedPaneBuilder(dyeColor).build();
     }
 
 }

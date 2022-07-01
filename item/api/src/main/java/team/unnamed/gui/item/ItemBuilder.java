@@ -11,47 +11,47 @@ import java.util.Map;
 
 public interface ItemBuilder {
 
-    ItemBuilder setName(String name);
+    ItemBuilder name(String name);
 
-    ItemBuilder setLore(List<String> lore);
+    ItemBuilder lore(List<String> lore);
 
-    ItemBuilder setLore(String... lines);
+    ItemBuilder lore(String... lines);
 
-    ItemBuilder setEnchantments(Map<Enchantment, Integer> enchantments);
+    ItemBuilder enchantments(Map<Enchantment, Integer> enchantments);
 
-    ItemBuilder addEnchant(Enchantment enchantment, int level);
+    ItemBuilder enchant(Enchantment enchantment, int level);
 
-    ItemBuilder setFlags(List<ItemFlag> flags);
+    ItemBuilder flags(List<ItemFlag> flags);
 
-    ItemBuilder addFlag(ItemFlag... flags);
+    ItemBuilder flag(ItemFlag... flags);
 
     ItemBuilder grow();
 
-    ItemBuilder setUnbreakable(boolean unbreakable);
+    ItemBuilder unbreakable(boolean unbreakable);
 
     ItemStack build();
 
-    static ItemBuilder newBuilder(Material material) {
-        return newBuilder(material, 1);
+    static ItemBuilder builder(Material material) {
+        return builder(material, 1);
     }
 
-    static ItemBuilder newBuilder(Material material, int amount) {
-        return newBuilder(material, amount, (byte) 0);
+    static ItemBuilder builder(Material material, int amount) {
+        return builder(material, amount, (byte) 0);
     }
 
-    static ItemBuilder newBuilder(Material material, int amount, byte data) {
+    static ItemBuilder builder(Material material, int amount, byte data) {
         return new DefaultItemBuilder(material, amount, data);
     }
 
-    static SkullItemBuilder newSkullBuilder(int amount) {
+    static SkullItemBuilder skullBuilder(int amount) {
         return new SkullItemBuilder(amount);
     }
 
-    static ItemBuilder newDyeBuilder(String materialKey, DyeColor dyeColor) {
-        return newDyeBuilder(materialKey, dyeColor, 1);
+    static ItemBuilder dyeBuilder(String materialKey, DyeColor dyeColor) {
+        return dyeBuilder(materialKey, dyeColor, 1);
     }
 
-    static ItemBuilder newDyeBuilder(String materialKey, DyeColor dyeColor, int amount) {
+    static ItemBuilder dyeBuilder(String materialKey, DyeColor dyeColor, int amount) {
         return DyeItemUtils.createBuilder(materialKey, dyeColor, amount);
     }
 

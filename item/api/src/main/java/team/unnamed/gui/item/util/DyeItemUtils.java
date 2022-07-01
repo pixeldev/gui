@@ -57,7 +57,7 @@ public class DyeItemUtils {
             data = 0;
         }
 
-        return ItemBuilder.newBuilder(material, amount, data);
+        return ItemBuilder.builder(material, amount, data);
     }
 
 }

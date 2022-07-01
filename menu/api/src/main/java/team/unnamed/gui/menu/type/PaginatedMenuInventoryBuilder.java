@@ -35,54 +35,54 @@ public class PaginatedMenuInventoryBuilder<E>
         super(title, rows);
     }
 
-    public PaginatedMenuInventoryBuilder<E> setBounds(int entitySlotFrom, int entitySlotTo) {
+    public PaginatedMenuInventoryBuilder<E> bounds(int entitySlotFrom, int entitySlotTo) {
         this.entitySlotFrom = entitySlotFrom;
         this.entitySlotTo = entitySlotTo;
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setItemsPerRow(int itemsPerRow) {
+    public PaginatedMenuInventoryBuilder<E> itemsPerRow(int itemsPerRow) {
         this.itemsPerRow = itemsPerRow;
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setSkippedSlots(int... skippedSlots) {
+    public PaginatedMenuInventoryBuilder<E> skipSlots(int... skippedSlots) {
         this.skippedSlots = skippedSlots;
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setEntities(Collection<E> entities) {
+    public PaginatedMenuInventoryBuilder<E> entities(Collection<E> entities) {
         this.entities = new ArrayList<>(entities);
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setEntityParser(Function<E, ItemClickable> entityParser) {
+    public PaginatedMenuInventoryBuilder<E> entityParser(Function<E, ItemClickable> entityParser) {
         this.entityParser = entityParser;
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setNextPageItem(Function<Integer, ItemClickable> nextPageItem) {
+    public PaginatedMenuInventoryBuilder<E> nextPageItem(Function<Integer, ItemClickable> nextPageItem) {
         this.nextPageItem = nextPageItem;
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setPreviousPageItem(Function<Integer, ItemClickable> previousPageItem) {
+    public PaginatedMenuInventoryBuilder<E> previousPageItem(Function<Integer, ItemClickable> previousPageItem) {
         this.previousPageItem = previousPageItem;
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setItemIfNoEntities(ItemClickable itemIfNoEntities) {
+    public PaginatedMenuInventoryBuilder<E> itemIfNoEntities(ItemClickable itemIfNoEntities) {
         this.itemIfNoEntities = isNotNull(itemIfNoEntities, "Item if no entities cannot be null.");
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setItemIfNoPreviousPage(ItemClickable itemIfNoPreviousPage) {
+    public PaginatedMenuInventoryBuilder<E> itemIfNoPreviousPage(ItemClickable itemIfNoPreviousPage) {
         this.itemIfNoPreviousPage = isNotNull(itemIfNoPreviousPage,
                 "Item if no previos page cannot be null.");
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> setItemIfNoNextPage(ItemClickable itemIfNoNextPage) {
+    public PaginatedMenuInventoryBuilder<E> itemIfNoNextPage(ItemClickable itemIfNoNextPage) {
         this.itemIfNoNextPage = isNotNull(itemIfNoNextPage,
                 "Item if no next page cannot be null.");
         return this;
