@@ -11,7 +11,7 @@ arrayOf("api").forEach {
     includePrefixed("item:$it")
 }
 
-arrayOf("api").forEach {
+arrayOf("api", "plugin").forEach {
     includePrefixed("menu:$it")
 }
 

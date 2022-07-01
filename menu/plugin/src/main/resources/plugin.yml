@@ -1,0 +1,7 @@
+name: ungui
+version: 0.0.1
+author: UnnamedTeam
+main: team.unnamed.gui.menu.plugin.MenuPlugin
+commands:
+    gui:
+        permission: "test.gui"
