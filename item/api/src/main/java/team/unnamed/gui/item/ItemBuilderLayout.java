@@ -100,12 +100,13 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
 
         meta.setDisplayName(name);
         meta.setLore(lore);
-        meta.spigot().setUnbreakable(unbreakable);
 
-        if (ServerVersion.CURRENT.getMinor() != 7) {
+        int currentVersion = ServerVersion.CURRENT.getMinor();
+
+        if (currentVersion != 7) {
             List<org.bukkit.inventory.ItemFlag> itemFlags = new ArrayList<>();
 
-            if (ServerVersion.CURRENT.getMinor() <= 13) {
+            if (currentVersion <= 13) {
                 flags.remove(ItemFlag.HIDE_DYE);
             }
 
@@ -114,6 +115,12 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
             }
 
             itemFlags.forEach(meta::addItemFlags);
+        }
+
+        if (currentVersion >= 11) {
+            meta.setUnbreakable(unbreakable);
+        } else {
+            meta.spigot().setUnbreakable(unbreakable);
         }
 
         itemStack.setItemMeta(meta);
