@@ -7,7 +7,8 @@ pluginManagement {
     }
 }
 
-arrayOf("api").forEach {
+// item modules
+arrayOf("api", "skull-api").forEach {
     includePrefixed("item:$it")
 }
 
