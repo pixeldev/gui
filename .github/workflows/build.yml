@@ -3,21 +3,21 @@ name: 'build'
 on: [ 'push', 'pull_request' ]
 
 jobs:
-  build:
-    if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
-    runs-on: 'ubuntu-latest'
-    steps:
-      - name: 'checkout repo'
-        uses: 'actions/checkout@v2'
-      - name: 'setup JDK'
-        uses: 'actions/setup-java@v1'
-        with:
-          java-version: 17
-      - name: 'gradle build'
-        run: './gradlew build'
-#      - name: 'gradle publish'
-#        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-#        run: './gradlew publish'
-#        env:
-#          REPO_USER: '${{ secrets.REPO_USER }}'
-#          REPO_PASSWORD: '${{ secrets.REPO_PASSWORD }}'
+    build:
+        if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+        runs-on: 'ubuntu-latest'
+        steps:
+            -   name: 'checkout repo'
+                uses: 'actions/checkout@v2'
+            -   name: 'setup JDK'
+                uses: 'actions/setup-java@v1'
+                with:
+                    java-version: 17
+            -   name: 'gradle build'
+                run: './gradlew build'
+            -   name: 'gradle publish'
+                if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+                run: './gradlew publish'
+                env:
+                    REPO_USER: '${{ secrets.REPO_USER }}'
+                    REPO_PASSWORD: '${{ secrets.REPO_PASSWORD }}'
