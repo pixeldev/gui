@@ -18,7 +18,7 @@ public class PaginatedMenuInventoryBuilder<E>
 
     private int entitySlotFrom;
     private int entitySlotTo;
-    private Collection<Integer> skippedSlots;
+    private Iterable<Integer> skippedSlots;
     private int itemsPerRow;
     private List<E> entities;
     private Function<E, ItemClickable> entityParser;
@@ -47,7 +47,7 @@ public class PaginatedMenuInventoryBuilder<E>
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> skippedSlots(Collection<Integer> skippedSlots) {
+    public PaginatedMenuInventoryBuilder<E> skippedSlots(Iterable<Integer> skippedSlots) {
         this.skippedSlots = skippedSlots;
         return this;
     }
