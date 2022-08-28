@@ -1,11 +1,11 @@
 ## Installation
 
-You can add `gui` to your project using [Gradle](https://gradle.org/)
+You can add `gui-menu` to your project using [Gradle](https://gradle.org/)
 *(recommended)*, [Maven](https://maven.apache.org/) or manually downloading the
-JAR files
+JAR files.
 
 To use general API you should add just `gui-menu-api` subproject to your project.
-Since `gui` uses [adapters](../../menu/adapt) for each Minecraft version you should include corresponding
+Since `gui-menu` uses [adapters](https://github.com/unnamed/gui/tree/main/menu/adapt) for each Minecraft version you should include corresponding
 adapters in your project as well.
 
 Using versions above 1.17 you should use Java 17 or above.
