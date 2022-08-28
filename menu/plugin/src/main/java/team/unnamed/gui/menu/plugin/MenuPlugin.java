@@ -100,7 +100,7 @@ public class MenuPlugin extends JavaPlugin {
                             .entities(entities)
                             .itemsPerRow(7)
                             .entityParser(ItemClickable::onlyItem)
-                            .skipSlots(10, 16, 28, 34, 37, 38, 42, 43)
+                            .skippedSlots(10, 16, 28, 34, 37, 38, 42, 43)
                             .bounds(10, 44)
                             .itemIfNoPreviousPage(decorationItem)
                             .itemIfNoNextPage(decorationItem)
