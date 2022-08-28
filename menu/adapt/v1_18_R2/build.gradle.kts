@@ -9,6 +9,10 @@ java {
     }
 }
 
+repositories {
+    maven("https://libraries.minecraft.net/")
+}
+
 tasks {
     assemble {
         dependsOn(reobfJar)
