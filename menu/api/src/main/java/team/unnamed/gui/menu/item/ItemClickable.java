@@ -39,6 +39,10 @@ public class ItemClickable {
         return new ItemClickableBuilder(slot);
     }
 
+    public static ItemClickableBuilder builder() {
+        return new ItemClickableBuilder(-1);
+    }
+
     public int getSlot() {
         return slot;
     }
