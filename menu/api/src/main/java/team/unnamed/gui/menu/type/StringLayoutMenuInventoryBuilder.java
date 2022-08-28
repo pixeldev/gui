@@ -3,10 +3,7 @@ package team.unnamed.gui.menu.type;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static team.unnamed.validate.Validate.isNotNull;
 import static team.unnamed.validate.Validate.isState;
@@ -23,7 +20,7 @@ public class StringLayoutMenuInventoryBuilder
 
     protected StringLayoutMenuInventoryBuilder(String title, int rows) {
         super(title, rows);
-        this.layoutLines = new ArrayList<>();
+        this.layoutLines = new ArrayList<>(rows);
         this.layoutItems = new HashMap<>();
     }
 
@@ -32,13 +29,19 @@ public class StringLayoutMenuInventoryBuilder
         return back();
     }
 
-    public StringLayoutMenuInventoryBuilder layoutLines(String... lines) {
+    public StringLayoutMenuInventoryBuilder layoutLines(Iterable<String> lines) {
         for (String line : lines) {
+            line = line.trim();
             isState(line.length() == 9,
                     "Cannot add layout line '" + line + "' because length is minor than 9");
             this.layoutLines.add(line.trim());
         }
+
         return back();
+    }
+
+    public StringLayoutMenuInventoryBuilder layoutLines(String... lines) {
+        return layoutLines(Arrays.asList(lines));
     }
 
     @Override
