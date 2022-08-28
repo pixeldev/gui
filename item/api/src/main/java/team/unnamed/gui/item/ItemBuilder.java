@@ -43,10 +43,6 @@ public interface ItemBuilder {
         return new DefaultItemBuilder(material, amount, data);
     }
 
-    static SkullItemBuilder skullBuilder(int amount) {
-        return new SkullItemBuilder(amount);
-    }
-
     static ItemBuilder dyeBuilder(String materialKey, DyeColor dyeColor) {
         return dyeBuilder(materialKey, dyeColor, 1);
     }
