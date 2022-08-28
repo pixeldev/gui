@@ -3,13 +3,20 @@ plugins {
     id("gui.common-conventions")
 }
 
+configure<JavaPluginExtension> {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 dependencies {
-    compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
 
     implementation(project(":gui-menu-api"))
+    implementation(project(":gui-item-skull-api"))
     implementation(project(":gui-item-api"))
 
-    arrayOf("1_8_R3").forEach {
+    arrayOf("1_18_R2").forEach {
         runtimeOnly(project(":gui-menu-adapt-v$it"))
     }
 }
