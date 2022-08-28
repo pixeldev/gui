@@ -29,14 +29,14 @@ Add the dependency into your `<dependencies>` tag (`pom.xml`)
 
 ### **Gradle Groovy DSL Dependency**
 Add the repositories into your `repositories` section (`build.gradle`)
-```groovy
+```kotlin
 maven {
   name = 'unnamed-public'
   url = 'https://repo.unnamed.team/repository/unnamed-public/'
 }
 ```
 Add the dependency into your `dependencies` section (`build.gradle`)
-```groovy
+```kotlin
 implementation 'team.unnamed:gui-menu-api:VERSION'
 ```
 
