@@ -109,10 +109,13 @@ public class PaginatedMenuInventoryBuilder<E>
             itemsPerRowCounter++;
 
             boolean isSkippedSlot = false;
-            for (int skippedSlot : skippedSlots) {
-                if (i == skippedSlot) {
-                    isSkippedSlot = true;
-                    break;
+
+            if (skippedSlots != null) {
+                for (Integer skippedSlot : skippedSlots) {
+                    if (i == skippedSlot) {
+                        isSkippedSlot = true;
+                        break;
+                    }
                 }
             }
 
