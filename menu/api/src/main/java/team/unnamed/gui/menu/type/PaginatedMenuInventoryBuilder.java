@@ -6,6 +6,7 @@ import team.unnamed.gui.menu.util.MenuUtil;
 import team.unnamed.gui.menu.util.PaginatedMenuUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
@@ -17,7 +18,7 @@ public class PaginatedMenuInventoryBuilder<E>
 
     private int entitySlotFrom;
     private int entitySlotTo;
-    private int[] skippedSlots;
+    private Collection<Integer> skippedSlots;
     private int itemsPerRow;
     private List<E> entities;
     private Function<E, ItemClickable> entityParser;
@@ -46,8 +47,13 @@ public class PaginatedMenuInventoryBuilder<E>
         return this;
     }
 
-    public PaginatedMenuInventoryBuilder<E> skipSlots(int... skippedSlots) {
+    public PaginatedMenuInventoryBuilder<E> skippedSlots(Collection<Integer> skippedSlots) {
         this.skippedSlots = skippedSlots;
+        return this;
+    }
+
+    public PaginatedMenuInventoryBuilder<E> skippedSlots(Integer... skippedSlots) {
+        this.skippedSlots = Arrays.asList(skippedSlots);
         return this;
     }
 
