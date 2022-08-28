@@ -6,9 +6,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import team.unnamed.bukkit.ServerVersion;
+import team.unnamed.gui.item.skull.SkullSkin;
 
 import java.lang.reflect.Field;
-import java.util.Base64;
 import java.util.UUID;
 
 public class SkullItemBuilder
@@ -40,23 +40,19 @@ public class SkullItemBuilder
         }
     }
 
-    private String owner;
-    private String url;
+    private final SkullSkin skin;
 
-    protected SkullItemBuilder(int amount) {
+    private SkullItemBuilder(int amount, SkullSkin skin) {
         super(SKULL_MATERIAL, amount, DATA);
+        this.skin = skin;
     }
 
-    public SkullItemBuilder owner(String owner) {
-        this.owner = owner;
-
-        return this;
+    public static SkullItemBuilder create(SkullSkin skin) {
+        return new SkullItemBuilder(1, skin);
     }
 
-    public SkullItemBuilder url(String url) {
-        this.url = url;
-
-        return this;
+    public static SkullItemBuilder create(int amount, SkullSkin skin) {
+        return new SkullItemBuilder(amount, skin);
     }
 
     @Override
@@ -64,24 +60,23 @@ public class SkullItemBuilder
         ItemStack itemStack = super.build();
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
 
-        if (owner != null) {
-            skullMeta.setOwner(owner);
-        } else if (url != null) {
-            GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
-            byte[] encodedData = Base64.getEncoder().encode(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
 
-            gameProfile.getProperties().put("textures", new Property("textures", new String(encodedData)));
-            boolean accessible = PROFILE_FIELD.isAccessible();
-            PROFILE_FIELD.setAccessible(true);
+        gameProfile.getProperties().put("textures", new Property(
+                "textures",
+                skin.getValue(),
+                skin.getSignature()
+        ));
 
-            try {
-                PROFILE_FIELD.set(skullMeta, gameProfile);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } finally {
-                PROFILE_FIELD.setAccessible(accessible);
-            }
+        boolean accessible = PROFILE_FIELD.isAccessible();
+        PROFILE_FIELD.setAccessible(true);
 
+        try {
+            PROFILE_FIELD.set(skullMeta, gameProfile);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } finally {
+            PROFILE_FIELD.setAccessible(accessible);
         }
 
         itemStack.setItemMeta(skullMeta);
@@ -93,5 +88,4 @@ public class SkullItemBuilder
     protected SkullItemBuilder back() {
         return this;
     }
-
 }
