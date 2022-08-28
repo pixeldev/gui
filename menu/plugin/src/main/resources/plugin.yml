@@ -1,6 +1,7 @@
 name: ungui
 version: 0.0.1
 author: UnnamedTeam
+api-version: 1.13
 main: team.unnamed.gui.menu.plugin.MenuPlugin
 commands:
     gui:

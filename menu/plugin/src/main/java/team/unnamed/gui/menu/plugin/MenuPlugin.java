@@ -8,6 +8,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.unnamed.gui.item.ItemBuilder;
+import team.unnamed.gui.item.SkullItemBuilder;
+import team.unnamed.gui.item.skull.SkinManager;
+import team.unnamed.gui.item.skull.SkinProvider;
 import team.unnamed.gui.menu.item.ItemClickable;
 import team.unnamed.gui.menu.listener.InventoryClickListener;
 import team.unnamed.gui.menu.listener.InventoryCloseListener;
@@ -16,6 +19,7 @@ import team.unnamed.gui.menu.type.MenuInventory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import static team.unnamed.gui.item.util.DecorateItemUtils.stainedPane;
 
@@ -28,13 +32,35 @@ public class MenuPlugin extends JavaPlugin {
         pluginManager.registerEvents(new InventoryOpenListener(), this);
         pluginManager.registerEvents(new InventoryCloseListener(this), this);
 
+        String url = "https://textures.minecraft.net/texture/94c29dbcf4162f570e23a1bac185c3f0f79f3fe6fe3515f8ca5537c91da7e6e9";
+
+        SkinManager skinManager = new SkinManager(
+                SkinProvider.MINESKIN,
+                Executors.newSingleThreadExecutor()
+        );
+
+        skinManager.fetchSkin(
+                SkinProvider.Type.URL,
+                url
+        ).whenComplete((skin, throwable) -> {
+            if (throwable != null) {
+                throwable.printStackTrace();
+            } else {
+                System.out.println("Skin fetched correctly: " + skin);
+            }
+        });
+
         getCommand("gui").setExecutor((sender, command, label, args) -> {
             Player player = (Player) sender;
 
             switch (args[0]) {
                 case "default": {
                     player.openInventory(MenuInventory.newBuilder("Test")
-                            .fillBorders(ItemClickable.onlyItem(stainedPane(DyeColor.PINK)))
+                            .fillBorders(ItemClickable.onlyItem(
+                                    SkullItemBuilder.create(skinManager.getSkin(url))
+                                            .name("sexo")
+                                            .build()
+                            ))
                             .item(ItemClickable.builder(22)
                                     .item(new ItemStack(Material.ENDER_PEARL))
                                     .action(inventory -> {
