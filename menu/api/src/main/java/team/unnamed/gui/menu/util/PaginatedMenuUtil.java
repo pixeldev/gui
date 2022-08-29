@@ -31,62 +31,55 @@ public final class PaginatedMenuUtil {
         int currentSlot = 0;
         int entitySlotIndex = 0;
 
-        if (entitiesSize == 0) {
-            ItemClickable itemIfNoEntities = menuInventory.getItemIfNoEntities();
-            if (itemIfNoEntities != null) {
-                delegate.setItem(itemIfNoEntities.getSlot(), itemIfNoEntities.getItemStack());
-                menuInventory.setItem(itemIfNoEntities);
-            }
-        } else {
-            for (String layoutLine : menuInventory.getLayoutLines()) {
-                for (char c : layoutLine.toCharArray()) {
-                    ItemClickable itemClickable = null;
+        for (String layoutLine : menuInventory.getLayoutLines()) {
+            for (char c : layoutLine.toCharArray()) {
+                ItemClickable itemClickable = null;
 
-                    switch (c) {
-                        case 'e': {
-                            if (entityIndex >= entitiesSize) {
-                                break;
-                            }
+                switch (c) {
+                    case 'e': {
+                        if (entityIndex >= entitiesSize) {
+                            itemClickable = menuInventory.getItemIfNoEntities().clone(availableSlots.get(entitySlotIndex++));
+                            break;
+                        }
 
-                            E entity = entities.get(entityIndex++);
-                            itemClickable = entityParser.apply(entity).clone(availableSlots.get(entitySlotIndex++));
-                            break;
-                        }
-                        case 'n': {
-                            itemClickable = getInteractPageItem(
-                                    currentPage < menuInventory.getMaxPages(),
-                                    currentPage, currentPage + 1, currentSlot,
-                                    menuInventory, menuInventory.getNextPageItem(),
-                                    menuInventory.getItemIfNoNextPage()
-                            );
-                            break;
-                        }
-                        case 'p': {
-                            itemClickable = getInteractPageItem(
-                                    currentPage > 1,
-                                    currentPage, currentPage - 1, currentSlot,
-                                    menuInventory, menuInventory.getPreviousPageItem(),
-                                    menuInventory.getItemIfNoPreviousPage()
-                            );
-                            break;
-                        }
-                        default: {
-                            ItemClickable layoutItem = layoutItems.get(c);
-
-                            if (layoutItem != null) {
-                                itemClickable = layoutItem.clone(currentSlot);
-                            }
-                            break;
-                        }
+                        E entity = entities.get(entityIndex++);
+                        itemClickable = entityParser.apply(entity).clone(availableSlots.get(entitySlotIndex++));
+                        break;
                     }
-
-                    if (itemClickable != null) {
-                        delegate.setItem(itemClickable.getSlot(), itemClickable.getItemStack());
-                        menuInventory.setItem(itemClickable);
+                    case 'n': {
+                        itemClickable = getInteractPageItem(
+                                currentPage < menuInventory.getMaxPages(),
+                                currentPage, currentPage + 1, currentSlot,
+                                menuInventory, menuInventory.getNextPageItem(),
+                                menuInventory.getItemIfNoNextPage()
+                        );
+                        break;
                     }
+                    case 'p': {
+                        itemClickable = getInteractPageItem(
+                                currentPage > 1,
+                                currentPage, currentPage - 1, currentSlot,
+                                menuInventory, menuInventory.getPreviousPageItem(),
+                                menuInventory.getItemIfNoPreviousPage()
+                        );
+                        break;
+                    }
+                    default: {
+                        ItemClickable layoutItem = layoutItems.get(c);
 
-                    currentSlot++;
+                        if (layoutItem != null) {
+                            itemClickable = layoutItem.clone(currentSlot);
+                        }
+                        break;
+                    }
                 }
+
+                if (itemClickable != null) {
+                    delegate.setItem(itemClickable.getSlot(), itemClickable.getItemStack());
+                    menuInventory.setItem(itemClickable);
+                }
+
+                currentSlot++;
             }
         }
 
