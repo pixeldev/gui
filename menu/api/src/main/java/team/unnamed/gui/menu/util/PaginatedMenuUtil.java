@@ -31,6 +31,8 @@ public final class PaginatedMenuUtil {
         int currentSlot = 0;
         int entitySlotIndex = 0;
 
+        ItemClickable itemIfNoEntities = menuInventory.getItemIfNoEntities();
+
         for (String layoutLine : menuInventory.getLayoutLines()) {
             for (char c : layoutLine.toCharArray()) {
                 ItemClickable itemClickable = null;
@@ -38,8 +40,8 @@ public final class PaginatedMenuUtil {
                 switch (c) {
                     case 'e': {
                         if (entityIndex >= entitiesSize) {
-                            if (menuInventory.getItemIfNoEntities() != null)
-                                itemClickable = menuInventory.getItemIfNoEntities().clone(availableSlots.get(entitySlotIndex++));
+                            if (itemIfNoEntities != null)
+                                itemClickable = itemIfNoEntities.clone(availableSlots.get(entitySlotIndex++));
                             break;
                         }
 
