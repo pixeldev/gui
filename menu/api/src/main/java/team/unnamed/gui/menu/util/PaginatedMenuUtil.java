@@ -38,7 +38,8 @@ public final class PaginatedMenuUtil {
                 switch (c) {
                     case 'e': {
                         if (entityIndex >= entitiesSize) {
-                            itemClickable = menuInventory.getItemIfNoEntities().clone(availableSlots.get(entitySlotIndex++));
+                            if (menuInventory.getItemIfNoEntities() != null)
+                                itemClickable = menuInventory.getItemIfNoEntities().clone(availableSlots.get(entitySlotIndex++));
                             break;
                         }
 
