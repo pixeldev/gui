@@ -1,21 +1,21 @@
 package team.unnamed.gui.menu.item.action;
 
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.function.Predicate;
 
 public class SingleClickableAction
         implements ItemClickableAction {
 
-    private final Predicate<Inventory> action;
+    private final Predicate<InventoryClickEvent> action;
 
-    protected SingleClickableAction(Predicate<Inventory> action) {
+    protected SingleClickableAction(Predicate<InventoryClickEvent> action) {
         this.action = action;
     }
 
     @Override
-    public Predicate<Inventory> getAction(ClickType clickType) {
+    public Predicate<InventoryClickEvent> getAction(ClickType clickType) {
         return action;
     }
 

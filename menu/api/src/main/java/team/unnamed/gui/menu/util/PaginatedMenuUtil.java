@@ -100,8 +100,9 @@ public final class PaginatedMenuUtil {
         if (expression) {
             itemClickable = pageItem.apply(currentPage)
                     .clone(currentSlot)
-                    .clone(ItemClickableAction.single(inventory -> {
+                    .clone(ItemClickableAction.single(event -> {
                         menuInventory.clearItems();
+                        Inventory inventory = event.getClickedInventory();
                         inventory.clear();
                         createPage(inventory, menuInventory.clone(newPage));
                         return true;
