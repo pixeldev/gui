@@ -1,6 +1,6 @@
 package team.unnamed.gui.menu.item;
 
-import org.bukkit.inventory.Inventory;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import team.unnamed.gui.menu.item.action.ItemClickableAction;
 import team.unnamed.gui.menu.item.action.ItemClickableActionBuilder;
@@ -33,7 +33,7 @@ public class ItemClickableBuilder {
         return this;
     }
 
-    public ItemClickableBuilder action(Predicate<Inventory> action) {
+    public ItemClickableBuilder action(Predicate<InventoryClickEvent> action) {
         isNotNull(action, "Action cannot be null.");
         this.action = ItemClickableAction.single(action);
         return this;
