@@ -1,7 +1,7 @@
 package team.unnamed.gui.menu.item.action;
 
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class ItemClickableActionBuilder {
         return new Multiple();
     }
 
-    public ItemClickableAction globalAction(Predicate<Inventory> action) {
+    public ItemClickableAction globalAction(Predicate<InventoryClickEvent> action) {
         return new SingleClickableAction(isNotNull(
                 action,
                 "Action cannot be null."
@@ -27,13 +27,13 @@ public class ItemClickableActionBuilder {
 
     public static class Multiple {
 
-        private final Map<ClickType, Predicate<Inventory>> actions;
+        private final Map<ClickType, Predicate<InventoryClickEvent>> actions;
 
         public Multiple() {
             this.actions = new HashMap<>();
         }
 
-        public Multiple link(ClickType clickType, Predicate<Inventory> action) {
+        public Multiple link(ClickType clickType, Predicate<InventoryClickEvent> action) {
             actions.put(
                     isNotNull(clickType, "Click type cannot be null."),
                     isNotNull(action, "Action cannot be null.")

@@ -41,12 +41,12 @@ public class InventoryClickListener
             }
 
             ItemClickableAction action = itemClickable.getAction();
-            Predicate<Inventory> clickAction = action.getAction(event.getClick());
+            Predicate<InventoryClickEvent> clickAction = action.getAction(event.getClick());
 
             if (clickAction == null) {
                 event.setCancelled(!menuInventory.canIntroduceItems());
             } else {
-                event.setCancelled(clickAction.test(inventory));
+                event.setCancelled(clickAction.test(event));
             }
         }
     }
