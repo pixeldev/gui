@@ -29,13 +29,19 @@ public class SkinManager {
     ) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                SkullSkin skin = provider.fetchSkin(type, key);
+                SkullSkin skin = skins.get(key);
+
+                if (skin == null) {
+                    skin = provider.fetchSkin(type, key);
+                }
 
                 if (skin == null) {
                     return null;
                 }
 
-                skins.put(key, skin);
+                if (!skins.containsKey(key)) {
+                    skins.put(key, skin);
+                }
 
                 return skin;
             } catch (Exception e) {
