@@ -13,6 +13,9 @@ public class AshconSkinProvider implements SkinProvider {
 
     private static final String BASE_URL = "https://api.ashcon.app/mojang/v2/user/";
 
+    protected AshconSkinProvider() {
+    }
+
     @Override
     public @Nullable SkullSkin fetchSkin(Type type, String key) throws Exception {
         if (type == Type.URL) {
