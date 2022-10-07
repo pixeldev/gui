@@ -24,6 +24,9 @@ public class MineskinSkinProvider implements SkinProvider {
         }
     }
 
+    protected MineskinSkinProvider() {
+    }
+
     @Override
     public @Nullable SkullSkin fetchSkin(Type type, String key) throws Exception {
         HttpURLConnection connection = (HttpURLConnection) URL_GENERATE_URL.openConnection();
