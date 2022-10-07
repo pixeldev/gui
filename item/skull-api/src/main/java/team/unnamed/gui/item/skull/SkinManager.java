@@ -1,5 +1,7 @@
 package team.unnamed.gui.item.skull;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -10,11 +12,9 @@ import java.util.concurrent.Executor;
 public class SkinManager {
 
     private final Map<String, SkullSkin> skins;
-    private final SkinProvider provider;
     private final Executor executor;
 
-    public SkinManager(SkinProvider provider, Executor executor) {
-        this.provider = provider;
+    public SkinManager(Executor executor) {
         this.executor = executor;
         this.skins = new ConcurrentHashMap<>();
     }
@@ -24,15 +24,16 @@ public class SkinManager {
     }
 
     public CompletableFuture<SkullSkin> fetchSkin(
-            SkinProvider.Type type,
-            String key
+            @NotNull SkinProvider skinProvider,
+            @NotNull SkinProvider.Type type,
+            @NotNull String key
     ) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 SkullSkin skin = skins.get(key);
 
                 if (skin == null) {
-                    skin = provider.fetchSkin(type, key);
+                    skin = skinProvider.fetchSkin(type, key);
                 }
 
                 if (skin == null) {

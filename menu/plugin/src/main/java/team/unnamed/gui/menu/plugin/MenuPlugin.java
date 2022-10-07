@@ -34,12 +34,10 @@ public class MenuPlugin extends JavaPlugin {
 
         String url = "https://textures.minecraft.net/texture/94c29dbcf4162f570e23a1bac185c3f0f79f3fe6fe3515f8ca5537c91da7e6e9";
 
-        SkinManager skinManager = new SkinManager(
-                SkinProvider.MINESKIN,
-                Executors.newSingleThreadExecutor()
-        );
+        SkinManager skinManager = new SkinManager(Executors.newSingleThreadExecutor());
 
         skinManager.fetchSkin(
+                SkinProvider.MINESKIN,
                 SkinProvider.Type.URL,
                 url
         ).whenComplete((skin, throwable) -> {
